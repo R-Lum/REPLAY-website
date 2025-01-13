@@ -1,41 +1,58 @@
 ---
 authorbox: false
-date: "2022-01-25T14:00:00.000Z"
 menu: main
 sidebar: false
 title: About
 ---
 
-Our website builds with [Hugo](https://gohugo.io/) static site generator and
-[Mainroad](https://github.com/vimux/mainroad) theme. This demo allows you to see what Mainroad based website looks like
-before deciding to go with it. Just keep in mind that the current demo shows the basics, a small part of what the
-combination of Hugo and Mainroad can do.
+REPLAY (REProducible Luminescence Data AnalYses)
 
-## About Mainroad
+REPLAY is a DFG-funded programme ([No 528704761](https://gepris.dfg.de/gepris/projekt/528704761?language=en))
+led by Dr Sebastian Kreutzer (PI at Heidelberg University, DE) and
+Dr Thomas Kolb (PI at Justus-Liebig-University Giessen, DE).
 
-Mainroad is a responsive, simple, clean and content-focused Hugo theme based on the MH Magazine lite WordPress theme.
+## About REPLAY
 
-Main features:
+Reproducibility is a crucial element of science. In modern science, research
+software is vital for the discovery process, and quality and accessibility
+determine the reproducibility of results, such as in the field of
+luminescence-based Geochronology.
 
-* Responsive design
-* Main & secondary menus
-* Widgetized sidebar
-* Translations. Over 15 languages and counting
-* Configurable theme settings (sidebar position, author box, post navigation, highlight color) via config.toml
-* Hugo internal templates (Open Graph, Schema, Twitter Cards, Disqus, Google Analytics)
-* Wide cross-browser compatibility
-  * Desktop: IE11+, Chrome, Firefox, Safari
-  * Mobile: Android browser (on Android 4.4+), Safari (on iOS 7+), Google Chrome, Opera mini
-* Custom Google Fonts support, MathJax, Table of Contents, SVG icons and much more…
+Luminescence dating techniques are essential in Quaternary research,
+constituting cornerstones in Earth and Archaeological Sciences and beyond.
+Luminescence dating towards an age determination generates vast measurement
+data and requires various analysis steps. However, a fragmented, partly
+closed-source software landscape limits the transparency and reproducibility
+of results, and measures of rigours and professional quality assurance are
+seldom implemented.
 
-Learn more on [GitHub](https://github.com/vimux/mainroad). Mainroad theme is released under the
-[GPLv2 license](https://github.com/vimux/mainroad/blob/master/LICENSE.md).
+REPLAY aims to build on the existing R-based software package
+[Luminescence](https://r-lum.github.io/Luminescence/) to achieve the following
+goals:
 
-## About Hugo
+- foster a community-driven reproducible and open research software framework
+in the bottom-up approach: the REPLAY system;
 
-Hugo is a static HTML and CSS website generator written in Go. It is optimized for speed, ease of use, and
-configurability. Hugo takes a directory with content and templates and renders them into a full HTML website. With its
+- implement the [FAIR principles](https://www.go-fair.org/fair-principles/)
+for research software;
+
+- provide a community tailored, accessible and usable open-source software
+suite enabling new analytical pathways promoting a re-evaluation and
+reporting of existing data beyond the target community of geochronologists;
+
+- facilitate interfaces from and to the REPLAY system to enable the
+extraction of raw data and pattern recognition of big datasets using the
+REPLAY system.
+
+Finally, REPLAY aims to ensure long-term impacts in terms of visibility and
+active community participation. They are combined with a professional
+development workflow to secure long-term usability and sustained support of
+the REPLAY system.
+
+## About this Website
+
+The REPLAY website is built using [Hugo](https://gohugo.io/). Hugo is a
+static HTML and CSS website generator written in Go. It is optimized for
+speed, ease of use, and configurability. Hugo takes a directory with
+content and templates and renders them into a full HTML website. With its
 amazing speed and flexibility, Hugo makes building websites fun again.
-
-Learn more on [GitHub](https://github.com/gohugoio/hugo). Complete documentation is available at
-[Hugo Documentation](https://gohugo.io/getting-started/).

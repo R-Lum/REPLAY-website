@@ -4,7 +4,7 @@ languageCode = "en-us"
 theme = "Mainroad"
 
 [Params]
-  description = "John Doe's Personal blog about everything" # Description of your site
+  description = "Website of the DFG-funded REPLAY project"
   opengraph = true
   twitter_cards = false
   readmore = false # Show "Read more" button in list if true
@@ -14,7 +14,7 @@ theme = "Mainroad"
   mainSections = ["post", "docs"]
 
 [Params.logo]
-  subtitle = "Just another site" # Logo subtitle
+  subtitle = "REProducible Luminescence Data AnalYses"
 
 [Params.sidebar]
   home = "right"   # Configure layout for home page

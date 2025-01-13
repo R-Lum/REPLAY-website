@@ -2,76 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:4321/docs/getting-started/</loc>
+    <loc>/docs/getting-started/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/docs/customization/</loc>
+    <loc>/docs/customization/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/docs/faq/</loc>
+    <loc>/docs/faq/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/about/</loc>
-    <lastmod>2022-01-25T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:4321/</loc>
-    <lastmod>2022-01-25T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:4321/docs/</loc>
+    <loc>/docs/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/installation/</loc>
+    <loc>/tags/installation/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/</loc>
+    <loc>/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/basic-elements/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/tags/</loc>
+    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/post/basic-elements/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/categories/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/post/2020-12-01-r-rmarkdown/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/css/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/tags/plot/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/categories/development/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/html/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/categories/r/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/post/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>/tags/r-markdown/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/post/hugo-template-primer/</loc>
+    <loc>/tags/regression/</loc>
+    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
+  </url><url>
+    <loc>/post/hugo-template-primer/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/development/</loc>
+    <loc>/tags/development/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/post/getting-started-with-hugo/</loc>
+    <loc>/categories/development/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/go/</loc>
+    <loc>/post/getting-started-with-hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/golang/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/categories/golang/</loc>
+    <loc>/tags/templates/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/hugo/</loc>
+    <loc>/tags/themes/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:4321/tags/templates/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:4321/tags/themes/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>/about/</loc>
   </url>
 </urlset>
