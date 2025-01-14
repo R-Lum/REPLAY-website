@@ -2,10 +2,8 @@
 authorbox: false
 menu: main
 sidebar: false
-title: About
+title: REPLAY (REProducible Luminescence Data AnalYses)
 ---
-
-REPLAY (REProducible Luminescence Data AnalYses)
 
 REPLAY is a DFG-funded programme ([No 528704761](https://gepris.dfg.de/gepris/projekt/528704761?language=en))
 led by Dr Sebastian Kreutzer (PI at Heidelberg University, DE) and
