@@ -53,5 +53,5 @@ the REPLAY system.
 
 The REPLAY website is built using [Hugo](https://gohugo.io/), a
 static HTML and CSS website generator written in Go, and the
-[Mainroad](https://www.uni-giessen.de/en/) theme. Support for R code is
+[Mainroad](https://github.com/Vimux/Mainroad/) theme. Support for R code is
 handled via the [blogdown](https://pkgs.rstudio.com/blogdown/) R package.
