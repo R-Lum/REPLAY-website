@@ -11,7 +11,7 @@ theme = "Mainroad"
   authorbox = false
   pager = true
   post_meta = ["date", "categories"] # Order of post meta information
-  mainSections = ["post", "docs"]
+  mainSections = ["post"]
 
 [Params.logo]
   image = "img/REPLAY_claim_colour.png"
@@ -28,3 +28,6 @@ theme = "Mainroad"
 [Params.widgets]
   recent_num = 5 # Set the number of articles in the "Recent articles" widget
   tags_counter = false # Enable counter for each tag in "Tags" widget (disabled by default)
+
+[permalinks]
+  post = "/post/:year/:month/:slug"

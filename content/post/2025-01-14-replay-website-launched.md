@@ -12,5 +12,5 @@ other training opportunities, and to discuss some details concerning
 the [Luminescence](http://r-luminescence.org/) package.
 
 At the moment the site is still sparse, but we'll populate on a regular
-basis. We have the [About](/about) page available to describe the aims
-of the REPLAY project.
+basis. In the meantime, you can read our [About](/about) page, which
+describes the aims and goals of the REPLAY project.
