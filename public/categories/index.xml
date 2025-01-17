@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on REPLAY</title>
-    <link>//localhost:4321/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:4321/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Website</title>
-      <link>//localhost:4321/categories/website/</link>
+      <link>/categories/website/</link>
       <pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:4321/categories/website/</guid>
+      <guid>/categories/website/</guid>
       <description></description>
     </item>
   </channel>

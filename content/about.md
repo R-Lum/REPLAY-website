@@ -2,14 +2,14 @@
 authorbox: false
 menu: main
 sidebar: false
-title: REPLAY (REProducible Luminescence Data AnalYses)
+title: About
 ---
 
 REPLAY is a DFG-funded programme ([No 528704761](https://gepris.dfg.de/gepris/projekt/528704761?language=en))
 led by Dr Sebastian Kreutzer (PI at Heidelberg University, DE) and
 Dr Thomas Kolb (PI at Justus-Liebig-University Giessen, DE).
 
-## About REPLAY
+## REPLAY: REProducible Luminescence Data AnalYses
 
 Reproducibility is a crucial element of science. In modern science, research
 software is vital for the discovery process, and quality and accessibility

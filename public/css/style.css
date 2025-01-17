@@ -407,8 +407,8 @@ select {
 }
 
 .logo--mixed .logo__img {
-	max-width: 128px;
-	max-height: 128px;
+	max-width: 256x;
+	max-height: 256px;
 }
 
 .logo--mixed .logo__text {

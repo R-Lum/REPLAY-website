@@ -14,6 +14,8 @@ theme = "Mainroad"
   mainSections = ["post", "docs"]
 
 [Params.logo]
+  image = "img/REPLAY_claim_colour.png"
+  title = false
   subtitle = "REProducible Luminescence Data AnalYses"
 
 [Params.sidebar]
