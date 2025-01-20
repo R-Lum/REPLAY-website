@@ -1,5 +1,6 @@
 baseurl = "/"
 title = "REPLAY"
+publishdir = "docs/"
 languageCode = "en-us"
 theme = "Mainroad"
 
