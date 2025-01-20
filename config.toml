@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "/REPLAY-website/"
 title = "REPLAY"
 publishdir = "docs/"
 languageCode = "en-us"
