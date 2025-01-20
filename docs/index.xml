@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>REPLAY</title>
-    <link>/</link>
+    <link>/REPLAY-website/</link>
     <description>Recent content on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/REPLAY-website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>REPLAY website launched</title>
-      <link>/post/2025/01/replay-website-launched/</link>
+      <link>/REPLAY-website/post/2025/01/replay-website-launched/</link>
       <pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>/post/2025/01/replay-website-launched/</guid>
-      <description>&lt;p&gt;We have finally launched the website for the REPLAY project. We will use&#xA;it to report on the progress of the project, to inform about webinars and&#xA;other training opportunities, and to discuss some details concerning&#xA;the &lt;a href=&#34;http://r-luminescence.org/&#34;&gt;Luminescence&lt;/a&gt; package.&lt;/p&gt;&#xA;&lt;p&gt;At the moment the site is still sparse, but we&amp;rsquo;ll populate on a regular&#xA;basis. In the meantime, you can read our &lt;a href=&#34;/about&#34;&gt;About&lt;/a&gt; page, which&#xA;describes the aims and goals of the REPLAY project.&lt;/p&gt;</description>
+      <guid>/REPLAY-website/post/2025/01/replay-website-launched/</guid>
+      <description>&lt;p&gt;We have finally launched the website for the REPLAY project. We will use&#xA;it to report on the progress of the project, to inform about webinars and&#xA;other training opportunities, and to discuss some details concerning&#xA;the &lt;a href=&#34;http://r-luminescence.org/&#34;&gt;Luminescence&lt;/a&gt; package.&lt;/p&gt;&#xA;&lt;p&gt;At the moment the site is still sparse, but we&amp;rsquo;ll populate on a regular&#xA;basis. In the meantime, you can read our &lt;a href=&#34;/REPLAY-website/about&#34;&gt;About&lt;/a&gt; page, which&#xA;describes the aims and goals of the REPLAY project.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>/REPLAY-website/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/about/</guid>
+      <guid>/REPLAY-website/about/</guid>
       <description>&lt;p&gt;REPLAY is a DFG-funded programme (&lt;a href=&#34;https://gepris.dfg.de/gepris/projekt/528704761?language=en&#34;&gt;No 528704761&lt;/a&gt;)&#xA;led by &lt;a href=&#34;https://www.geog.uni-heidelberg.de/geomorph/kreutzer_en.html&#34;&gt;Dr Sebastian Kreutzer&lt;/a&gt;&#xA;(PI at &lt;a href=&#34;https://www.uni-heidelberg.de/en&#34;&gt;Heidelberg University, DE&lt;/a&gt;) and&#xA;&lt;a href=&#34;https://www.uni-giessen.de/en/faculties/f07/departments/geography/sections/physical/staff/kolb-en&#34;&gt;Dr Thomas Kolb&lt;/a&gt;&#xA;(PI at &lt;a href=&#34;https://www.uni-giessen.de/en/&#34;&gt;Justus-Liebig-University Giessen, DE&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;h2 id=&#34;replay-reproducible-luminescence-data-analyses&#34;&gt;REPLAY: REProducible Luminescence Data AnalYses&lt;/h2&gt;&#xA;&lt;p&gt;Reproducibility is a crucial element of science. In modern science, research&#xA;software is vital for the discovery process, and quality and accessibility&#xA;determine the reproducibility of results, such as in the field of&#xA;luminescence-based Geochronology.&lt;/p&gt;&#xA;&lt;p&gt;Luminescence dating techniques are essential in Quaternary research,&#xA;constituting cornerstones in Earth and Archaeological Sciences and beyond.&#xA;Luminescence dating towards an age determination generates vast measurement&#xA;data and requires various analysis steps. However, a fragmented, partly&#xA;closed-source software landscape limits the transparency and reproducibility&#xA;of results, and measures of rigours and professional quality assurance are&#xA;seldom implemented.&lt;/p&gt;</description>
     </item>
   </channel>
