@@ -6,7 +6,7 @@ categories:
 description: 'Launch of the REPLAY website'
 ---
 
-We have finally launched the website for the REPLAY project. We will use
+We have finally launched the website for the [REPLAY project][replay]. We will use
 it to report on the progress of the project, to inform about webinars and
 other training opportunities, and to discuss some details concerning
 the [Luminescence](http://r-luminescence.org/) package.
@@ -14,3 +14,5 @@ the [Luminescence](http://r-luminescence.org/) package.
 At the moment the site is still sparse, but we'll populate on a regular
 basis. In the meantime, you can read our [About](about) page, which
 describes the aims and goals of the REPLAY project.
+
+[replay]: https://gepris.dfg.de/gepris/projekt/528704761?language=en
