@@ -10,7 +10,7 @@ theme = "Mainroad"
   twitter_cards = false
   readmore = false # Show "Read more" button in list if true
   authorbox = false
-  pager = true
+  pager = false
   post_meta = ["date", "categories"] # Order of post meta information
   mainSections = ["post"]
 
