@@ -9,6 +9,7 @@ theme = "Mainroad"
   opengraph = true
   twitter_cards = false
   readmore = false # Show "Read more" button in list if true
+  dateformat = "2 January 2006"
   authorbox = false
   pager = false
   post_meta = ["date", "categories"] # Order of post meta information
