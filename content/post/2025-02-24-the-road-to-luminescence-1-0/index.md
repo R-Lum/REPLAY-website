@@ -23,6 +23,7 @@ small regressions that we didn't want to affect our [first REPLAY webinar][webin
 September and February (886 commits) in a number of key areas, which we'll
 outline below.
 
+<!--more-->
 
 ### Testing and coverage
 

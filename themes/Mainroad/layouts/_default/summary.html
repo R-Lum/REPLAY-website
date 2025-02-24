@@ -17,7 +17,7 @@
 		{{ .Summary }}
 	</div>
 	{{- if .Site.Params.readmore }}
-	{{- if .Truncated }}
+	{{- if gt (len .Content) (add (len .Summary) 1) }}
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="{{ .RelPermalink }}">{{ T "read_more" }}</a>
 	</div>
