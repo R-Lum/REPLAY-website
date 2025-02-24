@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on REPLAY</title>
-    <link>/REPLAY-website/post/</link>
-    <description>Recent content in Posts on REPLAY</description>
+    <title>Luminescence on REPLAY</title>
+    <link>/REPLAY-website/categories/luminescence/</link>
+    <description>Recent content in Luminescence on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 24 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/REPLAY-website/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/REPLAY-website/categories/luminescence/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The road to Luminescence 1.0</title>
       <link>/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/</link>
       <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
       <guid>/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/</guid>
       <description>&lt;p&gt;We are happy to announce that the &lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt; has finally&#xA;reached &lt;strong&gt;version 1.0.0&lt;/strong&gt;. This is an important milestone, not only in the&#xA;history of the Luminescence package, but also for the REPLAY project.&lt;/p&gt;&#xA;&lt;p&gt;This makes it the third release since the start of the REPLAY project:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/R-Lum/Luminescence/releases/tag/v0.9.25&#34;&gt;Version 0.9.25&lt;/a&gt; was released in September 2024, just over a month&#xA;into the project, and it already contained a large number of changes&#xA;(422 commits)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>REPLAY website launched</title>
-      <link>/REPLAY-website/post/2025/02/replay-website-launched/</link>
-      <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>/REPLAY-website/post/2025/02/replay-website-launched/</guid>
-      <description>&lt;p&gt;We have finally launched the website for the &lt;a href=&#34;https://gepris.dfg.de/gepris/projekt/528704761?language=en&#34;&gt;REPLAY project&lt;/a&gt;. We will use&#xA;it to report on the progress of the project, to inform about webinars and&#xA;other training opportunities, and to discuss some details concerning&#xA;the development of the &lt;a href=&#34;http://r-luminescence.org/&#34;&gt;Luminescence&lt;/a&gt; package.&lt;/p&gt;&#xA;&lt;p&gt;At the moment the site is still sparse, but we&amp;rsquo;ll populate it on a regular&#xA;basis. In the meantime, you can read our &lt;a href=&#34;about&#34;&gt;About&lt;/a&gt; page, which&#xA;describes the aims and goals of the REPLAY project.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

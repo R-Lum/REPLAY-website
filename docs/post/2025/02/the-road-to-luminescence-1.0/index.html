@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The road to Luminescence 1.0 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Luminescence version 1.0 - Beyond any likelihood">
+		<meta property="og:url" content="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="The road to Luminescence 1.0">
+  <meta property="og:description" content="Luminescence version 1.0 - Beyond any likelihood">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-02-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-24T00:00:00+00:00">
+    <meta property="og:image" content="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/coverage.png">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">The road to Luminescence 1.0</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2025-02-24T00:00:00Z">24 February 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>We are happy to announce that the <a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a> has finally
+reached <strong>version 1.0.0</strong>. This is an important milestone, not only in the
+history of the Luminescence package, but also for the REPLAY project.</p>
+<p>This makes it the third release since the start of the REPLAY project:</p>
+<ul>
+<li>
+<p><a href="https://github.com/R-Lum/Luminescence/releases/tag/v0.9.25">Version 0.9.25</a> was released in September 2024, just over a month
+into the project, and it already contained a large number of changes
+(422 commits)</p>
+</li>
+<li>
+<p><a href="https://github.com/R-Lum/Luminescence/releases/tag/v0.9.26">Version 0.9.26</a> was a minor release (73 commits) to fix a couple of
+small regressions that we didn&rsquo;t want to affect our <a href="https://r-luminescence.org/news/20241130_replay_webinar_112024/">first REPLAY webinar</a></p>
+</li>
+<li>
+<p><a href="https://github.com/R-Lum/Luminescence/releases/tag/v1.0.0">Version 1.0.0</a> contains most of the work that has occurred between
+September and February (886 commits) in a number of key areas, which we&rsquo;ll
+outline below.</p>
+</li>
+</ul>
+<h3 id="testing-and-coverage">Testing and coverage</h3>
+<p>One of the first areas of focus of our work was to enhance testing and
+coverage of the package. Testing allows to record what the expected behaviour
+of any function is, so that no unexpected changes should go unnoticed.
+Coverage measures how many lines of code are reached by tests: the higher the
+coverage, the more confidence we have that tests are able to exercise all
+parts of the code. Therefore improving testing and coverage go together.</p>
+<p>Code coverage went from 76.3% (v0.9.24) to 95% (v0.9.25) to 99.2% (v1.0.0).
+As of now there are only 202 uncovered lines out of 27865 in the whole
+package. Most of them are rare error conditions that are quite hard to
+find examples for, or that depend on lack of numerical convergence in some
+fitting procedure.</p>
+<p><img src="coverage.png" alt=""></p>
+<p>In order to achieve that, we more than doubled the number of tests in the
+package (from 1273 in v0.9.24 to 2897 in v1.0.0). But the improvement is not
+limited to the sheer number of tests: we introduced <a href="https://testthat.r-lib.org/articles/snapshotting.html">snapshot tests</a>,
+which allow to compare numerical and graphical output of a function against
+reference results. At the moment we have snapshots for 33 functions, but
+this work will continue in the future with a stronger focus on the graphical
+tests (<a href="https://github.com/R-Lum/Luminescence/issues/243">issue 243</a>).</p>
+<h3 id="input-validation-and-fuzz-testing">Input validation and fuzz testing</h3>
+<p>We also payed attention to input validation and error reporting. Now the
+package is a bit stricter in what it accepts. This brings a number of
+advantages:</p>
+<ul>
+<li>
+<p>when a function is called with the wrong argument type, it will return a
+clear error rather than a mysterious message from some base R function</p>
+</li>
+<li>
+<p>the error reported use some standardized internal validation functions, so
+that the thoroughness of the checks and the error messages reported are
+consistent throughout the package</p>
+</li>
+<li>
+<p>as these check occur at the beginning of each function, they normally
+appear very quickly, rather than after expensive and time-consuming operations</p>
+</li>
+<li>
+<p>having function arguments validated at the beginning allows for the rest
+of the code to trust the values it receives, so the code can sometimes be
+simplified a bit.</p>
+</li>
+</ul>
+<p>As a way to help us find which functions could have their validation steps
+improved, we started developing the experimental <a href="https://github.com/mcol/caught-by-the-fuzz">CBFT package</a>. This
+is still ongoing work and is being tracked in <a href="https://github.com/R-Lum/Luminescence/issues/439">issue 439</a>.</p>
+<h3 id="performance-improvements">Performance improvements</h3>
+<p>With greater testing available, we could start making more invasive changes
+to the package functions with no fear of introducing new bugs or regressing
+the expected behaviour. In most cases, these changes produced only minor
+performance improvements, however three functions were worked on more
+intensely and lead to visible speed-ups.</p>
+<p>Function <code>read_BIN2R()</code> has always been a frustrating one to use, feeling
+too slow for large files. In <a href="https://github.com/R-Lum/Luminescence/issues/298">issue 298</a> we tackled this problem,
+and we obtained a 50% improvement when reading a 46M BINX file, which should
+even larger for larger BIN/BINX files. Along the way we fixed a number of
+corner cases which should make the package more resilient when reading
+malformed or anyway unusual files.</p>
+<p>Another problematic area was in the vertical sliding algorithm of
+<code>analyse_IRSAR.RF()</code>. In <a href="https://github.com/R-Lum/Luminescence/issues/372">issue 372</a> we noticed that in the C++
+implementation a double vector lookup was done within an inner loop while
+it could be done outside of that loop. This alone helped cut ~20s on a test
+file we were using (from ~55s to ~32s). Furthermore, after looking at the
+code in detail, we realised that a step of the vertical sliding was performed
+across 10 windows of growing size, the first of which was definitely too
+small to be of any value. Therefore we fixed how such window sizes were
+defined, let the number of windows to be user-controlled (via the new
+<code>num_slide_windows</code> option for the <code>method_control</code> argument), and changed
+the default from 10 to 3 windows. This brought down the execution time to
+11s, that is 5 times faster that before.</p>
+<p>A last sizeable improvement occurred for function  <code>calc_Huntley2006()</code> in
+<a href="https://github.com/R-Lum/Luminescence/issues/258">issue 258</a>. Also in this case there were computations that were
+performed repeatedly in a loop (using <code>mapply()</code> this time), while they could
+be performed just once as they were independent of the loop variables. We
+also noticed that the number of points tested for <code>rho'</code> was strangely
+dependent on the number of Monte Carlo iterations required: this didn&rsquo;t make
+much sense, so we changed the default to 1000 equally-spaced points in the
+interval [0, 3] (and added option <code>rprime</code> to let the user override it if
+required). Overall we got a 4x speed-up when running a test file for 50,000
+MC iterations (from ~230s to ~62s).</p>
+<h3 id="the-road-ahead">The road ahead</h3>
+<p>Having accomplished the first milestone for the REPLAY project, now the
+focus will move on to other areas, mainly on the design and development of
+an interactive graphical interface to facilitate the use of the Luminescence
+package. While work on maintenance and improvement of the package will
+continue, we expect to have far fewer changes (in particular breaking changes)
+than before.</p>
+<p>As always, bug reports are very welcome, in particular if you spot regression
+or performance problems. And if you&rsquo;d like to contribute new functionalities
+or bug fixes, check out our <a href="https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md">guidelines for contributors</a>.</p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/">The road to Luminescence 1.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/02/replay-website-launched/">REPLAY website launched</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>
