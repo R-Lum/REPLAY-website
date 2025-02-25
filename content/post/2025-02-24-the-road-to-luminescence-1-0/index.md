@@ -73,6 +73,8 @@ simplified a bit.
 
 As a way to help us find which functions could have their validation steps
 improved, we started developing the experimental [CBFT package][cbtf]. This
+implements a simple fuzz testing approach which allows to call all functions
+of a package with any sort of inputs and see what failures are produced. This
 is still ongoing work and is being tracked in [issue 439][iss439].
 
 
