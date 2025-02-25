@@ -29,10 +29,10 @@ outline below.
 
 One of the first areas of focus of our work was to enhance testing and
 coverage of the package. Testing allows to record what the expected behaviour
-of any function is, so that no unexpected changes should go unnoticed.
+of any function is, so that no unintented changes should go unnoticed.
 Coverage measures how many lines of code are reached by tests: the higher the
 coverage, the more confidence we have that tests are able to exercise all
-parts of the code. Therefore improving testing and coverage go together.
+parts of the code. Therefore improving testing and coverage go hand in hand.
 
 Code coverage went from 76.3% (v0.9.24) to 95% (v0.9.25) to 99.2% (v1.0.0).
 As of now there are only 202 uncovered lines out of 27865 in the whole
@@ -87,14 +87,14 @@ performance improvements, however three functions were worked on more
 intensely and lead to visible speed-ups.
 
 Function `read_BIN2R()` has always been a frustrating one to use, feeling
-too slow for large files. In [issue 298][iss298] we tackled this problem,
-and we obtained a 50% improvement when reading a 46M BINX file, which should
-even larger for larger BIN/BINX files. Along the way we fixed a number of
+too slow for large files. We tackled this problem in [issue 298][iss298],
+where we obtained a 50% improvement when reading a 46M BINX file, which will
+be even larger for larger BIN/BINX files. Along the way we fixed a number of
 corner cases which should make the package more resilient when reading
 malformed or anyway unusual files.
 
 Another problematic area was in the vertical sliding algorithm of
-`analyse_IRSAR.RF()`. In [issue 372][iss372] we noticed that in the C++
+`analyse_IRSAR.RF()`. In [issue 372][iss372] we noticed that in our C++
 implementation a double vector lookup was done within an inner loop while
 it could be done outside of that loop. This alone helped cut ~20s on a test
 file we were using (from ~55s to ~32s). Furthermore, after looking at the
@@ -104,7 +104,8 @@ small to be of any value. Therefore we fixed how such window sizes were
 defined, let the number of windows to be user-controlled (via the new
 `num_slide_windows` option for the `method_control` argument), and changed
 the default from 10 to 3 windows. This brought down the execution time to
-11s, that is 5 times faster that before.
+11s, that is 5 times faster that before, without any noticeable degradation
+in the quality of the solution.
 
 A last sizeable improvement occurred for function  `calc_Huntley2006()` in
 [issue 258][iss258]. Also in this case there were computations that were
