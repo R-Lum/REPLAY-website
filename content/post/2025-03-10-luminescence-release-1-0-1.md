@@ -123,6 +123,8 @@ fully supported, but at least we have now fixed the most obvious crashes. We
 have plans to make this function more powerful, allowing it to sort on multiple
 fields. This is being tracked in [issue 605][iss605].
 
+Full details of all changes can be seen on the [release 1.0.1 page][v101].
+
 As always, bug reports are very welcome, in particular if you spot other
 regressions or encounter performance problems. And if you'd like to
 contribute new functionalities or bug fixes directly, check out our
@@ -131,6 +133,7 @@ contribute new functionalities or bug fixes directly, check out our
 [lumi]:   https://r-lum.github.io/Luminescence/
 [rshiny]: https://tzerk.github.io/RLumShiny/
 [v100]:   https://github.com/R-Lum/Luminescence/releases/tag/v1.0.0
+[v101]:   https://github.com/R-Lum/Luminescence/releases/tag/v1.0.1
 [iss589]: https://github.com/R-Lum/Luminescence/issues/589
 [iss593]: https://github.com/R-Lum/Luminescence/issues/593
 [iss597]: https://github.com/R-Lum/Luminescence/issues/597
