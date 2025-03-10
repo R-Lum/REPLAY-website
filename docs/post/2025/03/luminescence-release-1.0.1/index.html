@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luminescence Release 1.0.1 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Luminescence version 1.0.1">
+		<meta property="og:url" content="/REPLAY-website/post/2025/03/luminescence-release-1.0.1/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Luminescence Release 1.0.1">
+  <meta property="og:description" content="Luminescence version 1.0.1">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-03-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-10T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Luminescence Release 1.0.1</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2025-03-10T00:00:00Z">10 March 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>With the release of <a href="https://github.com/R-Lum/Luminescence/releases/tag/v1.0.0">version 1.0</a> still very fresh, we are announcing
+the release of <strong>version 1.0.1</strong>, the first maintenance release of the
+<a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>. This is a minor release meant to address one
+important regression, but it also brings a few additional robustness and
+correctness improvements. In total we addressed 13 issues in 53 commits.</p>
+<h3 id="the-main-regression">The main regression</h3>
+<p>Just days after the release of <code>Luminescence</code> 1.0 we discovered an important
+<a href="https://github.com/R-Lum/Luminescence/issues/589">regression in analyse_FadingMeasurement()</a>, which caused the plot
+of the luminescence curves to be completely garbled. This was caused by an
+innocuous-looking change in <code>plot_RLum.Analysis()</code>, the function that
+actually performs the plotting.</p>
+<p>The bug was actually quite subtle: it turns out that setting the <code>mfrow</code>
+graphical parameter (which controls how multiple plots are displayed on a
+single page) resets all other parameters to their default values, even in
+the case when <code>mfrow</code> is set to its current value. This can be seen in
+action in this snippet of code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">## show the default parameters</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">par</span>()<span style="color:#a6e22e">[c</span>(<span style="color:#e6db74">&#34;cex&#34;</span>, <span style="color:#e6db74">&#34;mfrow&#34;</span>)]
+</span></span><span style="display:flex;"><span><span style="color:#f92672">$</span>cex
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">$</span>mfrow
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## change the cex parameter</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">par</span>(cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">par</span>()[<span style="color:#e6db74">&#34;cex&#34;</span>]
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## setting mfrow resets cex to its default</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">par</span>(mfrow <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">par</span>()[<span style="color:#e6db74">&#34;cex&#34;</span>]
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>This reinforces our drive to expand the set of graphical snapshot tests, which
+would have caught immediately this regression.</p>
+<h3 id="checking-the-graphical-device-size">Checking the graphical device size</h3>
+<p>In its default setting, <code>analyse_pIRIRSequence()</code> attempts to display all
+plots on a single page, which can result in &ldquo;figure margins too large&rdquo; errors
+unless the device size is large enough.</p>
+<p>In version 1.0 we introduced a check on the device size, so that we could
+return a message suggesting the users to plot to a PDF file with at least
+18 inches per side. However, in <a href="https://github.com/R-Lum/Luminescence/issues/593">issue 593</a> we realised that the
+user experience could be further improved.</p>
+<p>First, the implementation was not rigorous enough and didn&rsquo;t prevent the user
+from setting a size such as 18 x 12 inches, which would once again lead to
+those undesired &ldquo;figure margins too large&rdquo; errors.</p>
+<p>While investigating that, we realised that when we set a given device size
+and then query R about it, R could return an value affected by some floating
+point error, although this was not immediately visible. This snippet of code
+shows this behaviour:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">## open the pdf device of a given size</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">pdf</span>(<span style="color:#e6db74">&#34;out.pdf&#34;</span>, width <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>, height <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## query the device size</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> dev.size <span style="color:#f92672">&lt;-</span> grDevices<span style="color:#f92672">::</span><span style="color:#a6e22e">dev.size</span>(<span style="color:#e6db74">&#34;in&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> dev.size
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">18</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## this was unexpected</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> dev.size <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">18</span>
+</span></span><span style="display:flex;"><span>[1] <span style="color:#66d9ef">FALSE</span>  <span style="color:#66d9ef">TRUE</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## printing with higher precision shows the issue</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sprintf</span>(<span style="color:#e6db74">&#34;%18.15f %18.15f&#34;</span>, dev.size[1], dev.size[2])
+</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;18.000000000000000 17.999999999999996&#34;</span>
+</span></span></code></pre></div><p>After having accounted also for this quirk, we realised that we could allow
+the PDF file to be as small as 16x16 inches instead of 18x18, although we
+still encourage to use 18x18 as it in our tests it produces better looking
+plots.</p>
+<p>In any case, one can use the <code>plot_singlePanels = TRUE</code> argument so that each
+plot is printed independently of all others, and thus avoid using a PDF file.</p>
+<h3 id="other-changes">Other changes</h3>
+<p>This release brings a number of crash fixes in case of misspecified inputs,
+some of which come from our current focus of bringing the <a href="https://tzerk.github.io/RLumShiny/">RLumShiny package</a>
+up to date with the current versions of <code>Shiny</code> and <code>Luminescence</code>.</p>
+<p>The most notable changes are the following:</p>
+<ul>
+<li>
+<p><code>analyse_FadingMeasurement()</code> now checks that there is at least an
+irradiation step available if the input is an object generated from an XSYG
+file.</p>
+</li>
+<li>
+<p><code>calc_FadingCorr()</code> at times produced <a href="https://github.com/R-Lum/Luminescence/issues/597">implausibly large error estimates</a>:
+this would happen only sporadically, and was presumably due to some numerical
+issue in <code>uniroot()</code>. We solved it by discarding error estimates that were
+several times away from the interquartile range computed over all Monte Carlo
+estimates. We also made this function more parsimonious in terms of memory
+allocations, which brought a small performance improvement.</p>
+</li>
+<li>
+<p><code>sort_RLum()</code> is now more resilient when it&rsquo;s called on an empty object (which
+may happen when processing automatically a list of objects generated elsewhere)
+and when a user attempts to use more than one field for sorting. This is not yet
+fully supported, but at least we have now fixed the most obvious crashes. We
+have plans to make this function more powerful, allowing it to sort on multiple
+fields. This is being tracked in <a href="https://github.com/R-Lum/Luminescence/issues/605">issue 605</a>.</p>
+</li>
+</ul>
+<p>As always, bug reports are very welcome, in particular if you spot other
+regressions or encounter performance problems. And if you&rsquo;d like to
+contribute new functionalities or bug fixes directly, check out our
+<a href="https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md">guidelines for contributors</a>.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/luminescence-release-1.0.1/">Luminescence Release 1.0.1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/">The road to Luminescence 1.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/02/replay-website-launched/">REPLAY website launched</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>
