@@ -12,7 +12,8 @@ other training opportunities, and to discuss some details concerning
 the development of the [Luminescence](http://r-luminescence.org/) package.
 
 At the moment the site is still sparse, but we'll populate it on a regular
-basis. In the meantime, you can read our [About](about) page, which
+basis. In the meantime, you can read our [About][about] page, which
 describes the aims and goals of the REPLAY project.
 
+[about]:  {{< ref "about" >}}
 [replay]: https://gepris.dfg.de/gepris/projekt/528704761?language=en
