@@ -6,8 +6,15 @@
     <description>Recent content on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RLumShiny Release 0.2.4</title>
+      <link>/REPLAY-website/post/2025/03/rlumshiny-release-0.2.4/</link>
+      <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/03/rlumshiny-release-0.2.4/</guid>
+      <description>&lt;p&gt;One of the &lt;a href=&#34;/REPLAY-website/about/&#34;&gt;goals of the REPLAY project&lt;/a&gt; is to facilitate interfacing&#xA;with the &lt;code&gt;Luminescence&lt;/code&gt; package. This is a rather ambitious goal, but luckily&#xA;there is already something available to make the use of &lt;code&gt;Luminescence&lt;/code&gt; more&#xA;direct and approachable.&lt;/p&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;https://tzerk.github.io/RLumShiny/&#34;&gt;RLumShiny package&lt;/a&gt; integrates a bunch of &lt;code&gt;Luminescence&lt;/code&gt;&#xA;functions into a web-based app built on top of the &lt;a href=&#34;https://shiny.posit.co/&#34;&gt;shiny framework&lt;/a&gt;.&#xA;This allows the users to work interactively with their data, letting them&#xA;explore the available options and see how they affect the plots and results.&#xA;This provides an easy entry point to discover what the package provides while&#xA;performing an analysis of interest, or perhaps just playing around with sample&#xA;data.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Luminescence Release 1.0.1</title>
       <link>/REPLAY-website/post/2025/03/luminescence-release-1.0.1/</link>
