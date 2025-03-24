@@ -12,7 +12,7 @@ theme = "Mainroad"
   dateformat = "2 January 2006"
   authorbox = false
   pager = false
-  post_meta = ["date", "categories"] # Order of post meta information
+  post_meta = ["date", "categories", "author"] # Order of post meta information
   mainSections = ["post"]
 
 [Params.logo]

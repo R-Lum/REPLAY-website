@@ -3,6 +3,7 @@ title: The road to Luminescence 1.0
 date: '2025-02-24'
 categories:
   - 'Luminescence'
+author: Marco Colombo
 description: 'Luminescence version 1.0 - Beyond any likelihood'
 ---
 

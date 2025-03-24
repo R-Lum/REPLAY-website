@@ -3,6 +3,7 @@ title: RLumShiny Release 0.2.4
 date: '2025-03-24'
 categories:
   - 'RLumShiny'
+author: Marco Colombo
 description: 'RLumShiny version 0.2.4'
 ---
 

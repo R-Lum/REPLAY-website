@@ -3,6 +3,7 @@ title: Luminescence Release 1.0.1
 date: '2025-03-10'
 categories:
   - 'Luminescence'
+author: Marco Colombo
 description: 'Luminescence version 1.0.1'
 ---
 
