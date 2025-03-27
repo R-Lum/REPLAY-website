@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Think about it: Handling RLum objects - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Sorting of RLum objects">
+		<meta property="og:url" content="/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Think about it: Handling RLum objects">
+  <meta property="og:description" content="Sorting of RLum objects">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-03-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-25T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Think about it: Handling RLum objects</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2025-03-25T00:00:00Z">25 March 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Sebastian Kreutzer</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>One of the hard lessons you have to learn as a package developer is that users usually do not care much about what you may have had in mind when writing a function. When we introduced the <code>RLum-class</code> object structure in <code>'Luminescence'</code> in version in December <strong>2014</strong> (more than ten years ago!), we had little doubt that it would be highly welcomed by users as it streamlines their analysis pipelines. As a matter of fact, little is happening today in the package without this object structure; at least seen from a developer&rsquo;s perspective.</p>
+<p>The support requests that ripple in tell a different story, though. Time and time again <code>RLum-class</code> objects seem to have been perceived as an obstacle to overcome and work around, without showing any appreciation. This perception likely stems from our failure to highlight their advantages and even prioritise other features, such as allowing <code>subset()</code> to operate <em>Analyst</em>-like directly on <code>RisoeBINfileData</code> objects.</p>
+<p>Although this is not the appropriate place to delve deeply into the intricate details of <code>RLum-class</code> objects, I would like to demonstrate the utilisation of two new functions we have developed as part of the <a href="http://localhost:4321/REPLAY-website/about/">REPLAY</a> project. They will
+be included in an upcoming version of <code>’Luminescence’</code> and here they help to spotlight <code>RLum-class</code> objects and their inherent advantages when used in analysis pipelines.</p>
+<h3 id="background-the-rlum-class-object-structure-concept">Background: the <code>RLum-class</code> object structure concept</h3>
+<p><em>Just skip this part, if you are already familiar with <code>RLum-class</code> objects.</em></p>
+<p>While the details are tricky, the concept of the <code>RLum-class</code> objects is simple. They
+aim to provide a unified data structure that will work regardless of the function and data used,
+following the idea: <code>Import data</code> <code>-&gt;</code> <code>Analyse data</code> <code>-&gt;</code> <code>Further process results</code>.</p>
+<p>For instance, a typical OSL curve can be represented as x and y values:</p>
+<pre tabindex="0"><code>##     x   y
+## 1   1 564
+## 2   2 318
+## 3   3 180
+## 4   4 101
+## 5   5  57
+## 6   6  32
+## 7   7  18
+## 8   8  10
+## 9   9   5
+## 10 10   3
+</code></pre><p>So why do we use an <code>RLum.Data.Curve-class</code> object instead of a simple <code>data.frame</code>?
+Two reasons:</p>
+<ol>
+<li>
+<p>An OSL curve is more than just a set of <code>x</code> and <code>y</code> values. Its interpretation is only
+meaningful against the background of information on the stimulation wavelength, detection window, measured material, etc.</p>
+</li>
+<li>
+<p>OSL curves come in sets and are part of a measurement protocol on aliquots (subsamples, usually representing  positions in the reader or single grains). An <code>RLum.Data.Curve-class</code> can store all of that
+information for subsequent analysis, and if records are combined in an <code>RLum.Analysis</code> structure, they conclusively represent the measured protocol.</p>
+</li>
+</ol>
+<p>In the context of data processing, the principle of consistency is paramount, at least it should be,
+regardless of the input data format. In <code>'Luminescence'</code>, we ensure this consistency through the <code>RLum-class</code> object structure. With it, (so the idea) data processing pipelines can be easily understood and implemented, making the entire process tractable.</p>
+<p>For instance, data can always be imported with <code>import_Data()</code> regardless of the data format and <code>'Luminescence'</code> will pick the correct import function (from the family of <code>read_</code> functions) and translate the data into a consistent <code>RLum.Analysis</code> structure. For instance, the object <code>SAR</code> below may represent an aliquot measured with a single aliquot regenerative (SAR) dose protocol and the order and intention can be seen
+from the data structure (of course, if you are familiar with luminescence dating).</p>
+<pre tabindex="0"><code>## 
+##  [RLum.Analysis-class]
+## 	 originator: Risoe.BINfileData2RLum.Analysis()
+## 	 protocol: unknown
+## 	 additional info elements:  0
+## 	 number of records: 30
+## 	 .. : RLum.Data.Curve : 30
+## 	 .. .. : #1 TL | #2 OSL | #3 TL | #4 OSL | #5 TL | #6 OSL | #7 TL
+## 	 .. .. : #8 OSL | #9 TL | #10 OSL | #11 TL | #12 OSL | #13 TL | #14 OSL
+## 	 .. .. : #15 TL | #16 OSL | #17 TL | #18 OSL | #19 TL | #20 OSL | #21 TL
+## 	 .. .. : #22 OSL | #23 TL | #24 OSL | #25 TL | #26 OSL | #27 TL | #28 OSL
+## 	 .. .. : #29 TL | #30 IRSL
+</code></pre><p>Unfortunately, the analysis data set is often not suitable for immediate analysis. It is often necessary to subset or rearrange the data due to various reasons, such as the implementation of a new protocol, the malfunction of the machine, or any other circumstance.</p>
+<p>Yes, as everything in R  (being a data science language), you can do this &lsquo;manually’, but you can also
+use methods that know how to work with these objects without giving you much of a headache.
+Typical functions you may have already encountered are <code>get_RLum()</code> for subsetting records, <code>merge_RLum()</code> for
+combining them, or <code>plot_RLum()</code> for a quick visualisation.
+However, <code>'Luminescence'</code> has more to offer and the real miracle happens when you start reshuffling and combing records. To date there are at least 26 functions in <code>'Luminescence'</code> designed to do something with <code>RLum-class</code> objects.
+Let&rsquo;s focus on two newcomers.</p>
+<h3 id="remove_rlum"><code>remove_RLum()</code></h3>
+<p>A rather typical scenario you may encounter eventually is having a set of records imported
+from a measurement file (e.g., <code>.BINX</code>, <code>.XSYG</code>), but you will need to get rid of some
+of the records because they are not required for the analysis or perhaps they are
+broken. The standard approach would use <code>get_RLum()</code> to select only the records you need,
+save the output in a new object. For instance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>SAR_new <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">get_RLum</span>(SAR, recordType <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;TL&#34;</span>, <span style="color:#e6db74">&#34;OSL&#34;</span>), drop <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</span></span></code></pre></div><p>This call selects <code>TL</code> and <code>OSL</code> curves and hence drops the single <code>IRSL</code> curve at the end of the sequence.
+However, it feels somewhat counter intuitive because what you want is only removing one
+record. Plus, there is the <code>drop = FALSE</code> parameter you must not forget to maintain
+the object structure.</p>
+<p>If we do the same now with <code>remove_RLum()</code> the code reads:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>SAR_new <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">remove_RLum</span>(SAR, recordType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IRSL&#34;</span>)
+</span></span></code></pre></div><p>The result is the same, but now our intention to remove <code>IRSL</code> records is clear,
+and the object structure is automatically maintained and the code more intelligible,
+even more if used on a chained analysis,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>SAR <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">import_Data</span>(<span style="color:#e6db74">&#34;SAR.xsyg&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">remove_RLum</span>(SAR, recordType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IRSL&#34;</span>)
+</span></span></code></pre></div><p>which reads cleaner than</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>SAR <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">import_Data</span>(<span style="color:#e6db74">&#34;SAR.xsyg&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">get_RLum</span>(SAR, recordType <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;TL&#34;</span>, <span style="color:#e6db74">&#34;OSL&#34;</span>), drop <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</span></span></code></pre></div><h3 id="sort_rlum"><code>sort_RLum()</code></h3>
+<p>A more intricate scenario emerges when considering the reshuffling of records within a data set.
+If this is not a requirement for you, you may be among the exceptionally rare luminescence dating practitioners who have never encountered a failed measurement and your meticulous record-keeping practices and absence of errors are noteworthy.</p>
+<p>Imagine we have multiple files to import from a fading measurement. In order
+to analyse them in a meaningful way, you have to ensure that we import the files <strong>exactly</strong> in the order we
+have measured them, because date and time matter. More, we want to order them
+by position first and then by measurement date.</p>
+<p>You have messed this up in the file list or your documentation. From experience,
+I can ascertain that you will be having a hard time spotting
+the mistake, or worse, it may even go by unnoticed. A cleaner way to handle this would
+be using <code>sort_RLum()</code>. For instance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>IRSL <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">import_Data</span>(<span style="color:#e6db74">&#34;XYSG_FADING/&#34;</span>, pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.xsyg&#34;</span>) <span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">merg_RLum</span>() <span style="color:#f92672">|&gt;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sort_RLum</span>(info_element <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;position&#34;</span>, <span style="color:#e6db74">&#34;startDate&#34;</span>))
+</span></span></code></pre></div><p>The code will pull all available measurement files with the file ending <code>.xsyg</code> from
+a folder. Then they become merged into one big <code>RLum.Analysis-class</code> object with <em>n</em> records.
+<code>sort_RLum()</code> now ensures that all records are reshuffled first by position and then by measurement
+date (here info element <code>startDate</code>). The result is a truly consistent record with ordered curves.</p>
+<p>Alternatively, you can use the function to sort by <code>recordTypes</code>, for instance
+using the <code>SAR</code> record from above.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sort_RLum</span>(SAR, slot <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;recordType&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+##  [RLum.Analysis-class]
+## 	 originator: Risoe.BINfileData2RLum.Analysis()
+## 	 protocol: unknown
+## 	 additional info elements:  0
+## 	 number of records: 30
+## 	 .. : RLum.Data.Curve : 30
+## 	 .. .. : #1 IRSL | #2 OSL | #3 OSL | #4 OSL | #5 OSL | #6 OSL | #7 OSL
+## 	 .. .. : #8 OSL | #9 OSL | #10 OSL | #11 OSL | #12 OSL | #13 OSL | #14 OSL
+## 	 .. .. : #15 OSL | #16 TL | #17 TL | #18 TL | #19 TL | #20 TL | #21 TL
+## 	 .. .. : #22 TL | #23 TL | #24 TL | #25 TL | #26 TL | #27 TL | #28 TL
+## 	 .. .. : #29 TL | #30 TL
+</code></pre><p>More, the sort function calculates new info elements that are available automatically
+to each record, such as <code>XY_LENGTH</code>, <code>NCOL</code>, <code>X_MIN</code>, <code>X_MAX</code>, <code>Y_MIN</code>, <code>Y_MAX</code>, and this
+all by maintaining a consistent object structure independent of the import data format.</p>
+<h3 id="take-home-message">Take home message</h3>
+<p>With the provided example, I tried to shed some light on the rationale behind our
+efforts to enhance the handling of <code>RLum-class</code> objects within the REPLAY project.
+Indeed, it makes sense to think about it and include them in our luminescence data analysis.</p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/">Think about it: Handling RLum objects</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/rlumshiny-release-0.2.4/">RLumShiny Release 0.2.4</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/luminescence-release-1.0.1/">Luminescence Release 1.0.1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/">The road to Luminescence 1.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/02/replay-website-launched/">REPLAY website launched</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

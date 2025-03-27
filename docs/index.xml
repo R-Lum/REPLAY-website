@@ -6,8 +6,15 @@
     <description>Recent content on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Think about it: Handling RLum objects</title>
+      <link>/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/</link>
+      <pubDate>Tue, 25 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/</guid>
+      <description>&lt;p&gt;One of the hard lessons you have to learn as a package developer is that users usually do not care much about what you may have had in mind when writing a function. When we introduced the &lt;code&gt;RLum-class&lt;/code&gt; object structure in &lt;code&gt;&#39;Luminescence&#39;&lt;/code&gt; in version in December &lt;strong&gt;2014&lt;/strong&gt; (more than ten years ago!), we had little doubt that it would be highly welcomed by users as it streamlines their analysis pipelines. As a matter of fact, little is happening today in the package without this object structure; at least seen from a developer&amp;rsquo;s perspective.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RLumShiny Release 0.2.4</title>
       <link>/REPLAY-website/post/2025/03/rlumshiny-release-0.2.4/</link>
