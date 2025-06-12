@@ -11,19 +11,19 @@ description: 'Sorting of RLum objects'
 library(Luminescence)
 ```
 
-One of the hard lessons you have to learn as a package developer is that users usually do not care much about what you may have had in mind when writing a function. When we introduced the `RLum-class` object structure in `'Luminescence'` in version in December **2014** (more than ten years ago!), we had little doubt that it would be highly welcomed by users as it streamlines their analysis pipelines. As a matter of fact, little is happening today in the package without this object structure; at least seen from a developer's perspective. 
+One of the hard lessons you have to learn as a package developer is that users usually do not care much about what you may have had in mind when writing a function. When we introduced the `RLum-class` object structure in `'Luminescence'` in version 0.1 in December 2014 (more than ten years ago!), we had little doubt that it would be highly welcomed by users, as it streamlines their analysis pipelines. As a matter of fact, little is happening today in the package without this object structure, at least from a developer's perspective.
 
-The support requests that ripple in tell a different story, though. Time and time again `RLum-class` objects seem to have been perceived as an obstacle to overcome and work around, without showing any appreciation. This perception likely stems from our failure to highlight their advantages and even prioritise other features, such as allowing `subset()` to operate *Analyst*-like directly on `RisoeBINfileData` objects.
+The support requests that ripple in tell a different story, though. Time and time again, `RLum-class` objects seem to be perceived as an obstacle to overcome and work around, without showing any appreciation. This perception likely stems from our failure to highlight their advantages and even prioritise other features, such as allowing `subset()` to operate *Analyst*-like directly on `RisoeBINfileData` objects.
 
-Although this is not the appropriate place to delve deeply into the intricate details of `RLum-class` objects, I would like to demonstrate the utilisation of two new functions we have developed as part of the [REPLAY](http://localhost:4321/REPLAY-website/about/) project. They will 
-be included in an upcoming version of `’Luminescence’` and here they help to spotlight `RLum-class` objects and their inherent advantages when used in analysis pipelines.  
+Although this is not the appropriate place to delve deeply into the intricate details of `RLum-class` objects, I would like to demonstrate the utilisation of two new functions we have developed as part of the [REPLAY](http://localhost:4321/REPLAY-website/about/) project, which will
+be included in an upcoming version of `'Luminescence'`. Here we discuss the `RLum-class` objects and their inherent advantages when used in analysis pipelines.
 
 ### Background: the `RLum-class` object structure concept
 
 *Just skip this part, if you are already familiar with `RLum-class` objects.* 
 
 While the details are tricky, the concept of the `RLum-class` objects is simple. They 
-aim to provide a unified data structure that will work regardless of the function and data used, 
+aim to provide a unified data structure that works regardless of the function and data used,
 following the idea: `Import data` `->` `Analyse data` `->` `Further process results`. 
 
 For instance, a typical OSL curve can be represented as x and y values:
@@ -35,25 +35,25 @@ OSL <- data.frame(
 OSL
 ```
 
-So why do we use an `RLum.Data.Curve-class` object instead of a simple `data.frame`? 
+So why do we use an `RLum.Data.Curve` object instead of a simple `data.frame`?
 Two reasons: 
 
 1. An OSL curve is more than just a set of `x` and `y` values. Its interpretation is only
 meaningful against the background of information on the stimulation wavelength, detection window, measured material, etc. 
 
-2. OSL curves come in sets and are part of a measurement protocol on aliquots (subsamples, usually representing  positions in the reader or single grains). An `RLum.Data.Curve-class` can store all of that 
+2. OSL curves come in sets and are part of a measurement protocol on aliquots (subsamples, usually representing  positions in the reader or single grains). An `RLum.Data.Curve` can store all of that
 information for subsequent analysis, and if records are combined in an `RLum.Analysis` structure, they conclusively represent the measured protocol. 
 
-In the context of data processing, the principle of consistency is paramount, at least it should be, 
-regardless of the input data format. In `'Luminescence'`, we ensure this consistency through the `RLum-class` object structure. With it, (so the idea) data processing pipelines can be easily understood and implemented, making the entire process tractable. 
+In the context of data processing, the principle of consistency is paramount (at least it should be),
+regardless of the input data format. In `'Luminescence'`, we ensure this consistency through the `RLum-class` object structure. With it, data processing pipelines can be easily understood and implemented (so the idea), making the entire process tractable.
 
 For instance, data can always be imported with `import_Data()` regardless of the data format and `'Luminescence'` will pick the correct import function (from the family of `read_` functions) and translate the data into a consistent `RLum.Analysis` structure. For instance, the object `SAR` below may represent an aliquot measured with a single aliquot regenerative (SAR) dose protocol and the order and intention can be seen 
 from the data structure (of course, if you are familiar with luminescence dating).
 
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 data(ExampleData.BINfileData, envir = environment())
 
-##transform the values from the first position in a RLum.Analysis object
+## transform the position 1 values into an RLum.Analysis object
 SAR <- Risoe.BINfileData2RLum.Analysis(CWOSL.SAR.Data, pos=1)
 SAR
 ```
@@ -69,11 +69,11 @@ Let's focus on two newcomers.
 
 ### `remove_RLum()`
 
-A rather typical scenario you may encounter eventually is having a set of records imported
-from a measurement file (e.g., `.BINX`, `.XSYG`), but you will need to get rid of some 
-of the records because they are not required for the analysis or perhaps they are 
-broken. The standard approach would use `get_RLum()` to select only the records you need,
-save the output in a new object. For instance: 
+A rather typical scenario you may eventually encounter is having a set of records imported
+from a measurement file (e.g., `.BINX`, `.XSYG`), but you need to get rid of some
+of the records because they are not required for the analysis or perhaps are
+broken. The standard approach would use `get_RLum()` to select only the records you need
+and store the output in a new object. For instance:
 
 ```{r}
 SAR_new <- get_RLum(SAR, recordType = c("TL", "OSL"), drop = FALSE)
@@ -81,43 +81,42 @@ SAR_new <- get_RLum(SAR, recordType = c("TL", "OSL"), drop = FALSE)
 
 This call selects `TL` and `OSL` curves and hence drops the single `IRSL` curve at the end of the sequence. 
 However, it feels somewhat counter intuitive because what you want is only removing one
-record. Plus, there is the `drop = FALSE` parameter you must not forget to maintain
-the object structure. 
+record. Plus, there is the `drop = FALSE` parameter you must not forget to use,
+in order to maintain the object structure.
 
-If we do the same now with `remove_RLum()` the code reads:
+If we do the same now with `remove_RLum()`, the code reads:
 
 ```{r}
 SAR_new <- remove_RLum(SAR, recordType = "IRSL")
 ```
 
 The result is the same, but now our intention to remove `IRSL` records is clear,
-and the object structure is automatically maintained and the code more intelligible,
-even more if used on a chained analysis,
+the object structure is automatically maintained and the code more intelligible,
+even more if used in a chained analysis,
 
 ```{r, eval= FALSE}
 SAR <- import_Data("SAR.xsyg") |>
-  remove_RLum(SAR, recordType = "IRSL")
+  remove_RLum(recordType = "IRSL")
 ```
 
 which reads cleaner than
 
 ```{r, eval= FALSE}
 SAR <- import_Data("SAR.xsyg") |>
-  get_RLum(SAR, recordType = c("TL", "OSL"), drop = FALSE)
+  get_RLum(recordType = c("TL", "OSL"), drop = FALSE)
 ```
 
 ### `sort_RLum()`
 
 A more intricate scenario emerges when considering the reshuffling of records within a data set.
-If this is not a requirement for you, you may be among the exceptionally rare luminescence dating practitioners who have never encountered a failed measurement and your meticulous record-keeping practices and absence of errors are noteworthy. 
+If this is not a requirement for you, you may be among the exceptionally rare luminescence dating practitioners who have never encountered a failed measurement, and your meticulous record-keeping practices and absence of errors are noteworthy.
 
 Imagine we have multiple files to import from a fading measurement. In order
 to analyse them in a meaningful way, you have to ensure that we import the files **exactly** in the order we 
-have measured them, because date and time matter. More, we want to order them 
-by position first and then by measurement date.
+have measured them, because date and time matter. Moreover, we want to order them
+first by position and then by measurement date.
 
-You have messed this up in the file list or your documentation. From experience, 
-I can ascertain that you will be having a hard time spotting
+From experience, I can be certain that you will be having a hard time spotting
 the mistake, or worse, it may even go by unnoticed. A cleaner way to handle this would 
 be using `sort_RLum()`. For instance:
 
@@ -129,19 +128,20 @@ IRSL <- import_Data("XYSG_FADING/", pattern = ".xsyg") |>
 
 The code will pull all available measurement files with the file ending `.xsyg` from
 a folder. Then they become merged into one big `RLum.Analysis-class` object with *n* records. 
-`sort_RLum()` now ensures that all records are reshuffled first by position and then by measurement
-date (here info element `startDate`). The result is a truly consistent record with ordered curves.
+`sort_RLum()` then ensures that all records are reshuffled first by position and then by measurement
+date (here info element `startDate`). The result is a truly consistent record with ordered curves,
+as desired.
 
-Alternatively, you can use the function to sort by `recordTypes`, for instance
-using the `SAR` record from above. 
+Alternatively, you can use the function to sort by `recordTypes`. For instance,
+using the `SAR` record from above, you can write:
 
 ```{r}
 sort_RLum(SAR, slot = "recordType")
 ```
 
-More, the sort function calculates new info elements that are available automatically 
-to each record, such as `XY_LENGTH`, `NCOL`, `X_MIN`, `X_MAX`, `Y_MIN`, `Y_MAX`, and this
-all by maintaining a consistent object structure independent of the import data format.
+Moreover, the sort function calculates new info elements that are available automatically,
+such as `XY_LENGTH`, `NCOL`, `X_MIN`, `X_MAX`, `Y_MIN`, `Y_MAX`, and this
+while maintaining a consistent object structure independent of the import data format.
 
 ### Take home message
 
