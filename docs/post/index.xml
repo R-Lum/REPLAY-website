@@ -6,8 +6,15 @@
     <description>Recent content in Posts on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Luminescence Release 1.1.0</title>
+      <link>/REPLAY-website/post/2025/06/luminescence-release-1.1.0/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/06/luminescence-release-1.1.0/</guid>
+      <description>&lt;p&gt;Only about 3 months from our &lt;a href=&#34;/REPLAY-website/post/2025/03/luminescence-release-1.0.1/&#34;&gt;previous release&lt;/a&gt;, we are happy to&#xA;announce the release of &lt;strong&gt;version 1.1.0&lt;/strong&gt; of &lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt;.&#xA;This is a major release, which comes with a few new features and many&#xA;improvements, especially on the graphical side. In total we addressed 99&#xA;issues in 530 commits.&lt;/p&gt;&#xA;&lt;p&gt;Many of the changes came from our work on the &lt;a href=&#34;https://tzerk.github.io/RLumShiny/&#34;&gt;RLumShiny package&lt;/a&gt;,&#xA;which made us consider in much greater detail some of the &lt;code&gt;Luminescence&lt;/code&gt;&#xA;functions. We will shortly bring what we think are exciting news on the&#xA;&lt;code&gt;RLumShiny&lt;/code&gt; side, but for the moment, let&amp;rsquo;s concentrate on what happened&#xA;during this release cycle.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Think about it: Handling RLum objects</title>
       <link>/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/</link>
