@@ -137,19 +137,20 @@ behaviour of <code>par()</code> (the R function that sets and stores all graphic
 parameters), have always made it quite hard to have a reliable and good-looking
 output from <code>analyse_pIRIRSequence()</code>. We tackled this in <a href="https://github.com/R-Lum/Luminescence/issues/831">issue 831</a>,
 but it was clear from the onset that it would require work in two other
-functions (which would still to continue working well also when used on their
-own). This led to a number of small fixes (but they took actually quite a lot
-of time to find and test) in particular to <code>plot_DoseResponseCurve()</code>.
+functions (which would still need to continue working well also when used on their
+own). This led to a number of small fixes (which actually took quite a lot
+of time to develop and test) in particular to <code>plot_DoseResponseCurve()</code>.
 However, the final outcome is much better than before:</p>
 <p><img src="pIRIR.png" alt="pIRIR" title="Current output of analyse_pIRIRSequence()"></p>
 <h3 id="stability-and-performance-improvements">Stability and performance improvements</h3>
 <p>Besides the number of crashes discovered by using <code>RLumShiny</code>, there are a
-few cases where we improved the package performance.</p>
+few cases where we improved stability and performance of the package.</p>
 <p>For example, function <code>calc_Huntley2006()</code> at times could not find a solution
 when using the <code>GOK</code> model, and the message &ldquo;Could not fit simulated model
 curve, check suitability of model and parameters&rdquo; was reported. This was
 particularly frustrating, as a fit was always possible with the default <code>EXP</code>
-model, and also the <code>GOK</code> model could work on related data sets.</p>
+model, and also the <code>GOK</code> model could work on closely related data sets, so
+these failures seemed unjustified.</p>
 <p>In <a href="https://github.com/R-Lum/Luminescence/issues/660">issue 660</a> we realised that we needed to be more thorough in how
 we initialised the fitting procedure. The previous approach attempted just one
 starting point (which was found by the <code>EXP</code> model) and if that failed, we
@@ -164,21 +165,22 @@ in half in the benchmarks used, with the actual speed-up growing as the
 number of Monte Carlo runs increases.</p>
 <p>A small speed-up was obtained for <code>read_XSYG2R()</code> for files where the detector
 is not a spectrometer. This came about after noticing that a computation
-occurred twice ([issue 753][iss753])</p>
+occurred twice (<a href="https://github.com/R-Lum/Luminescence/issues/753">issue 753</a>)</p>
 <h3 id="other-changes">Other changes</h3>
 <p>Although package coverage was already very high for the 1.0.1 release (99.3%),
 and it was not something we actively pursued, we managed to make some further
-progress in it, and bring it to an astonishing 99.8%. At the moment we are
+progress in it, and brought it to an astonishing 99.8%. At the moment we are
 down to just 59 lines out of 27604 that our automated tests do not manage to
 reach.</p>
-<p>Talking about testing, our automated testsuite contains now 3088 tests, which
+<p>Talking about testing, our testsuite contains now 3088 tests, which
 is a nice improvement (we were at 2897 tests for 1.0.0 and 2935 for 1.0.1).
+These are run each time a new commit is pushed to the repository.
 In this release we have finally added a good number of graphical snapshot
 tests, powered by the <a href="https://vdiffr.r-lib.org/">vdiffr package</a>. Overall, we now have 23
 functions with a graphical snapshot, that is an SVG version of the plot that
 is stored alongside the usual tests.</p>
 <p><img src="graphical-snapshot.png" alt="Graphical snapshot" title="Stored graphical output (left) and current graphical output (right)"></p>
-<p>When a new change is being prepared, we get warned when the stored snapshot
+<p>When a new change is being prepared, we get warned if the stored snapshot
 (above left) differs from the current graphical output (above right). This
 allows us to see quickly the impact the proposed changes, which is especially
 helpful to make sure that we don&rsquo;t commit changes without noticing unintended

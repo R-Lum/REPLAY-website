@@ -75,9 +75,9 @@ behaviour of `par()` (the R function that sets and stores all graphical
 parameters), have always made it quite hard to have a reliable and good-looking
 output from `analyse_pIRIRSequence()`. We tackled this in [issue 831][iss831],
 but it was clear from the onset that it would require work in two other
-functions (which would still to continue working well also when used on their
-own). This led to a number of small fixes (but they took actually quite a lot
-of time to find and test) in particular to `plot_DoseResponseCurve()`.
+functions (which would still need to continue working well also when used on their
+own). This led to a number of small fixes (which actually took quite a lot
+of time to develop and test) in particular to `plot_DoseResponseCurve()`.
 However, the final outcome is much better than before:
 
 ![pIRIR](pIRIR.png "Current output of analyse_pIRIRSequence()")
@@ -85,13 +85,14 @@ However, the final outcome is much better than before:
 ### Stability and performance improvements
 
 Besides the number of crashes discovered by using `RLumShiny`, there are a
-few cases where we improved the package performance.
+few cases where we improved stability and performance of the package.
 
 For example, function `calc_Huntley2006()` at times could not find a solution
 when using the `GOK` model, and the message "Could not fit simulated model
 curve, check suitability of model and parameters" was reported. This was
 particularly frustrating, as a fit was always possible with the default `EXP`
-model, and also the `GOK` model could work on related data sets.
+model, and also the `GOK` model could work on closely related data sets, so
+these failures seemed unjustified.
 
 In [issue 660][iss660] we realised that we needed to be more thorough in how
 we initialised the fitting procedure. The previous approach attempted just one
@@ -115,12 +116,13 @@ occurred twice ([issue 753][iss753])
 
 Although package coverage was already very high for the 1.0.1 release (99.3%),
 and it was not something we actively pursued, we managed to make some further
-progress in it, and bring it to an astonishing 99.8%. At the moment we are
+progress in it, and brought it to an astonishing 99.8%. At the moment we are
 down to just 59 lines out of 27604 that our automated tests do not manage to
 reach.
 
-Talking about testing, our automated testsuite contains now 3088 tests, which
+Talking about testing, our testsuite contains now 3088 tests, which
 is a nice improvement (we were at 2897 tests for 1.0.0 and 2935 for 1.0.1).
+These are run each time a new commit is pushed to the repository.
 In this release we have finally added a good number of graphical snapshot
 tests, powered by the [vdiffr package][vdiffr]. Overall, we now have 23
 functions with a graphical snapshot, that is an SVG version of the plot that
@@ -128,7 +130,7 @@ is stored alongside the usual tests.
 
 ![Graphical snapshot](graphical-snapshot.png "Stored graphical output (left) and current graphical output (right)")
 
-When a new change is being prepared, we get warned when the stored snapshot
+When a new change is being prepared, we get warned if the stored snapshot
 (above left) differs from the current graphical output (above right). This
 allows us to see quickly the impact the proposed changes, which is especially
 helpful to make sure that we don't commit changes without noticing unintended
@@ -149,10 +151,7 @@ or bug fixes, check out our [guidelines for contributors][contr].
 [v110]:   https://github.com/R-Lum/Luminescence/releases/tag/v1.1.0
 [rshiny]: https://tzerk.github.io/RLumShiny/
 [vdiffr]: https://vdiffr.r-lib.org/
-[iss258]: https://github.com/R-Lum/Luminescence/issues/258
-[iss298]: https://github.com/R-Lum/Luminescence/issues/298
-[iss372]: https://github.com/R-Lum/Luminescence/issues/372
 [iss660]: https://github.com/R-Lum/Luminescence/issues/660
-[iss660]: https://github.com/R-Lum/Luminescence/issues/753
+[iss753]: https://github.com/R-Lum/Luminescence/issues/753
 [iss831]: https://github.com/R-Lum/Luminescence/issues/831
 [contr]:  https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md
