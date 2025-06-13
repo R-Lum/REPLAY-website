@@ -11,7 +11,7 @@ description: 'Sorting of RLum objects'
 library(Luminescence)
 ```
 
-One of the hard lessons you have to learn as a package developer is that users usually do not care much about what you may have had in mind when writing a function. When we introduced the `RLum-class` object structure in `'Luminescence'` in version 0.1 in December 2014 (more than ten years ago!), we had little doubt that it would be highly welcomed by users, as it streamlines their analysis pipelines. As a matter of fact, little is happening today in the package without this object structure, at least from a developer's perspective.
+One of the hard lessons you have to learn as a package developer is that users usually do not care much about what you may have had in mind when writing a function. When we introduced the `RLum-class` object structure in `'Luminescence'` in version 0.4.0 in December 2014 (more than ten years ago!), we had little doubt that it would be highly welcomed by users, as it streamlines their analysis pipelines. As a matter of fact, little is happening today in the package without this object structure, at least from a developer's perspective.
 
 The support requests that ripple in tell a different story, though. Time and time again, `RLum-class` objects seem to be perceived as an obstacle to overcome and work around, without showing any appreciation. This perception likely stems from our failure to highlight their advantages and even prioritise other features, such as allowing `subset()` to operate *Analyst*-like directly on `RisoeBINfileData` objects.
 
