@@ -6,8 +6,15 @@
     <description>Recent content on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RLumShiny Release 0.2.5</title>
+      <link>/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/</link>
+      <pubDate>Mon, 14 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/</guid>
+      <description>&lt;p&gt;Much of the work that took place during the &lt;a href=&#34;/REPLAY-website/post/2025/06/luminescence-release-1.1.0/&#34;&gt;Luminescence 1.1.0 timeframe&lt;/a&gt;&#xA;was devoted to adding new features to &lt;a href=&#34;https://tzerk.github.io/RLumShiny/&#34;&gt;RLumShiny&lt;/a&gt;, the graphical&#xA;interface to &lt;code&gt;Luminescence&lt;/code&gt; built on the &lt;a href=&#34;https://shiny.posit.co/&#34;&gt;Shiny framework&lt;/a&gt;. We see this&#xA;package as a good entry point to become acquainted with some of the functions&#xA;provided by &lt;code&gt;Luminescence&lt;/code&gt; and their various options.&lt;/p&gt;&#xA;&lt;p&gt;Our work for the &lt;a href=&#34;https://github.com/tzerk/RLumShiny/releases/tag/v0.2.5&#34;&gt;RLumShiny 0.2.5 release&lt;/a&gt; concentrated on adding a&#xA;bunch of new apps:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;aliquotsize&lt;/code&gt; to either estimate the number of grains on an aliquot or to&#xA;compute the packing density (based on &lt;code&gt;calc_AliquotSize()&lt;/code&gt;);&#xA;&lt;img src=&#34;aliquotsize.png&#34; alt=&#34;aliquotsize&#34; title=&#34;Screenshot of the aliquotsize app&#34;&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Luminescence Release 1.1.0</title>
       <link>/REPLAY-website/post/2025/06/luminescence-release-1.1.0/</link>
