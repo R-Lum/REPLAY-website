@@ -63,4 +63,4 @@ analyses. We are also keen to hear of bugs or annoyances you may encounter!
 [shiny]:   https://shiny.posit.co/
 [rls025]:  https://github.com/tzerk/RLumShiny/releases/tag/v0.2.5
 [v110]:    {{< ref "post/2025-06-11-luminescence-release-1-1-0/" >}}
-[bugs]:    https://github.com/R-Lum/Luminescence/issues?q=state%3Aclosed%20label%3ARLumShiny
+[bugs]:    https://github.com/R-Lum/Luminescence/issues?q=state%3Aclosed%20label%3ARLumShiny%20milestone%3Av1.1.0
