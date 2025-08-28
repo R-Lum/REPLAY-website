@@ -6,8 +6,15 @@
     <description>Recent content in Luminescence on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/categories/luminescence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Breaking Luminescence to improve it</title>
+      <link>/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/</guid>
+      <description>&lt;p&gt;One of the challenges I faced as I started working on the&#xA;&lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt; was how to navigate the very large set of&#xA;functions that the package provides (by the last count, there are 155&#xA;functions that are exposed to the user, plus several internal helpers).&lt;/p&gt;&#xA;&lt;p&gt;As I fumbled my way through it, I started noticing that when a function failed&#xA;on a certain input, similar failures would also occur elsewhere.&#xA;However, finding manually which other functions were affected was frustrating&#xA;and time-consuming. Wouldn&amp;rsquo;t it be great if we could (quickly and with limited&#xA;manual intervention) go through all the functions in the package and being&#xA;told which are the ones that need to be fixed?&lt;/p&gt;&#xA;&lt;p&gt;This got me to think about &lt;strong&gt;fuzz testing&lt;/strong&gt;, and how that approach could be&#xA;adapted for my purposes.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Luminescence Release 1.1.0</title>
       <link>/REPLAY-website/post/2025/06/luminescence-release-1.1.0/</link>

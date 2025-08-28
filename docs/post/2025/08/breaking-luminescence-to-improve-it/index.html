@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Breaking Luminescence to improve it - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="CBTF version 0.5.0">
+		<meta property="og:url" content="/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Breaking Luminescence to improve it">
+  <meta property="og:description" content="CBTF version 0.5.0">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-08-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-28T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Breaking Luminescence to improve it</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2025-08-28T00:00:00Z">28 August 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>One of the challenges I faced as I started working on the
+<a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a> was how to navigate the very large set of
+functions that the package provides (by the last count, there are 155
+functions that are exposed to the user, plus several internal helpers).</p>
+<p>As I fumbled my way through it, I started noticing that when a function failed
+on a certain input, similar failures would also occur elsewhere.
+However, finding manually which other functions were affected was frustrating
+and time-consuming. Wouldn&rsquo;t it be great if we could (quickly and with limited
+manual intervention) go through all the functions in the package and being
+told which are the ones that need to be fixed?</p>
+<p>This got me to think about <strong>fuzz testing</strong>, and how that approach could be
+adapted for my purposes.</p>
+<h3 id="fuzz-testing">Fuzz testing</h3>
+<p><a href="https://en.wikipedia.org/wiki/Fuzzing">Fuzz testing</a> is a software testing technique that generates random,
+unexpected or malformed data and feeds them into a program. By observing
+how the software behaves under such conditions, this approach may uncover
+potential weaknesses, vulnerabilities and security flaws in applications that
+could be exploited by malicious actors.</p>
+<p>As such, it&rsquo;s adopted in systems where maintaining the integrity of the
+software and of the machine running it is of crucial importance, such as in
+the development of operating systems, hardware drivers, language compilers,
+browsers, cryptographic, network-facing and security-related software.</p>
+<p>Clearly, <code>Luminescence</code> doesn&rsquo;t fall into that category of software. However,
+the underlying idea is still valid: in our setting, fuzz testing can be used
+to identify functions that lack sufficient argument validation and to uncover
+sets of inputs that may cause issues within the function body.</p>
+<p>A major problem with using a fuzz-testing approach is dealing with false
+positives. Reporting all errors produced is not particularly helpful, as
+some errors are expected or they have already been handled, and therefore
+don&rsquo;t need to be looked at again. How do we know if an error reported is
+something we should be worrying about?</p>
+<h3 id="how-luminescence-reports-errors">How <code>Luminescence</code> reports errors</h3>
+<p>The functions in <code>Luminescence</code>are instrumented with a simple but effective
+error report interface. Whenever a user-facing function throws an error that
+the developer had expected (and handled), it also reports the function&rsquo;s name
+in the error message. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">read_BIN2R</span>(<span style="color:#e6db74">&#34;wrong.bin&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## Error: [read_BIN2R()] File &#39;wrong.bin&#39; does not exist
+</code></pre><p>Consider instead this other failure (already fixed in version 1.0.0):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">read_BIN2R</span>(<span style="color:#a6e22e">character</span>(<span style="color:#ae81ff">0</span>))
+</span></span></code></pre></div><pre tabindex="0"><code>## Error in if (grepl(pattern = &#34;https?\\:\\/\\/&#34;, x = url, perl = TRUE)) { :
+##   argument is of length zero
+</code></pre><p>Clearly, this error wasn&rsquo;t handled by the function, but it comes straight
+from the R core engine. Therefore, it should be reported as a true positive,
+as it signals insufficient argument validation. Effectively, the code assumed
+that the user would never provide a zero-length file name. While this is
+probably true in the majority of cases, it may still occur accidentally or
+as part of a more complex script.</p>
+<p>It makes for a better user experience if even these corner cases were
+gracefully handled by the package. In contrast to the one above, the current
+error message to shows immediately the cause of the problem, making it easier
+to find a solution:</p>
+<pre tabindex="0"><code>## Error: [read_BIN2R()] &#39;file&#39; cannot be an empty character
+</code></pre><p>The way errors and warnings are reported in <code>Luminescence</code> provides an
+effective way of removing the vast majority of false positives from the
+output. This mechanism allows us to assume that, if a function reports an
+error message containing its own name, the developers have already considered
+that possibility and wrote the code defensively against that type of failure.
+Such errors can be considered <em>handled</em> and can be suppressed from the
+output. This has the big advantage of leaving a minimal number of cases to be
+investigated after fuzzing.</p>
+<h3 id="caught-by-the-fuzz">Caught by the Fuzz!</h3>
+<p>The <a href="https://github.com/mcol/caught-by-the-fuzz/blob/v0.1.0/R/fuzz.R">initial implementation</a> of our fuzz-testing approach was really
+straightforward and fit in about 50 lines of R code. Indeed, it is simply a
+matter of calling each function in the package with a given input (one that
+had already shown to be problematic somewhere) and record any error or warning
+produced. Those that appear to be unhandled errors are reported so that they
+can be inspected and fixed.</p>
+<p>From these humble beginnings, the code slowly developed into a fully-fledged
+R package, <a href="https://mcol.github.io/caught-by-the-fuzz/">CBTF (Caught by the Fuzz!)</a>, which as of two weeks ago has
+finally reached <a href="https://cran.r-project.org/package=CBTF">CRAN</a>.</p>
+<p><a href="https://www.youtube.com/watch?v=uJ-mpul94eo"><img src="cbtf-logo.png#center" alt="CBTF-logo" title="Thanks to Supergrass for the inspiration for the package name!"></a></p>
+<p>The <code>CBTF</code> package was developed with the expressed purpose of testing and
+improving robustness of <code>Luminescence</code> (although nothing prevents it from being
+used for other packages too).</p>
+<p>The core functionality of the package is in the <code>fuzz()</code> function, which calls
+each provided function with a certain input and records the output produced.
+The <code>get_exported_functions()</code> helper is used to find all user-facing functions
+from a package, which are those that will be fuzzed.</p>
+<p>This is what happened last November when I fuzzed all functions using a data
+frame containing a zero value in the first column as input:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(CBTF)
+</span></span><span style="display:flex;"><span>funs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">get_exported_functions</span>(<span style="color:#e6db74">&#34;Luminescence&#34;</span>)
+</span></span><span style="display:flex;"><span>what <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(df_with_zero <span style="color:#f92672">=</span> <span style="color:#a6e22e">data.frame</span>(ED <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>                                       ED_Err <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fuzz</span>(funs, what, ignore_warnings <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>ℹ Fuzzing 154 functions on 1 input
+✔ Test input: df_with_zero  [5.1s]
+✖  🚨   CAUGHT BY THE FUZZ!   🚨
+
+── Test input: df_with_zero
+      analyse_IRSAR.RF  FAIL  no applicable method for `@` applied to an object of class &#34;integer&#34;
+   calc_CobbleDoseRate  FAIL  missing value where TRUE/FALSE needed
+calc_OSLLxTxDecomposed  FAIL  &#39;names&#39; attribute [4] must be the same length as the vector [2]
+      fit_OSLLifeTimes  FAIL  NaN value of objective function!  Perhaps adjust the bounds.
+             get_Quote  FAIL  the condition has length &gt; 1
+        github_commits  FAIL  [github_branches()] &#39;user&#39; should be of class &#39;character&#39;
+       plot_RadialPlot  FAIL  &#39;from&#39; must be a finite number
+
+[ FAIL 7 | WARN 0 | SKIP 2 | OK 145 ]
+</code></pre><p>These pointed to a number of unhandled error conditions that were
+<a href="https://github.com/R-Lum/Luminescence/pull/819">eventually solved</a>, so that the current output is the following:</p>
+<pre tabindex="0"><code>ℹ Fuzzing 155 functions on 1 input
+✔ Test input: df_with_zero  [5.1s]
+✔  🏃 You didn&#39;t get caught by the fuzz!
+
+ [ FAIL 0 | WARN 0 | SKIP 2 | OK 153 ]
+</code></pre><p>We began using <code>CBTF</code> shortly before the release of
+<a href="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/"><code>Luminescence</code> version 1.0.0</a>. At that point, we had 272 calls to our
+validation functions; for version 1.0.0 we increased them to 459, and
+further to 582 for version 1.1.0. These numbers do not count any
+additional checks and validations that were done using standard R
+constructs, nor fixes to bugs revealed by <code>CBTF</code> that were unrelated
+to input value validation. All applications of <code>CBTF</code> to <code>Luminescence</code> are
+documented in a <a href="https://github.com/R-Lum/Luminescence/issues/439">tracking bug</a> which, as of today, lists 35 issues,
+for a total of 212 problems identified and fixed.</p>
+<p>We will continue using this approach to further improve the stability and
+user-friendliness of <code>Luminescence</code>, and hope that similar techniques will
+be used more and more in the R ecosystem at large.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/">Breaking Luminescence to improve it</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/">RLumShiny Release 0.2.5</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/06/luminescence-release-1.1.0/">Luminescence Release 1.1.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/">Think about it: Handling RLum objects</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/rlumshiny-release-0.2.4/">RLumShiny Release 0.2.4</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>
