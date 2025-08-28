@@ -74,7 +74,7 @@ simplified a bit.
 
 As a way to help us find which functions could have their validation steps
 improved, we started developing the experimental [CBFT package][cbtf]. This
-implements a simple fuzz testing approach which allows to call all functions
+implements [a simple fuzz testing approach][fuzz] which allows to call all functions
 of a package with any sort of inputs and see what failures are produced. This
 is still ongoing work and is being tracked in [issue 439][iss439].
 
@@ -140,6 +140,7 @@ or bug fixes, check out our [guidelines for contributors][contr].
 [webin1]: https://r-luminescence.org/news/20241130_replay_webinar_112024/
 [snaps]:  https://testthat.r-lib.org/articles/snapshotting.html
 [cbtf]:   https://github.com/mcol/caught-by-the-fuzz
+[fuzz]:   {{< ref "post/2025-08-28-breaking-luminescence-to-improve-it/" >}}
 [iss243]: https://github.com/R-Lum/Luminescence/issues/243
 [iss258]: https://github.com/R-Lum/Luminescence/issues/258
 [iss298]: https://github.com/R-Lum/Luminescence/issues/298
