@@ -6,8 +6,15 @@
     <description>Recent content in Luminescence on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/categories/luminescence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Luminescence Release 1.1.1</title>
+      <link>/REPLAY-website/post/2025/09/luminescence-release-1.1.1/</link>
+      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/09/luminescence-release-1.1.1/</guid>
+      <description>&lt;p&gt;Exactly 3 months from our &lt;a href=&#34;/REPLAY-website/post/2025/06/luminescence-release-1.1.0/&#34;&gt;previous release&lt;/a&gt;, we are excited to&#xA;announce the release of &lt;strong&gt;version 1.1.1&lt;/strong&gt; of the &lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;We were initially wondering whether this should be a minor or a major release,&#xA;as we put a lot of effort in to make the package more solid and refined; we&#xA;decided to call it a minor release just because there are not many new&#xA;features in this version. However, there are some important regression fixes,&#xA;many graphical improvements and also some performance speed-ups. In total we&#xA;addressed 69 issues in 371 commits.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Breaking Luminescence to improve it</title>
       <link>/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/</link>

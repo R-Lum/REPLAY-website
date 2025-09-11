@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luminescence Release 1.1.1 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Luminescence version 1.1.1">
+		<meta property="og:url" content="/REPLAY-website/post/2025/09/luminescence-release-1.1.1/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Luminescence Release 1.1.1">
+  <meta property="og:description" content="Luminescence version 1.1.1">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-09-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-09-11T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Luminescence Release 1.1.1</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2025-09-11T00:00:00Z">11 September 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Exactly 3 months from our <a href="/REPLAY-website/post/2025/06/luminescence-release-1.1.0/">previous release</a>, we are excited to
+announce the release of <strong>version 1.1.1</strong> of the <a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>.</p>
+<p>We were initially wondering whether this should be a minor or a major release,
+as we put a lot of effort in to make the package more solid and refined; we
+decided to call it a minor release just because there are not many new
+features in this version. However, there are some important regression fixes,
+many graphical improvements and also some performance speed-ups. In total we
+addressed 69 issues in 371 commits.</p>
+<h3 id="one-new-function-and-some-removals">One new function and some removals</h3>
+<p>Only one new small function was added in this release, <code>correct_PMTLinearity()</code>,
+which can be used to correct the linearity of photomultiplier tube (PMT) counts
+to avoid saturation effects.</p>
+<p>On the other hand, we removed a few functions that we already set as defunct
+or deprecated in previous releases:</p>
+<ul>
+<li><code>Analyse_SAR.OSLdata()</code> was an earlier version of what was then reimplemented
+in a more complete way in <code>analyse_SAR.CWOSL()</code>;</li>
+<li><code>calc_Kars2008()</code> had been since several versions just a shim to
+<code>calc_Huntley2006()</code>;</li>
+<li><code>PSL2Risoe.BINfileData()</code> was renamed to <code>convert_PSL2Risoe.BINfileData()</code>;</li>
+<li><code>Second2Gray()</code> was renamed to <code>convert_Second2Gray()</code>.</li>
+</ul>
+<p>Additionally, we removed <code>get_Risoe.BINfileData()</code> directly because the only
+thing it did was to report that it could not do anything. This was a leftover
+from ancient designs that never materialised, so we did not go through the
+usual process of deprecating a function before its removal.</p>
+<p>More removals of deprecated functions will occur in the next release, so if
+you already see some deprecation warnings, you&rsquo;d better sorting them out in
+advance.</p>
+<h3 id="regression-fixes">Regression fixes</h3>
+<p>A regression that affected <code>plot_DoseResponseCurve()</code> (and consequently also
+<code>analyse_SAR.CWOSL()</code> and <code>analyse_pIRIRSequence()</code>) caused a mismatch between
+the legend symbols and the plotted regeneration/dose points.</p>
+<p>This can be seen from these plots, where on the left is the one produced by
+version 1.1.0 and on the right is the fixed version produced by version 1.1.1:
+<img src="DoseResponseCurve.png" alt="DRC plots" title="Comparison of the mismatched points (left) and fixed (right)"></p>
+<p>The difference is at first subtle, but it&rsquo;s clear that the previous version
+assigned the plotted the points using the wrong symbols, thus making the plot
+very confusing and not really usable.</p>
+<p>Also <code>plot_DRCSummary()</code> saw its functionality restored, after a regression
+prevented the dose-response curve from being plotted, resulting in a mostly
+empty plot.</p>
+<p>We also discovered a regression in <code>calc_Huntley2006()</code>: after the work we
+put during the <a href="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/">1.0.0 release</a> to speed up the function, an unintentional
+change snuck it that made it slow again. This had originally passed under our
+radar, and we realised only by chance when collecting some numbers on the
+performance improvements we could measure in the package. Well, it turns out
+that for <code>calc_Huntley2006()</code> we couldn&rsquo;t see any.</p>
+<p>After <a href="https://github.com/R-Lum/Luminescence/issues/867">some investigation</a>, it turned out that the <code>n.MC</code>
+argument meant to control the number of Monte Carlo iterations in the function
+was also being passed to <code>fit_DoseResponseCurve()</code>. This effectively doubled
+the amount of work done for no perceptible gain. This was not the expected
+behaviour, and explained the poor performance. After the fix, we saw a 2x
+speedup for our default value of 10,000 Monte Carlo iterations.</p>
+<h2 id="correctness-and-functionality-improvements">Correctness and functionality improvements</h2>
+<p>A question that has come up a few times in the context of the
+<code>fit_DoseResponseCurve()</code> curve is what should be done when the fit produces
+a negative De value. The answer to that is that such value is meaningless and
+should not be reported. Most of the times, such values are generated if the
+dataset is somewhat misspecified or presents other peculiarities.</p>
+<p>However, looking into this made us realise that our handling of negative values
+was imprecise. In particular, the computation of the De.MC, De.Error and
+HPDI (Highest Density Intervals) as implemented in  <code>fit_DoseResponseCurve()</code>
+was not entirely correct, and produced some confusing results in those cases.</p>
+<p>We believe to have solved the issue, and with that we also made the output
+produced a bit clearer, by reshuffling some columns and clarifying those that
+are only reported for internal use.</p>
+<p>Also <code>calc_Statistics()</code> has seen a small correctness improvement: what was
+previously reported as the weighted median was actually a simple (unweighted)
+median. We have now revamped the internal helper function to compute the
+weighted median so that it could be used also inside <code>calc_Statistics()</code>, and
+now the function reports the expected value.</p>
+<p>In <code>smooth_RLum()</code>we have added support for the Poisson smoother of Carter
+et al. (2018). This smoother is helpful to ensure that the dark-background
+counts signals measured by a photomultiplier tube follow a Poisson statistic:
+values that are statistically unlikely to be coming from a Poisson distribution
+(according to a user-controlled threshold) can be smoothed out using the
+average over four neighbours.</p>
+<p><code>get_RLum()</code> is a function that is used quite often inside the package to
+handle and transform the classes of objects generated by <code>Luminescence</code> (such
+as <code>RLum.Analysis</code>, <code>RLum.Data.Curve</code>, and so on). An <a href="https://github.com/R-Lum/Luminescence/issues/875">internal optimization</a>
+increased the speed of the function, but this is noticeable only when handling
+a sufficiently large number of objects. For example, when merging a list of
+79 <code>RLum.Analysis</code> objects, each containing 118 curves, we saw the time spent
+by <code>merge_RLum()</code> go from 3.5s to 1.5s.</p>
+<h3 id="code-size-reduction">Code size reduction</h3>
+<p>One small internal change has brought a surprising reduction in number of
+lines in the package.</p>
+<p>Since R version 4.4.0 (released in April 2024), the new <code>%||%</code> operator has
+been added to the language. The way it works is rather simple: an expression
+like <code>L %||% R</code> returns <code>L</code> if <code>L</code> is not <code>NULL</code>, otherwise it returns <code>R</code>.
+In other words, it checks if the first argument is <code>NULL</code> before using it; if
+it turns out to be <code>NULL</code>, then it reverts to the second argument, which can
+be thought of as a default value.</p>
+<p>The interesting thing is that the implementation of this operator is really
+straightforward, as it&rsquo;s literally just</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is.null</span>(L)) R <span style="color:#66d9ef">else</span> L
+</span></span></code></pre></div><p>This means that we could start using it even though at the moment <code>Luminescence</code>
+still supports R 4.3, by providing our own implementation. When we introduced
+it in <a href="https://github.com/R-Lum/Luminescence/issues/955">issue 955</a>, it was clear that it could make some of the code
+less verbose and more readable, but it was a pleasant surprise to see that
+overall this let us remove over 250 lines of code (that&rsquo;s almost 1% of the
+total R code in the package).</p>
+<p>Talking about package size, in terms of number of lines of code this release
+contains 26580, a good decrease from the 27604 of just three months ago. This
+is the result of the function removals mentioned above, but also of a massive
+consolidation of duplicated code in <code>plot_AbanicoPlot()</code>.</p>
+<h3 id="stability-improvements">Stability improvements</h3>
+<p>We&rsquo;ve recently discussed of <a href="/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/">fuzz testing</a>, and in this release we
+spent some time trying to figure out new ways of making <code>Luminescence</code> crash,
+so that we could get some insight into it and make it more robust.</p>
+<p>In this release we filed and fixed <a href="https://github.com/R-Lum/Luminescence/issues?q=state%3Aclosed%20label%3Afuzzing%20milestone%3Av1.1.1">19 issues discovered by fuzzing</a>,
+which is the most we&rsquo;ve ever found, accounting for more than half of the total.
+This was due to the time spent refining the <a href="https://mcol.github.io/caught-by-the-fuzz/">CBTF package</a> so that it
+could be released on CRAN.</p>
+<p>In terms of testing, our testsuite contains now 3353 tests, which is a 10%
+increase from our previous release (we had 3088 in 1.1.0). Many are snapshot
+and graphical snapshot tests, which are the type of test that can give us the
+best protection against unintentional changes.</p>
+<h3 id="upcoming-work">Upcoming work</h3>
+<p>In the short term we&rsquo;ll resume working on <code>RLumShiny</code>, to further expand the
+set of applications it provides and perhaps improve its performance.</p>
+<p>As always, bug reports are very welcome, in particular if you spot regression
+or performance problems. And if you&rsquo;d like to contribute new functionalities
+or bug fixes, check out our <a href="https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md">guidelines for contributors</a>.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/luminescence-release-1.1.1/">Luminescence Release 1.1.1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/">Breaking Luminescence to improve it</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/">RLumShiny Release 0.2.5</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/06/luminescence-release-1.1.0/">Luminescence Release 1.1.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/03/think-about-it-handling-rlum-objects/">Think about it: Handling RLum objects</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>
