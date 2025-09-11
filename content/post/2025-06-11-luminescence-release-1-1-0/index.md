@@ -25,7 +25,7 @@ during this release cycle.
 
 There are two new functions that have entered the already large family
 of `Luminescence` functions to provide some convenient tools to manipulate
-`RLum-class` objects: `remove_SignalBackgroun()` and `remove_RLum()`.
+`RLum-class` objects: `remove_SignalBackground()` and `remove_RLum()`.
 
 A frequently encountered task involves subtracting curves representing a
 background signal from luminescence curves, such as OSL, TL, or RF. The new
