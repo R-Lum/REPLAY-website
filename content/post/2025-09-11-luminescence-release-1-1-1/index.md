@@ -29,11 +29,11 @@ On the other hand, we removed a few functions that we already set as defunct
 or deprecated in previous releases:
 
 * `Analyse_SAR.OSLdata()` was an earlier version of what was then reimplemented
-in a more complete way in `analyse_SAR.CWOSL()`;
+in a more complete way in `analyse_SAR.CWOSL()`
 * `calc_Kars2008()` had been since several versions just a shim to
-`calc_Huntley2006()`;
-* `PSL2Risoe.BINfileData()` was renamed to `convert_PSL2Risoe.BINfileData()`;
-* `Second2Gray()` was renamed to `convert_Second2Gray()`.
+`calc_Huntley2006()`
+* `PSL2Risoe.BINfileData()` was renamed to `convert_PSL2Risoe.BINfileData()`
+* `Second2Gray()` was renamed to `convert_Second2Gray()`
 
 Additionally, we removed `get_Risoe.BINfileData()` directly because the only
 thing it did was to report that it could not do anything. This was a leftover
@@ -79,8 +79,9 @@ speedup for our default value of 10,000 Monte Carlo iterations.
 ## Correctness and functionality improvements
 
 A question that has come up a few times in the context of the
-`fit_DoseResponseCurve()` curve is what should be done when the fit produces
-a negative De value. The answer to that is that such value is meaningless and
+`fit_DoseResponseCurve()` is what should be done when the fit produces
+a negative De value in the default "interpolation" mode.
+The answer to that is that such value is meaningless and
 should not be reported. Most of the times, such values are generated if the
 dataset is somewhat misspecified or presents other peculiarities.
 
@@ -89,9 +90,9 @@ was imprecise. In particular, the computation of the De.MC, De.Error and
 HPDI (Highest Density Intervals) as implemented in  `fit_DoseResponseCurve()`
 was not entirely correct, and produced some confusing results in those cases.
 
-We believe to have solved the issue, and with that we also made the output
-produced a bit clearer, by reshuffling some columns and clarifying those that
-are only reported for internal use.
+We believe to have solved the issue, and in doing so, we also made the output
+clearer by reordering some columns and clarifying those that are reported only
+for internal use.
 
 Also `calc_Statistics()` has seen a small correctness improvement: what was
 previously reported as the weighted median was actually a simple (unweighted)
@@ -127,19 +128,34 @@ it turns out to be `NULL`, then it reverts to the second argument, which can
 be thought of as a default value.
 
 The interesting thing is that the implementation of this operator is really
-straightforward, as it's literally just
+straightforward, as it's literally just:
 ```R
 if (is.null(L)) R else L
 ```
 This means that we could start using it even though at the moment `Luminescence`
-still supports R 4.3, by providing our own implementation. When we introduced
+still supports R 4.3, by providing our own implementation.
+
+In practice, this new operator lets us transform this code:
+```R
+main <- if (is.null(plot.settings$main[[i]])) {
+  temp[[i]]@recordType
+} else{
+  plot.settings$main[[i]]
+}
+```
+into this:
+```R
+main <- plot.settings$main[[i]] %||% temp[[i]]@recordType
+```
+
+When we introduced
 it in [issue 955][iss955], it was clear that it could make some of the code
 less verbose and more readable, but it was a pleasant surprise to see that
 overall this let us remove over 250 lines of code (that's almost 1% of the
 total R code in the package).
 
-Talking about package size, in terms of number of lines of code this release
-contains 26580, a good decrease from the 27604 of just three months ago. This
+Talking about package size, this release contains 26,580 lines of code, a
+sizable decrease from the 27,604 of just three months ago. This
 is the result of the function removals mentioned above, but also of a massive
 consolidation of duplicated code in `plot_AbanicoPlot()`.
 
@@ -154,8 +170,8 @@ which is the most we've ever found, accounting for more than half of the total.
 This was due to the time spent refining the [CBTF package][cbtf] so that it
 could be released on CRAN.
 
-In terms of testing, our testsuite contains now 3353 tests, which is a 10%
-increase from our previous release (we had 3088 in 1.1.0). Many are snapshot
+In terms of testing, our testsuite contains now 3,353 tests, which is a 10%
+increase from our previous release (we had 3,088 in 1.1.0). Many are snapshot
 and graphical snapshot tests, which are the type of test that can give us the
 best protection against unintentional changes.
 

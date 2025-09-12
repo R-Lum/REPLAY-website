@@ -97,11 +97,11 @@ to avoid saturation effects.</p>
 or deprecated in previous releases:</p>
 <ul>
 <li><code>Analyse_SAR.OSLdata()</code> was an earlier version of what was then reimplemented
-in a more complete way in <code>analyse_SAR.CWOSL()</code>;</li>
+in a more complete way in <code>analyse_SAR.CWOSL()</code></li>
 <li><code>calc_Kars2008()</code> had been since several versions just a shim to
-<code>calc_Huntley2006()</code>;</li>
-<li><code>PSL2Risoe.BINfileData()</code> was renamed to <code>convert_PSL2Risoe.BINfileData()</code>;</li>
-<li><code>Second2Gray()</code> was renamed to <code>convert_Second2Gray()</code>.</li>
+<code>calc_Huntley2006()</code></li>
+<li><code>PSL2Risoe.BINfileData()</code> was renamed to <code>convert_PSL2Risoe.BINfileData()</code></li>
+<li><code>Second2Gray()</code> was renamed to <code>convert_Second2Gray()</code></li>
 </ul>
 <p>Additionally, we removed <code>get_Risoe.BINfileData()</code> directly because the only
 thing it did was to report that it could not do anything. This was a leftover
@@ -137,17 +137,18 @@ behaviour, and explained the poor performance. After the fix, we saw a 2x
 speedup for our default value of 10,000 Monte Carlo iterations.</p>
 <h2 id="correctness-and-functionality-improvements">Correctness and functionality improvements</h2>
 <p>A question that has come up a few times in the context of the
-<code>fit_DoseResponseCurve()</code> curve is what should be done when the fit produces
-a negative De value. The answer to that is that such value is meaningless and
+<code>fit_DoseResponseCurve()</code> is what should be done when the fit produces
+a negative De value in the default &ldquo;interpolation&rdquo; mode.
+The answer to that is that such value is meaningless and
 should not be reported. Most of the times, such values are generated if the
 dataset is somewhat misspecified or presents other peculiarities.</p>
 <p>However, looking into this made us realise that our handling of negative values
 was imprecise. In particular, the computation of the De.MC, De.Error and
 HPDI (Highest Density Intervals) as implemented in  <code>fit_DoseResponseCurve()</code>
 was not entirely correct, and produced some confusing results in those cases.</p>
-<p>We believe to have solved the issue, and with that we also made the output
-produced a bit clearer, by reshuffling some columns and clarifying those that
-are only reported for internal use.</p>
+<p>We believe to have solved the issue, and in doing so, we also made the output
+clearer by reordering some columns and clarifying those that are reported only
+for internal use.</p>
 <p>Also <code>calc_Statistics()</code> has seen a small correctness improvement: what was
 previously reported as the weighted median was actually a simple (unweighted)
 median. We have now revamped the internal helper function to compute the
@@ -176,16 +177,25 @@ In other words, it checks if the first argument is <code>NULL</code> before usin
 it turns out to be <code>NULL</code>, then it reverts to the second argument, which can
 be thought of as a default value.</p>
 <p>The interesting thing is that the implementation of this operator is really
-straightforward, as it&rsquo;s literally just</p>
+straightforward, as it&rsquo;s literally just:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is.null</span>(L)) R <span style="color:#66d9ef">else</span> L
 </span></span></code></pre></div><p>This means that we could start using it even though at the moment <code>Luminescence</code>
-still supports R 4.3, by providing our own implementation. When we introduced
+still supports R 4.3, by providing our own implementation.</p>
+<p>In practice, this new operator lets us transform this code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>main <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is.null</span>(plot.settings<span style="color:#f92672">$</span>main[[i]])) {
+</span></span><span style="display:flex;"><span>  temp[[i]]<span style="color:#f92672">@</span>recordType
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>  plot.settings<span style="color:#f92672">$</span>main[[i]]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>into this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>main <span style="color:#f92672">&lt;-</span> plot.settings<span style="color:#f92672">$</span>main[[i]] <span style="color:#f92672">%||%</span> temp[[i]]<span style="color:#f92672">@</span>recordType
+</span></span></code></pre></div><p>When we introduced
 it in <a href="https://github.com/R-Lum/Luminescence/issues/955">issue 955</a>, it was clear that it could make some of the code
 less verbose and more readable, but it was a pleasant surprise to see that
 overall this let us remove over 250 lines of code (that&rsquo;s almost 1% of the
 total R code in the package).</p>
-<p>Talking about package size, in terms of number of lines of code this release
-contains 26580, a good decrease from the 27604 of just three months ago. This
+<p>Talking about package size, this release contains 26,580 lines of code, a
+sizable decrease from the 27,604 of just three months ago. This
 is the result of the function removals mentioned above, but also of a massive
 consolidation of duplicated code in <code>plot_AbanicoPlot()</code>.</p>
 <h3 id="stability-improvements">Stability improvements</h3>
@@ -196,8 +206,8 @@ so that we could get some insight into it and make it more robust.</p>
 which is the most we&rsquo;ve ever found, accounting for more than half of the total.
 This was due to the time spent refining the <a href="https://mcol.github.io/caught-by-the-fuzz/">CBTF package</a> so that it
 could be released on CRAN.</p>
-<p>In terms of testing, our testsuite contains now 3353 tests, which is a 10%
-increase from our previous release (we had 3088 in 1.1.0). Many are snapshot
+<p>In terms of testing, our testsuite contains now 3,353 tests, which is a 10%
+increase from our previous release (we had 3,088 in 1.1.0). Many are snapshot
 and graphical snapshot tests, which are the type of test that can give us the
 best protection against unintentional changes.</p>
 <h3 id="upcoming-work">Upcoming work</h3>
