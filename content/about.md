@@ -6,7 +6,7 @@ title: About
 ---
 
 REPLAY is a DFG-funded programme ([No 528704761](https://gepris.dfg.de/gepris/projekt/528704761?language=en))
-led by [Dr Sebastian Kreutzer](https://www.geog.uni-heidelberg.de/geomorph/kreutzer_en.html)
+led by [Dr Sebastian Kreutzer](https://www.geog.uni-heidelberg.de/en/node/543)
 (PI at [Heidelberg University, DE](https://www.uni-heidelberg.de/en)) and
 [Dr Thomas Kolb](https://www.uni-giessen.de/en/faculties/f07/departments/geography/sections/physical/staff/kolb-en)
 (PI at [Justus-Liebig-University Giessen, DE](https://www.uni-giessen.de/en/)).
