@@ -2,4 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+content/post/*.html
+docs/post/202[5-9]-*.html
 docs/post/*.Rmd
