@@ -6,8 +6,15 @@
     <description>Recent content on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New REPLAY website URL</title>
+      <link>/REPLAY-website/post/2025/09/new-replay-website-url/</link>
+      <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2025/09/new-replay-website-url/</guid>
+      <description>&lt;p&gt;We have moved this website under our new subdomain at the &lt;a href=&#34;https://www.geog.uni-heidelberg.de/en&#34;&gt;Institute of&#xA;Geography&lt;/a&gt; of the University of Heidelberg. From now you will find&#xA;us at this URL:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://replay.geog.uni-heidelberg.de/&#34;&gt;https://replay.geog.uni-heidelberg.de/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;The old links will continue to work.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Luminescence Release 1.1.1</title>
       <link>/REPLAY-website/post/2025/09/luminescence-release-1.1.1/</link>
