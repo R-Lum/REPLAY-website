@@ -57,3 +57,34 @@ The REPLAY website is built using [Hugo](https://gohugo.io/), a
 static HTML and CSS website generator written in Go, and the
 [Mainroad](https://github.com/Vimux/Mainroad/) theme. Support for R code is
 handled via the [blogdown](https://pkgs.rstudio.com/blogdown/) R package.
+
+### Information according § 5 TMG (Germany)
+
+[IMPRESSUM](https://www.uni-heidelberg.de/en/imprint)
+
+```
+ANSPRECHPARTNER
+
+Dr. Sebastian Kreutzer (sebastian.kreutzer@uni-heidelberg.de)
+Institute of Geography
+Heidelberg University
+
+Im Neuenheimer Feld 348
+69120 Heidelberg
+Germany
+
+HERAUSGEBER
+
+Universität Heidelberg
+Grabengasse 1
+69117 Heidelberg
+Tel. +49 6221 54-19012
+Fax +49 6221 54-19020
+kum@uni-heidelberg.de
+
+Die Universität Heidelberg ist eine Körperschaft des öffentlichen Rechts.
+Sie wird durch die Rektorin Prof. Dr. Frauke Melchior gesetzlich vertreten.
+rektorin@rektorat.uni-heidelberg.de
+
+Umsatzsteuer-Identifikationsnummer: DE 811225433
+```
