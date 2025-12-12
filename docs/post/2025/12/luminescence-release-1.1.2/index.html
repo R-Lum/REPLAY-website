@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luminescence Release 1.1.2 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Luminescence version 1.1.2">
+		<meta property="og:url" content="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Luminescence Release 1.1.2">
+  <meta property="og:description" content="Luminescence version 1.1.2">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-12-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-12T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Luminescence Release 1.1.2</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2025-12-12T00:00:00Z">12 December 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Another 3 months exact from our <a href="https://github.com/R-Lum/Luminescence/releases/tag/v1.1.1">previous release</a>, we are very proud to
+announce the release of <strong>version 1.1.2</strong> of the <a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>.</p>
+<p>This release comes with a many (mostly rare) crashes being fixed, a number of
+cosmetic improvements to the plots, and a massive speed boost in the
+<code>analyse_IRSAR.RF()</code> function. Behind the scenes, during these past months we
+have introduced some improvements to our test infrastructure and continued our
+process of deprecation of redundant functions. In total we addressed 109 issues
+in 523 commits.</p>
+<h3 id="function-removals-and-deprecation">Function removals and deprecation</h3>
+<p>One of the ambitious goals of the REPLAY project is to ensure that the package
+will stay alive for the next 10 years. To achieve this we need to ensure that
+we do not carry around functionality that is no longer of use or that has been
+reimplemented in a better fashion.</p>
+<p>As part of this, we constantly deprecate functions so to give time to users to
+prepare for upcoming removals. When a function is deprecated, it will raise a
+warning when it&rsquo;s used, so the people using it will notice. Also this time we
+have marked a few functions as deprecated; they will be removed in the next
+release.</p>
+<p>Functions <code>is.RLum()</code>, <code>is.RLum.Data()</code>, <code>is.RLum.Data.Curve()</code>,
+<code>is.RLum.Data.Spectrum()</code>, <code>is.RLum.Data.Image()</code>, <code>is.RLum.Analysis()</code> and
+<code>is.RLum.Results()</code> were meant to provide a straigthforward way to test the
+class of objects created by <code>Luminescence</code>. In reality, they were almost never
+used internally because they incur a (small) cost due to the S3 method dispatch
+in R. We also believe that outside of the package they do not have much of an
+audience (beside perhaps other package authors). Given that a fast and
+reliable way of testing whether an object is of a given type only requires
+using the <code>inherits()</code> function, as in <code>inherits(object, &quot;RLum.Data.Curve&quot;)</code>,
+there is effectively no loss of functionality with their planned removal.</p>
+<p>Functions <code>github_commits()</code>, <code>github_branches()</code> and <code>github_issues()</code> have
+been deprecated because they are out of scope for the <code>Luminescence</code> package.
+They were written when the functionality of <a href="http://github.com">GitHub</a> was
+somewhat weaker, but now they are no longer worth keeping and maintaining.</p>
+<p>Functions <code>CW2pHMi()</code>, <code>CW2pLM()</code>, <code>CW2pLMi()</code> and <code>CW2pPMi()</code> (deprecated
+since 1.0.0) have been removed, but their functionality remains in the
+corresponding <code>convert_CW2pHMi()</code>, <code>convert_CW2pLM()</code>, <code>convert_CW2pLMi()</code> and
+<code>convert_CW2pPMi()</code> functions.</p>
+<h3 id="regression-fixes">Regression fixes</h3>
+<p>During this release cycle we became aware of a couple of small regression.</p>
+<p>The first was provided by the newest member of the <a href="/REPLAY-website/team/">REPLAY team</a> Dirk
+Mittelstraß, author of the <a href="https://cran.r-project.org/web/packages/OSLdecomposition/">OSLdecomposition package</a>. He found that
+function <code>analyse_SAR.CWOSL()</code> could crash during the plotting phase with a
+somewhat confusing <code>figure margins too large</code> error if the input was an object
+with decomposed signal components generated from <code>OSLdecomposition</code>. Calling
+the function a second time would then produce an error mentioning an <code>invalid graphics state</code>.</p>
+<p>Crashes that occur while R is plotting are sometimes hard to debug, and even
+more so if they happen only under specific conditions that depend on some
+external state, such as the size of the plot device. Specifically, this error
+didn&rsquo;t occur outside of RStudio or if the RStudio plot window was large enough,
+but it could be triggered very consistently when working in RStudio on a laptop.</p>
+<p>In cases when the cause of the error is completely mysterious, a good approach
+towards finding a solution is to identify when the problem started. The best
+tool for this job is <code>git bisect</code>: with this we can first mark as <code>bad</code> the
+current development version and as <code>good</code> a working past version. From then on,
+<code>git</code> can apply semi-automatically a bisection approach so that intermediate
+versions can be tested until we find the one that introduced the bug. Once the
+guilty commit was identified, finding the fix was easy. The complete details
+are recorded in <a href="https://github.com/R-Lum/Luminescence/issues/1188">issue 1188</a>.</p>
+<p>Another regression was introduced in v1.1.1 and affected <code>plot_RadialPlot()</code>:
+<a href="https://github.com/R-Lum/Luminescence/issues/1106">the <code>stats</code> argument was no longer functional</a>, and therefore it was
+not possible to mark the maximum, minimum and median points in the plot. That
+went unnoticed because we didn&rsquo;t have a graphical snapshot that used that
+argument. The fix included amending one of the snapshots to specify <code>stats</code> so
+that future regressions of this type will not occur.</p>
+<p>A final regression affected <code>plot_DoseResponseCurve()</code> (and consequently also
+<code>analyse_SAR.CWOSL()</code> and <code>analyse_pIRIRSequence()</code>), and had to do once again
+with a <a href="https://github.com/R-Lum/Luminescence/issues/1072">mismatch between symbols and labels in the legend</a>. We had
+already had a fix for a similar issue in the previous release, but at that time
+we didn&rsquo;t notice that <code>mode = &quot;extrapolation&quot;</code> had not been taken care of.
+We have carefully reviewed all cases, and hopefully this problem has now been
+fixed for real.</p>
+<h3 id="graphical-improvements">Graphical improvements</h3>
+<p>A large number of small improvements to plots have occurred, so below we
+present only a selection of the most interesting ones.</p>
+<p>Function <code>analyse_baSAR()</code> <a href="i1058">overplotted the dose response curves</a> when
+fewer than 1,000 iterations for the Markov chain Monte Carlo were used. The
+function had an hardcoded value of 1,000 curves to draw, meant to provide a
+way of thinning the results if a much larger number of MCMC iterations were
+used. However, due to R&rsquo;s vector recycling rules, for runs that had fewer than
+1,000 iterations this caused the same curves to be plotted multiple times over
+each other, thus appearing much darker than expected. Besides, this also caused
+a slowdown, as curve drawing is not vectorized. In the example below, we can
+compare the previous plot (left, 58s to produce) and the current one (right, 26s).
+<img src="issue_1058.png#center" alt="analyse_baSAR plot" title="Comparison of the previous (left) and current (right) plots"></p>
+<p>We introduced a number of improvements in the plots generated by <code>analyse_pIRIRSequence()</code>.
+In particular we tried to <a href="i1219">make better use of the plot area</a> so that not
+too much blank space is left. The rejection criteria subplot on the bottom right
+has also seen <a href="i1208">improvements in the layout of labels and legend</a> so that
+they should no longer intersect with the boxes.
+<img src="issue_1208_1219.png#center" alt="analyse_pIRIRSequence plot" title="Comparison of the previous (left) and current (right) plots">
+Note that these plots still look a bit crammed only because that&rsquo;s the
+resolution available when generating the graphical snapshots. With the default
+plot sizes in R, they will generally look better.</p>
+<p>Also the rejection criteria plot of <code>analyse_SAR.CWOSL()</code> has seen some slight
+modifications. The feedback we have received so far has been slightly negative,
+so we&rsquo;ll try to further improve this plot in the future. In the meantime, the
+little touches we have applied should already <a href="https://github.com/R-Lum/Luminescence/issues/1223">improve clarity and presentation</a>:
+<img src="issue_1223.png#center" alt="Rejection criteria plot" title="Comparison of the previous (left) and current (right) plots">
+As can be seen above, we do not shorten the criteria labels unless strictly
+necessary, so their names are more legible. Moreover, we now use a <code>&lt;=</code> or <code>&gt;=</code>
+sign (rather than the <code>&lt;&gt;</code> used previously) so that it&rsquo;s more obvious which
+side of the threshold is the desired one.</p>
+<p>For <code>plot_RadialPlot()</code> we <a href="https://github.com/R-Lum/Luminescence/issues/1194">fixed some weird artifacts</a> that could
+appear if two inputs had wildly different distributions:
+<img src="issue_1194.png" alt="plot_RadialPlot" title="Comparison of the previous (left) and current (right) plots"></p>
+<h2 id="performance-improvements">Performance improvements</h2>
+<p>Already for <a href="v100">version 1.0</a> of <code>Luminescence</code> we had boosted the performance
+of <code>analyse_IRSAR.RF()</code>. In this release cycle we identified two further
+optimizations in our C++ implementation (see <a href="https://github.com/R-Lum/Luminescence/issues/1210">issue 1210</a> and
+<a href="https://github.com/R-Lum/Luminescence/issues/1230">issue 1230</a> for a discussion of the implementation details). Across
+several test cases, these changes yielded at least a 45% speed-up, as can
+be seen in the table below (times are in seconds).</p>
+<table>
+  <thead>
+      <tr>
+          <th>version</th>
+          <th style="text-align: right">RF70</th>
+          <th style="text-align: right">default</th>
+          <th style="text-align: right">100 * 1000</th>
+          <th style="text-align: right">10 * 100000</th>
+          <th style="text-align: right">vslide</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>v1.1.1</td>
+          <td style="text-align: right">20.3</td>
+          <td style="text-align: right">11.8</td>
+          <td style="text-align: right">109.9</td>
+          <td style="text-align: right">45.6</td>
+          <td style="text-align: right">75.9</td>
+      </tr>
+      <tr>
+          <td>v1.1.2</td>
+          <td style="text-align: right">10.8</td>
+          <td style="text-align: right">6.0</td>
+          <td style="text-align: right">51.8</td>
+          <td style="text-align: right">23.3</td>
+          <td style="text-align: right">40.1</td>
+      </tr>
+  </tbody>
+</table>
+<p>It turns out that these changes also reduced our code size, which is very
+welcome for a package of the size of <code>Luminescence</code> given CRAN&rsquo;s strict limits.
+The table below reports the object file sizes in bytes for the C++ engine of
+<code>analyse_IRSAR.RF()</code> and of for the entire dynamic library of the package:</p>
+<table>
+  <thead>
+      <tr>
+          <th>version</th>
+          <th style="text-align: right">src_analyse_IRSARRF_SRS.o</th>
+          <th style="text-align: right">Luminescence.so</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>v1.1.1</td>
+          <td style="text-align: right">2,106,752</td>
+          <td style="text-align: right">2,927,720</td>
+      </tr>
+      <tr>
+          <td>v1.1.2</td>
+          <td style="text-align: right">1,453,320</td>
+          <td style="text-align: right">2,527,904</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="test-parallelization">Test parallelization</h3>
+<p>Our testsuite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
+largest increase being in the number of graphical snapshots (from 90 to 154)
+and numerical snapshots (from 180 to 225).</p>
+<p>Our set of testcases has always taken a few minutes to run, which can feel
+like ages when developing. However, with the number of tests always growing,
+we felt it was time to implement <a href="https://github.com/R-Lum/Luminescence/issues/991">parallelism in out test suite</a>. On
+paper this sounded straightforward, as the <code>testthat</code> package only requires
+to add the following line to the <code>DESCRIPTION</code> file to operate in parallel:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>Config<span style="color:#f92672">/</span>testthat<span style="color:#f92672">/</span>parallel<span style="color:#f92672">:</span> <span style="color:#66d9ef">TRUE</span>
+</span></span></code></pre></div><p>In reality, this exposed a number of cases in which subtle (and unexpected)
+dependencies between tests existed. These were mainly due to the way R handles
+the graphical device.</p>
+<p>Effectively, each time some graphical parameters are set before a plot is drawn,
+these persist also after the plot is completed, and therefore can affect
+subsequent plots if they are not properly reset. Already in the past we had
+discovered and fixed a few of these, but the number of other cases that this
+parallelisation effort uncovered was really quite astonishing. It took us 3
+attempts and various fixes throughout the codebase before the simple change
+above could be left in permanently, as each time new failures were discovered
+by the continous integration servers.</p>
+<p>The way out was to use a little-known utility present in the <code>testthat</code> package,
+the so called <a href="stins">state inspector</a>. This allows to record and compare the
+value of a set of variables of interest before and after each test file is run.
+If these are not identical, it means that the running of a function has altered
+the global state, and thus it can potentially affect subsequent functions. In
+our case, we were eventually able to define the set of graphical parameters of
+interest (ignoring those that get changed automatically upon the modification
+of other parameters) with this function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>testthat<span style="color:#f92672">::</span><span style="color:#a6e22e">set_state_inspector</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">## collect the settable parameters</span>
+</span></span><span style="display:flex;"><span>  pars <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">par</span>(no.readonly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">## ignore those that we can&#39;t seem to restore properly or that give us</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">## error when restored (such as pin &lt; 0)</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>fig <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>fin <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>pin <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>plt <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>usr <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>xaxp <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>xlog <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>yaxp <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>  pars<span style="color:#f92672">$</span>ylog <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>(par <span style="color:#f92672">=</span> pars)
+</span></span><span style="display:flex;"><span>}, tolerance <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5e-6</span>)
+</span></span></code></pre></div><p>Using this function also revealed a <a href="https://github.com/r-lib/testthat/issues/2237">small bug in <code>testthat</code></a>, which
+led to the introduction of the <code>tolerance</code> parameter used above.</p>
+<p>All this effort has been largely rewarded, as now tests run locally in about
+1 minute when using 8 cores (instead of 5.5 minutes of a single-core run),
+because while the slowest test are occupying one of the cores, the rest of the
+tests can progress on other cores. This speed up is also visible on the
+continuous integration infrastructure, where although only 2 cores can be used,
+test times (including building the package and its dependencies and coverage
+analysis) have gone from about 17m to about 11m.</p>
+<h3 id="upcoming-work">Upcoming work</h3>
+<p>We foresee for the next release to have a few new functions added to the
+package, as well as even more cosmetic and stability improvements.
+If you are affected by bugs or even just small annoyances with the package,
+the best course of action is to <a href="https://github.com/R-Lum/Luminescence/issues">report an issue</a> (preferably with steps
+to reproduce). And if you&rsquo;d like to contribute new functionalities or provide
+a bug fix directly, check out our <a href="https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md">guidelines for contributors</a>.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">Luminescence Release 1.1.2</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/new-replay-website-url/">New REPLAY website URL</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/luminescence-release-1.1.1/">Luminescence Release 1.1.1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/">Breaking Luminescence to improve it</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/">RLumShiny Release 0.2.5</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>

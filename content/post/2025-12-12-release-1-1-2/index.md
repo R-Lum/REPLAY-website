@@ -1,0 +1,259 @@
+---
+title: Luminescence Release 1.1.2
+date: '2025-12-12'
+categories:
+  - 'Luminescence'
+author: Marco Colombo
+description: 'Luminescence version 1.1.2'
+---
+
+Another 3 months exact from our [previous release][v111], we are very proud to
+announce the release of **version 1.1.2** of the [Luminescence R package][lumi].
+
+This release comes with a many (mostly rare) crashes being fixed, a number of
+cosmetic improvements to the plots, and a massive speed boost in the
+`analyse_IRSAR.RF()` function. Behind the scenes, during these past months we
+have introduced some improvements to our test infrastructure and continued our
+process of deprecation of redundant functions. In total we addressed 109 issues
+in 523 commits.
+
+<!--more-->
+
+### Function removals and deprecation
+
+One of the ambitious goals of the REPLAY project is to ensure that the package
+will stay alive for the next 10 years. To achieve this we need to ensure that
+we do not carry around functionality that is no longer of use or that has been
+reimplemented in a better fashion.
+
+As part of this, we constantly deprecate functions so to give time to users to
+prepare for upcoming removals. When a function is deprecated, it will raise a
+warning when it's used, so the people using it will notice. Also this time we
+have marked a few functions as deprecated; they will be removed in the next
+release.
+
+Functions `is.RLum()`, `is.RLum.Data()`, `is.RLum.Data.Curve()`,
+`is.RLum.Data.Spectrum()`, `is.RLum.Data.Image()`, `is.RLum.Analysis()` and
+`is.RLum.Results()` were meant to provide a straigthforward way to test the
+class of objects created by `Luminescence`. In reality, they were almost never
+used internally because they incur a (small) cost due to the S3 method dispatch
+in R. We also believe that outside of the package they do not have much of an
+audience (beside perhaps other package authors). Given that a fast and
+reliable way of testing whether an object is of a given type only requires
+using the `inherits()` function, as in `inherits(object, "RLum.Data.Curve")`,
+there is effectively no loss of functionality with their planned removal.
+
+Functions `github_commits()`, `github_branches()` and `github_issues()` have
+been deprecated because they are out of scope for the `Luminescence` package.
+They were written when the functionality of [GitHub](http://github.com) was
+somewhat weaker, but now they are no longer worth keeping and maintaining.
+
+Functions `CW2pHMi()`, `CW2pLM()`, `CW2pLMi()` and `CW2pPMi()` (deprecated
+since 1.0.0) have been removed, but their functionality remains in the
+corresponding `convert_CW2pHMi()`, `convert_CW2pLM()`, `convert_CW2pLMi()` and
+`convert_CW2pPMi()` functions.
+
+### Regression fixes
+
+During this release cycle we became aware of a couple of small regression.
+
+The first was provided by the newest member of the [REPLAY team][team] Dirk
+Mittelstraß, author of the [OSLdecomposition package][osldec]. He found that
+function `analyse_SAR.CWOSL()` could crash during the plotting phase with a
+somewhat confusing `figure margins too large` error if the input was an object
+with decomposed signal components generated from `OSLdecomposition`. Calling
+the function a second time would then produce an error mentioning an `invalid
+graphics state`.
+
+Crashes that occur while R is plotting are sometimes hard to debug, and even
+more so if they happen only under specific conditions that depend on some
+external state, such as the size of the plot device. Specifically, this error
+didn't occur outside of RStudio or if the RStudio plot window was large enough,
+but it could be triggered very consistently when working in RStudio on a laptop.
+
+In cases when the cause of the error is completely mysterious, a good approach
+towards finding a solution is to identify when the problem started. The best
+tool for this job is `git bisect`: with this we can first mark as `bad` the
+current development version and as `good` a working past version. From then on,
+`git` can apply semi-automatically a bisection approach so that intermediate
+versions can be tested until we find the one that introduced the bug. Once the
+guilty commit was identified, finding the fix was easy. The complete details
+are recorded in [issue 1188][i1188].
+
+Another regression was introduced in v1.1.1 and affected `plot_RadialPlot()`:
+[the `stats` argument was no longer functional][i1106], and therefore it was
+not possible to mark the maximum, minimum and median points in the plot. That
+went unnoticed because we didn't have a graphical snapshot that used that
+argument. The fix included amending one of the snapshots to specify `stats` so
+that future regressions of this type will not occur.
+
+A final regression affected `plot_DoseResponseCurve()` (and consequently also
+`analyse_SAR.CWOSL()` and `analyse_pIRIRSequence()`), and had to do once again
+with a [mismatch between symbols and labels in the legend][i1072]. We had
+already had a fix for a similar issue in the previous release, but at that time
+we didn't notice that `mode = "extrapolation"` had not been taken care of.
+We have carefully reviewed all cases, and hopefully this problem has now been
+fixed for real.
+
+### Graphical improvements
+
+A large number of small improvements to plots have occurred, so below we
+present only a selection of the most interesting ones.
+
+Function `analyse_baSAR()` [overplotted the dose response curves](i1058) when
+fewer than 1,000 iterations for the Markov chain Monte Carlo were used. The
+function had an hardcoded value of 1,000 curves to draw, meant to provide a
+way of thinning the results if a much larger number of MCMC iterations were
+used. However, due to R's vector recycling rules, for runs that had fewer than
+1,000 iterations this caused the same curves to be plotted multiple times over
+each other, thus appearing much darker than expected. Besides, this also caused
+a slowdown, as curve drawing is not vectorized. In the example below, we can
+compare the previous plot (left, 58s to produce) and the current one (right, 26s).
+![analyse_baSAR plot](issue_1058.png#center "Comparison of the previous (left) and current (right) plots")
+
+We introduced a number of improvements in the plots generated by `analyse_pIRIRSequence()`.
+In particular we tried to [make better use of the plot area](i1219) so that not
+too much blank space is left. The rejection criteria subplot on the bottom right
+has also seen [improvements in the layout of labels and legend](i1208) so that
+they should no longer intersect with the boxes.
+![analyse_pIRIRSequence plot](issue_1208_1219.png#center "Comparison of the previous (left) and current (right) plots")
+Note that these plots still look a bit crammed only because that's the
+resolution available when generating the graphical snapshots. With the default
+plot sizes in R, they will generally look better.
+
+Also the rejection criteria plot of `analyse_SAR.CWOSL()` has seen some slight
+modifications. The feedback we have received so far has been slightly negative,
+so we'll try to further improve this plot in the future. In the meantime, the
+little touches we have applied should already [improve clarity and presentation][i1223]:
+![Rejection criteria plot](issue_1223.png#center "Comparison of the previous (left) and current (right) plots")
+As can be seen above, we do not shorten the criteria labels unless strictly
+necessary, so their names are more legible. Moreover, we now use a `<=` or `>=`
+sign (rather than the `<>` used previously) so that it's more obvious which
+side of the threshold is the desired one.
+
+For `plot_RadialPlot()` we [fixed some weird artifacts][i1194] that could
+appear if two inputs had wildly different distributions:
+![plot_RadialPlot](issue_1194.png "Comparison of the previous (left) and current (right) plots")
+
+## Performance improvements
+
+Already for [version 1.0](v100) of `Luminescence` we had boosted the performance
+of `analyse_IRSAR.RF()`. In this release cycle we identified two further
+optimizations in our C++ implementation (see [issue 1210][i1210] and
+[issue 1230][i1230] for a discussion of the implementation details). Across
+several test cases, these changes yielded at least a 45% speed-up, as can
+be seen in the table below (times are in seconds).
+
+| version | RF70 | default | 100 * 1000 | 10 * 100000 | vslide |
+|---------|-----:|--------:|-----------:|------------:|-------:|
+|  v1.1.1 | 20.3 |    11.8 |      109.9 |        45.6 |   75.9 |
+|  v1.1.2 | 10.8 |     6.0 |       51.8 |        23.3 |   40.1 |
+
+It turns out that these changes also reduced our code size, which is very
+welcome for a package of the size of `Luminescence` given CRAN's strict limits.
+The table below reports the object file sizes in bytes for the C++ engine of
+`analyse_IRSAR.RF()` and of for the entire dynamic library of the package:
+
+| version | src_analyse_IRSARRF_SRS.o | Luminescence.so |
+|---------|----------:|----------:|
+|  v1.1.1 | 2,106,752 | 2,927,720 |
+|  v1.1.2 | 1,453,320 | 2,527,904 |
+
+### Test parallelization
+
+Our testsuite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
+largest increase being in the number of graphical snapshots (from 90 to 154)
+and numerical snapshots (from 180 to 225).
+
+Our set of testcases has always taken a few minutes to run, which can feel
+like ages when developing. However, with the number of tests always growing,
+we felt it was time to implement [parallelism in out test suite][i991]. On
+paper this sounded straightforward, as the `testthat` package only requires
+to add the following line to the `DESCRIPTION` file to operate in parallel:
+```R
+Config/testthat/parallel: TRUE
+```
+
+In reality, this exposed a number of cases in which subtle (and unexpected)
+dependencies between tests existed. These were mainly due to the way R handles
+the graphical device.
+
+Effectively, each time some graphical parameters are set before a plot is drawn,
+these persist also after the plot is completed, and therefore can affect
+subsequent plots if they are not properly reset. Already in the past we had
+discovered and fixed a few of these, but the number of other cases that this
+parallelisation effort uncovered was really quite astonishing. It took us 3
+attempts and various fixes throughout the codebase before the simple change
+above could be left in permanently, as each time new failures were discovered
+by the continous integration servers.
+
+The way out was to use a little-known utility present in the `testthat` package,
+the so called [state inspector](stins). This allows to record and compare the
+value of a set of variables of interest before and after each test file is run.
+If these are not identical, it means that the running of a function has altered
+the global state, and thus it can potentially affect subsequent functions. In
+our case, we were eventually able to define the set of graphical parameters of
+interest (ignoring those that get changed automatically upon the modification
+of other parameters) with this function:
+
+```R
+testthat::set_state_inspector(function() {
+  ## collect the settable parameters
+  pars <- par(no.readonly = TRUE)
+
+  ## ignore those that we can't seem to restore properly or that give us
+  ## error when restored (such as pin < 0)
+  pars$fig <- NULL
+  pars$fin <- NULL
+  pars$pin <- NULL
+  pars$plt <- NULL
+  pars$usr <- NULL
+  pars$xaxp <- NULL
+  pars$xlog <- NULL
+  pars$yaxp <- NULL
+  pars$ylog <- NULL
+
+  list(par = pars)
+}, tolerance = 1.5e-6)
+```
+
+Using this function also revealed a [small bug in `testthat`][t2237], which
+led to the introduction of the `tolerance` parameter used above.
+
+All this effort has been largely rewarded, as now tests run locally in about
+1 minute when using 8 cores (instead of 5.5 minutes of a single-core run),
+because while the slowest test are occupying one of the cores, the rest of the
+tests can progress on other cores. This speed up is also visible on the
+continuous integration infrastructure, where although only 2 cores can be used,
+test times (including building the package and its dependencies and coverage
+analysis) have gone from about 17m to about 11m.
+
+### Upcoming work
+
+We foresee for the next release to have a few new functions added to the
+package, as well as even more cosmetic and stability improvements.
+If you are affected by bugs or even just small annoyances with the package,
+the best course of action is to [report an issue][issues] (preferably with steps
+to reproduce). And if you'd like to contribute new functionalities or provide
+a bug fix directly, check out our [guidelines for contributors][contr].
+
+[lumi]:   https://r-lum.github.io/Luminescence/
+[v100]:   {{< ref "post/2025-02-24-the-road-to-luminescence-1-0/" >}}
+[v111]:   https://github.com/R-Lum/Luminescence/releases/tag/v1.1.1
+[i991]:   https://github.com/R-Lum/Luminescence/issues/991
+[i1058]:  https://github.com/R-Lum/Luminescence/issues/1058
+[i1072]:  https://github.com/R-Lum/Luminescence/issues/1072
+[i1106]:  https://github.com/R-Lum/Luminescence/issues/1106
+[i1188]:  https://github.com/R-Lum/Luminescence/issues/1188
+[i1194]:  https://github.com/R-Lum/Luminescence/issues/1194
+[i1208]:  https://github.com/R-Lum/Luminescence/issues/1208
+[i1210]:  https://github.com/R-Lum/Luminescence/issues/1210
+[i1219]:  https://github.com/R-Lum/Luminescence/issues/1219
+[i1223]:  https://github.com/R-Lum/Luminescence/issues/1223
+[i1230]:  https://github.com/R-Lum/Luminescence/issues/1230
+[t2237]:  https://github.com/r-lib/testthat/issues/2237
+[team]:   {{< ref "team" >}}
+[osldec]: https://cran.r-project.org/web/packages/OSLdecomposition/
+[stins]:  https://testthat.r-lib.org/reference/set_state_inspector.html
+[issues]: https://github.com/R-Lum/Luminescence/issues
+[contr]:  https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md

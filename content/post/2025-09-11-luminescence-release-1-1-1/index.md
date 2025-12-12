@@ -170,7 +170,7 @@ which is the most we've ever found, accounting for more than half of the total.
 This was due to the time spent refining the [CBTF package][cbtf] so that it
 could be released on CRAN.
 
-In terms of testing, our testsuite contains now 3,353 tests, which is a 10%
+In terms of testing, our testsuite contains now 3,253 tests, which is a 5%
 increase from our previous release (we had 3,088 in 1.1.0). Many are snapshot
 and graphical snapshot tests, which are the type of test that can give us the
 best protection against unintentional changes.
