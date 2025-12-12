@@ -19,40 +19,6 @@ in 523 commits.
 
 <!--more-->
 
-### Function removals and deprecation
-
-One of the ambitious goals of the REPLAY project is to ensure that the package
-will stay alive for the next 10 years. To achieve this we need to ensure that
-we do not carry around functionality that is no longer of use or that has been
-reimplemented in a better fashion.
-
-As part of this, we constantly deprecate functions so to give time to users to
-prepare for upcoming removals. When a function is deprecated, it will raise a
-warning when it's used, so the people using it will notice. Also this time we
-have marked a few functions as deprecated; they will be removed in the next
-release.
-
-Functions `is.RLum()`, `is.RLum.Data()`, `is.RLum.Data.Curve()`,
-`is.RLum.Data.Spectrum()`, `is.RLum.Data.Image()`, `is.RLum.Analysis()` and
-`is.RLum.Results()` were meant to provide a straigthforward way to test the
-class of objects created by `Luminescence`. In reality, they were almost never
-used internally because they incur a (small) cost due to the S3 method dispatch
-in R. We also believe that outside of the package they do not have much of an
-audience (beside perhaps other package authors). Given that a fast and
-reliable way of testing whether an object is of a given type only requires
-using the `inherits()` function, as in `inherits(object, "RLum.Data.Curve")`,
-there is effectively no loss of functionality with their planned removal.
-
-Functions `github_commits()`, `github_branches()` and `github_issues()` have
-been deprecated because they are out of scope for the `Luminescence` package.
-They were written when the functionality of [GitHub](http://github.com) was
-somewhat weaker, but now they are no longer worth keeping and maintaining.
-
-Functions `CW2pHMi()`, `CW2pLM()`, `CW2pLMi()` and `CW2pPMi()` (deprecated
-since 1.0.0) have been removed, but their functionality remains in the
-corresponding `convert_CW2pHMi()`, `convert_CW2pLM()`, `convert_CW2pLMi()` and
-`convert_CW2pPMi()` functions.
-
 ### Regression fixes
 
 During this release cycle we became aware of a couple of small regression.
@@ -227,6 +193,40 @@ tests can progress on other cores. This speed up is also visible on the
 continuous integration infrastructure, where although only 2 cores can be used,
 test times (including building the package and its dependencies and coverage
 analysis) have gone from about 17m to about 11m.
+
+### Function removals and deprecations
+
+One of the ambitious goals of the REPLAY project is to ensure that the package
+will stay alive for the next 10 years. To achieve this we need to ensure that
+we do not carry around functionality that is no longer of use or that has been
+reimplemented in a better fashion.
+
+As part of this, we constantly deprecate functions so to give time to users to
+prepare for upcoming removals. When a function is deprecated, it will raise a
+warning when it's used, so the people using it will notice. Also this time we
+have marked a few functions as deprecated; they will be removed in the next
+release.
+
+Functions `is.RLum()`, `is.RLum.Data()`, `is.RLum.Data.Curve()`,
+`is.RLum.Data.Spectrum()`, `is.RLum.Data.Image()`, `is.RLum.Analysis()` and
+`is.RLum.Results()` were meant to provide a straigthforward way to test the
+class of objects created by `Luminescence`. In reality, they were almost never
+used internally because they incur a (small) cost due to the S3 method dispatch
+in R. We also believe that outside of the package they do not have much of an
+audience (beside perhaps other package authors). Given that a fast and
+reliable way of testing whether an object is of a given type only requires
+using the `inherits()` function, as in `inherits(object, "RLum.Data.Curve")`,
+there is effectively no loss of functionality with their planned removal.
+
+Functions `github_commits()`, `github_branches()` and `github_issues()` have
+been deprecated because they are out of scope for the `Luminescence` package.
+They were written when the functionality of [GitHub](http://github.com) was
+somewhat weaker, but now they are no longer worth keeping and maintaining.
+
+Functions `CW2pHMi()`, `CW2pLM()`, `CW2pLMi()` and `CW2pPMi()` (deprecated
+since 1.0.0) have been removed, but their functionality remains in the
+corresponding `convert_CW2pHMi()`, `convert_CW2pLM()`, `convert_CW2pLMi()` and
+`convert_CW2pPMi()` functions.
 
 ### Upcoming work
 

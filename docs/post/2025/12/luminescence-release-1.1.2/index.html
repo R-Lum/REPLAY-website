@@ -89,34 +89,6 @@ cosmetic improvements to the plots, and a massive speed boost in the
 have introduced some improvements to our test infrastructure and continued our
 process of deprecation of redundant functions. In total we addressed 109 issues
 in 523 commits.</p>
-<h3 id="function-removals-and-deprecation">Function removals and deprecation</h3>
-<p>One of the ambitious goals of the REPLAY project is to ensure that the package
-will stay alive for the next 10 years. To achieve this we need to ensure that
-we do not carry around functionality that is no longer of use or that has been
-reimplemented in a better fashion.</p>
-<p>As part of this, we constantly deprecate functions so to give time to users to
-prepare for upcoming removals. When a function is deprecated, it will raise a
-warning when it&rsquo;s used, so the people using it will notice. Also this time we
-have marked a few functions as deprecated; they will be removed in the next
-release.</p>
-<p>Functions <code>is.RLum()</code>, <code>is.RLum.Data()</code>, <code>is.RLum.Data.Curve()</code>,
-<code>is.RLum.Data.Spectrum()</code>, <code>is.RLum.Data.Image()</code>, <code>is.RLum.Analysis()</code> and
-<code>is.RLum.Results()</code> were meant to provide a straigthforward way to test the
-class of objects created by <code>Luminescence</code>. In reality, they were almost never
-used internally because they incur a (small) cost due to the S3 method dispatch
-in R. We also believe that outside of the package they do not have much of an
-audience (beside perhaps other package authors). Given that a fast and
-reliable way of testing whether an object is of a given type only requires
-using the <code>inherits()</code> function, as in <code>inherits(object, &quot;RLum.Data.Curve&quot;)</code>,
-there is effectively no loss of functionality with their planned removal.</p>
-<p>Functions <code>github_commits()</code>, <code>github_branches()</code> and <code>github_issues()</code> have
-been deprecated because they are out of scope for the <code>Luminescence</code> package.
-They were written when the functionality of <a href="http://github.com">GitHub</a> was
-somewhat weaker, but now they are no longer worth keeping and maintaining.</p>
-<p>Functions <code>CW2pHMi()</code>, <code>CW2pLM()</code>, <code>CW2pLMi()</code> and <code>CW2pPMi()</code> (deprecated
-since 1.0.0) have been removed, but their functionality remains in the
-corresponding <code>convert_CW2pHMi()</code>, <code>convert_CW2pLM()</code>, <code>convert_CW2pLMi()</code> and
-<code>convert_CW2pPMi()</code> functions.</p>
 <h3 id="regression-fixes">Regression fixes</h3>
 <p>During this release cycle we became aware of a couple of small regression.</p>
 <p>The first was provided by the newest member of the <a href="/REPLAY-website/team/">REPLAY team</a> Dirk
@@ -303,6 +275,34 @@ tests can progress on other cores. This speed up is also visible on the
 continuous integration infrastructure, where although only 2 cores can be used,
 test times (including building the package and its dependencies and coverage
 analysis) have gone from about 17m to about 11m.</p>
+<h3 id="function-removals-and-deprecations">Function removals and deprecations</h3>
+<p>One of the ambitious goals of the REPLAY project is to ensure that the package
+will stay alive for the next 10 years. To achieve this we need to ensure that
+we do not carry around functionality that is no longer of use or that has been
+reimplemented in a better fashion.</p>
+<p>As part of this, we constantly deprecate functions so to give time to users to
+prepare for upcoming removals. When a function is deprecated, it will raise a
+warning when it&rsquo;s used, so the people using it will notice. Also this time we
+have marked a few functions as deprecated; they will be removed in the next
+release.</p>
+<p>Functions <code>is.RLum()</code>, <code>is.RLum.Data()</code>, <code>is.RLum.Data.Curve()</code>,
+<code>is.RLum.Data.Spectrum()</code>, <code>is.RLum.Data.Image()</code>, <code>is.RLum.Analysis()</code> and
+<code>is.RLum.Results()</code> were meant to provide a straigthforward way to test the
+class of objects created by <code>Luminescence</code>. In reality, they were almost never
+used internally because they incur a (small) cost due to the S3 method dispatch
+in R. We also believe that outside of the package they do not have much of an
+audience (beside perhaps other package authors). Given that a fast and
+reliable way of testing whether an object is of a given type only requires
+using the <code>inherits()</code> function, as in <code>inherits(object, &quot;RLum.Data.Curve&quot;)</code>,
+there is effectively no loss of functionality with their planned removal.</p>
+<p>Functions <code>github_commits()</code>, <code>github_branches()</code> and <code>github_issues()</code> have
+been deprecated because they are out of scope for the <code>Luminescence</code> package.
+They were written when the functionality of <a href="http://github.com">GitHub</a> was
+somewhat weaker, but now they are no longer worth keeping and maintaining.</p>
+<p>Functions <code>CW2pHMi()</code>, <code>CW2pLM()</code>, <code>CW2pLMi()</code> and <code>CW2pPMi()</code> (deprecated
+since 1.0.0) have been removed, but their functionality remains in the
+corresponding <code>convert_CW2pHMi()</code>, <code>convert_CW2pLM()</code>, <code>convert_CW2pLMi()</code> and
+<code>convert_CW2pPMi()</code> functions.</p>
 <h3 id="upcoming-work">Upcoming work</h3>
 <p>We foresee for the next release to have a few new functions added to the
 package, as well as even more cosmetic and stability improvements.
