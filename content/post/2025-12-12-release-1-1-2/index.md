@@ -101,6 +101,11 @@ For `plot_RadialPlot()` we [fixed some weird artifacts][i1194] that could
 appear if two inputs had wildly different distributions:
 ![plot_RadialPlot](issue_1194.png "Comparison of the previous (left) and current (right) plots")
 
+This is something that it's not very likely to appear under normal conditions,
+but it can be triggered quite easily when playing with the function's setting
+with [RLumShiny][rshiny], and there it was quite jarring to see those
+artifacts.
+
 ## Performance improvements
 
 Already for [version 1.0](v100) of `Luminescence` we had boosted the performance
@@ -133,7 +138,7 @@ and numerical snapshots (from 180 to 225).
 
 Our set of testcases has always taken a few minutes to run, which can feel
 like ages when developing. However, with the number of tests always growing,
-we felt it was time to implement [parallelism in out test suite][i991]. On
+we felt it was time to implement [parallelism in our test suite][i991]. On
 paper this sounded straightforward, as the `testthat` package only requires
 to add the following line to the `DESCRIPTION` file to operate in parallel:
 ```R
@@ -145,8 +150,12 @@ dependencies between tests existed. These were mainly due to the way R handles
 the graphical device.
 
 Effectively, each time some graphical parameters are set before a plot is drawn,
-these persist also after the plot is completed, and therefore can affect
-subsequent plots if they are not properly reset. Already in the past we had
+these persist also after the plot is completed. This is intentional in base R
+so that it's possible to add plot elements (such as additional lines or text)
+after the main plot is drawn. However, this design means that the settings for
+a plot can affect subsequent plots if they are not properly reset.
+
+Already in the past we had
 discovered and fixed a few of these, but the number of other cases that this
 parallelisation effort uncovered was really quite astonishing. It took us 3
 attempts and various fixes throughout the codebase before the simple change
@@ -188,9 +197,9 @@ led to the introduction of the `tolerance` parameter used above.
 
 All this effort has been largely rewarded, as now tests run locally in about
 1 minute when using 8 cores (instead of 5.5 minutes of a single-core run),
-because while the slowest test are occupying one of the cores, the rest of the
+because while a slow test is occupying one of the cores, the rest of the
 tests can progress on other cores. This speed up is also visible on the
-continuous integration infrastructure, where although only 2 cores can be used,
+continuous integration infrastructure where, although only 2 cores can be used,
 test times (including building the package and its dependencies and coverage
 analysis) have gone from about 17m to about 11m.
 
@@ -254,6 +263,7 @@ a bug fix directly, check out our [guidelines for contributors][contr].
 [t2237]:  https://github.com/r-lib/testthat/issues/2237
 [team]:   {{< ref "team" >}}
 [osldec]: https://cran.r-project.org/web/packages/OSLdecomposition/
+[rshiny]: https://tzerk.github.io/RLumShiny/
 [stins]:  https://testthat.r-lib.org/reference/set_state_inspector.html
 [issues]: https://github.com/R-Lum/Luminescence/issues
 [contr]:  https://github.com/R-Lum/Luminescence/blob/master/CONTRIBUTING.md

@@ -110,7 +110,7 @@ number of Monte Carlo runs increases.
 
 A small speed-up was obtained for `read_XSYG2R()` for files where the detector
 is not a spectrometer. This came about after noticing that a computation
-occurred twice ([issue 753][iss753])
+occurred twice ([issue 753][iss753]).
 
 ### Other changes
 

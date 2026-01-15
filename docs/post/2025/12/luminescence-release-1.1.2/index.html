@@ -157,6 +157,10 @@ side of the threshold is the desired one.</p>
 <p>For <code>plot_RadialPlot()</code> we <a href="https://github.com/R-Lum/Luminescence/issues/1194">fixed some weird artifacts</a> that could
 appear if two inputs had wildly different distributions:
 <img src="issue_1194.png" alt="plot_RadialPlot" title="Comparison of the previous (left) and current (right) plots"></p>
+<p>This is something that it&rsquo;s not very likely to appear under normal conditions,
+but it can be triggered quite easily when playing with the function&rsquo;s setting
+with <a href="https://tzerk.github.io/RLumShiny/">RLumShiny</a>, and there it was quite jarring to see those
+artifacts.</p>
 <h2 id="performance-improvements">Performance improvements</h2>
 <p>Already for <a href="v100">version 1.0</a> of <code>Luminescence</code> we had boosted the performance
 of <code>analyse_IRSAR.RF()</code>. In this release cycle we identified two further
@@ -225,16 +229,19 @@ largest increase being in the number of graphical snapshots (from 90 to 154)
 and numerical snapshots (from 180 to 225).</p>
 <p>Our set of testcases has always taken a few minutes to run, which can feel
 like ages when developing. However, with the number of tests always growing,
-we felt it was time to implement <a href="https://github.com/R-Lum/Luminescence/issues/991">parallelism in out test suite</a>. On
+we felt it was time to implement <a href="https://github.com/R-Lum/Luminescence/issues/991">parallelism in our test suite</a>. On
 paper this sounded straightforward, as the <code>testthat</code> package only requires
 to add the following line to the <code>DESCRIPTION</code> file to operate in parallel:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>Config<span style="color:#f92672">/</span>testthat<span style="color:#f92672">/</span>parallel<span style="color:#f92672">:</span> <span style="color:#66d9ef">TRUE</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>Config<span style="color:#f92672">/</span>testthat<span style="color:#f92672">/</span>parallel<span style="color:#f92672">:</span> <span style="color:#66d9ef">TRUE</span>
 </span></span></code></pre></div><p>In reality, this exposed a number of cases in which subtle (and unexpected)
 dependencies between tests existed. These were mainly due to the way R handles
 the graphical device.</p>
 <p>Effectively, each time some graphical parameters are set before a plot is drawn,
-these persist also after the plot is completed, and therefore can affect
-subsequent plots if they are not properly reset. Already in the past we had
+these persist also after the plot is completed. This is intentional in base R
+so that it&rsquo;s possible to add plot elements (such as additional lines or text)
+after the main plot is drawn. However, this design means that the settings for
+a plot can affect subsequent plots if they are not properly reset.</p>
+<p>Already in the past we had
 discovered and fixed a few of these, but the number of other cases that this
 parallelisation effort uncovered was really quite astonishing. It took us 3
 attempts and various fixes throughout the codebase before the simple change
@@ -248,7 +255,7 @@ the global state, and thus it can potentially affect subsequent functions. In
 our case, we were eventually able to define the set of graphical parameters of
 interest (ignoring those that get changed automatically upon the modification
 of other parameters) with this function:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>testthat<span style="color:#f92672">::</span><span style="color:#a6e22e">set_state_inspector</span>(<span style="color:#66d9ef">function</span>() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>testthat<span style="color:#f92672">::</span><span style="color:#a6e22e">set_state_inspector</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">## collect the settable parameters</span>
 </span></span><span style="display:flex;"><span>  pars <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">par</span>(no.readonly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
 </span></span><span style="display:flex;"><span>
@@ -270,9 +277,9 @@ of other parameters) with this function:</p>
 led to the introduction of the <code>tolerance</code> parameter used above.</p>
 <p>All this effort has been largely rewarded, as now tests run locally in about
 1 minute when using 8 cores (instead of 5.5 minutes of a single-core run),
-because while the slowest test are occupying one of the cores, the rest of the
+because while a slow test is occupying one of the cores, the rest of the
 tests can progress on other cores. This speed up is also visible on the
-continuous integration infrastructure, where although only 2 cores can be used,
+continuous integration infrastructure where, although only 2 cores can be used,
 test times (including building the package and its dependencies and coverage
 analysis) have gone from about 17m to about 11m.</p>
 <h3 id="function-removals-and-deprecations">Function removals and deprecations</h3>
@@ -356,7 +363,7 @@ a bug fix directly, check out our <a href="https://github.com/R-Lum/Luminescence
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 REPLAY.
+			&copy; 2026 REPLAY.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
