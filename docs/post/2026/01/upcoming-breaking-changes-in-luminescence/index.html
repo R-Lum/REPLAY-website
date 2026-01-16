@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Upcoming breaking changes in Luminescence - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Breaking changes in Luminescence with high impact to users">
+		<meta property="og:url" content="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Upcoming breaking changes in Luminescence">
+  <meta property="og:description" content="Breaking changes in Luminescence with high impact to users">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-01-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-16T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Upcoming breaking changes in Luminescence</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2026-01-16T00:00:00Z">16 January 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>The next release of <code>Luminescence</code> (which we expect towards the end of February)
+will bring some small but potentially breaking changes to users. This post is
+meant to give some advance warnings and provide solutions so that updating
+the package version will not cause excessive pain.</p>
+<h2 id="changes-in-recordtype-from-binbinx-files">Changes in <code>recordType</code> from BIN/BINX files</h2>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1275">issue 1275</a> we are slightly changing what the <code>recordType</code> slot
+stores in <code>RLum</code> objects generated from BIN/BINX files. To be clear what we
+are referring to, consider this bit of code, which uses an example BIN file
+provided with the <code>Luminescence</code> package:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(Luminescence)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">data</span>(ExampleData.BINfileData)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> object <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Risoe.BINfileData2RLum.Analysis</span>(CWOSL.SAR.Data,
+</span></span><span style="display:flex;"><span>                                            pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> object
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> [RLum.Analysis<span style="color:#f92672">-</span>class]
+</span></span><span style="display:flex;"><span>	 originator<span style="color:#f92672">:</span> <span style="color:#a6e22e">Risoe.BINfileData2RLum.Analysis</span>()
+</span></span><span style="display:flex;"><span>	 protocol<span style="color:#f92672">:</span> unknown
+</span></span><span style="display:flex;"><span>	 additional info elements<span style="color:#f92672">:</span>  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	 number of records<span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 TL | #2 OSL | #3 TL | #4 OSL | #5 TL | #6 OSL | #7 TL</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#8 OSL | #9 TL | #10 OSL | #11 TL | #12 OSL | #13 TL | #14 OSL</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#15 TL | #16 OSL | #17 TL | #18 OSL | #19 TL | #20 OSL | #21 TL</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#22 OSL | #23 TL | #24 OSL | #25 TL | #26 OSL | #27 TL | #28 OSL</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#29 TL | #30 IRSL</span>
+</span></span></code></pre></div><p>The output above shows a summary of the content of the <code>RLum.Analysis</code> object
+that was generated from a BIN file. The curves stored inside it show their
+<code>recordType</code>, that is one of <code>TL</code>, <code>OSL</code> or <code>IRSL</code> in the example above.</p>
+<p>The change we have introduced is changing those descriptions to also contain
+the type of detector used, which for Risø instruments is a PMT. Therefore, the
+output will now look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span> [RLum.Analysis<span style="color:#f92672">-</span>class]
+</span></span><span style="display:flex;"><span>	 originator<span style="color:#f92672">:</span> <span style="color:#a6e22e">Risoe.BINfileData2RLum.Analysis</span>()
+</span></span><span style="display:flex;"><span>	 protocol<span style="color:#f92672">:</span> unknown
+</span></span><span style="display:flex;"><span>	 additional info elements<span style="color:#f92672">:</span>  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	 number of records<span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 TL (PMT) | #2 OSL (PMT) | #3 TL (PMT) | #4 OSL (PMT) | #5 TL (PMT) | #6 OSL (PMT) | #7 TL (PMT)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#8 OSL (PMT) | #9 TL (PMT) | #10 OSL (PMT) | #11 TL (PMT) | #12 OSL (PMT) | #13 TL (PMT) | #14 OSL (PMT)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#15 TL (PMT) | #16 OSL (PMT) | #17 TL (PMT) | #18 OSL (PMT) | #19 TL (PMT) | #20 OSL (PMT) | #21 TL (PMT)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#22 OSL (PMT) | #23 TL (PMT) | #24 OSL (PMT) | #25 TL (PMT) | #26 OSL (PMT) | #27 TL (PMT) | #28 OSL (PMT)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#29 TL (PMT) | #30 IRSL (PMT)</span>
+</span></span></code></pre></div><p>This was made for consistency with what the <code>recordType</code> slot stores for
+objects generated from an XSYG file, which always store the type of detector
+used (even if at times it is <code>NA</code> because the file doesn&rsquo;t explicitly specify
+it).</p>
+<p>While the package functions have been amended to support this change, users
+may still be affected by it. For example, the following code meant to count
+how many &ldquo;OSL&rdquo; curves are in the object will no longer work because <code>==</code> checks
+for exact equality:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">sapply</span>(object<span style="color:#f92672">@</span>records,
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">function</span>(x) x<span style="color:#f92672">@</span>recordType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;OSL&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><p>The correct approach is to check for matches within the string, which for
+example can be accomplished using the <code>grepl()</code> function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">sapply</span>(object<span style="color:#f92672">@</span>records,
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">function</span>(x) <span style="color:#a6e22e">grepl</span>(<span style="color:#e6db74">&#34;OSL&#34;</span>, x<span style="color:#f92672">@</span>recordType)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">14</span>
+</span></span></code></pre></div><p>Note that some <code>Luminescence</code> functions will take your input literally, and
+therefore may not produce the result you expected if you forget to update your
+input. For example, if you used <code>get_RLum()</code> (or <code>subset()</code>) to select only
+some curves, this will not produce what you wanted:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">## same as `subset(object, recordType == &#34;OSL&#34;)`</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">get_RLum</span>(object, subset <span style="color:#f92672">=</span> (recordType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;OSL&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">[get_RLum</span>()] Error<span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;subset&#39;</span> expression produced an empty selection, <span style="color:#66d9ef">NULL</span> returned
+</span></span></code></pre></div><p>Other potentially affected functions are those that accept a <code>recordType</code>
+argument (such as <code>trim_RLum.Data()</code>) or that delegate to <code>get_RLum()</code> to
+perform a selection (such as <code>subset()</code> and <code>remove_RLum()</code>).</p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">Upcoming breaking changes in Luminescence</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">Luminescence Release 1.1.2</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/new-replay-website-url/">New REPLAY website URL</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/luminescence-release-1.1.1/">Luminescence Release 1.1.1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/">Breaking Luminescence to improve it</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>

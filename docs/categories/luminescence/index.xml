@@ -6,8 +6,15 @@
     <description>Recent content in Luminescence on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/categories/luminescence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Upcoming breaking changes in Luminescence</title>
+      <link>/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/</link>
+      <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/</guid>
+      <description>&lt;p&gt;The next release of &lt;code&gt;Luminescence&lt;/code&gt; (which we expect towards the end of February)&#xA;will bring some small but potentially breaking changes to users. This post is&#xA;meant to give some advance warnings and provide solutions so that updating&#xA;the package version will not cause excessive pain.&lt;/p&gt;&#xA;&lt;h2 id=&#34;changes-in-recordtype-from-binbinx-files&#34;&gt;Changes in &lt;code&gt;recordType&lt;/code&gt; from BIN/BINX files&lt;/h2&gt;&#xA;&lt;p&gt;In &lt;a href=&#34;https://github.com/R-Lum/Luminescence/issues/1275&#34;&gt;issue 1275&lt;/a&gt; we are slightly changing what the &lt;code&gt;recordType&lt;/code&gt; slot&#xA;stores in &lt;code&gt;RLum&lt;/code&gt; objects generated from BIN/BINX files. To be clear what we&#xA;are referring to, consider this bit of code, which uses an example BIN file&#xA;provided with the &lt;code&gt;Luminescence&lt;/code&gt; package:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Luminescence Release 1.1.2</title>
       <link>/REPLAY-website/post/2025/12/luminescence-release-1.1.2/</link>
