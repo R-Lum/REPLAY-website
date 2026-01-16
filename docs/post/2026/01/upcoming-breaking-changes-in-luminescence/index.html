@@ -86,7 +86,7 @@ will bring some small but potentially breaking changes to users. This post is
 meant to give some advance warnings and provide solutions so that updating
 the package version will not cause excessive pain.</p>
 <h2 id="changes-in-recordtype-from-binbinx-files">Changes in <code>recordType</code> from BIN/BINX files</h2>
-<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1275">issue 1275</a> we are slightly changing what the <code>recordType</code> slot
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1275">issue 1275</a> we are changing what the <code>recordType</code> slot
 stores in <code>RLum</code> objects generated from BIN/BINX files. To be clear what we
 are referring to, consider this bit of code, which uses an example BIN file
 provided with the <code>Luminescence</code> package:</p>
@@ -144,15 +144,71 @@ example can be accomplished using the <code>grepl()</code> function:</p>
 </span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">14</span>
 </span></span></code></pre></div><p>Note that some <code>Luminescence</code> functions will take your input literally, and
 therefore may not produce the result you expected if you forget to update your
-input. For example, if you used <code>get_RLum()</code> (or <code>subset()</code>) to select only
-some curves, this will not produce what you wanted:</p>
+input. For example, if you used <code>subset()</code> (or the <code>subset</code> argument of
+`get_RLum()) to select only some curves, this will not produce what you wanted:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">## same as `subset(object, recordType == &#34;OSL&#34;)`</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">get_RLum</span>(object, subset <span style="color:#f92672">=</span> (recordType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;OSL&#34;</span>))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">[get_RLum</span>()] Error<span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;subset&#39;</span> expression produced an empty selection, <span style="color:#66d9ef">NULL</span> returned
-</span></span></code></pre></div><p>Other potentially affected functions are those that accept a <code>recordType</code>
-argument (such as <code>trim_RLum.Data()</code>) or that delegate to <code>get_RLum()</code> to
-perform a selection (such as <code>subset()</code> and <code>remove_RLum()</code>).</p>
+</span></span></code></pre></div><p>The following is instead not affected, as here <code>recordType</code> is interpreted as
+a regular expression pattern:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">get_RLum</span>(object, recordType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;OSL&#34;</span>, drop <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> [RLum.Analysis<span style="color:#f92672">-</span>class]
+</span></span><span style="display:flex;"><span>	 originator<span style="color:#f92672">:</span> <span style="color:#a6e22e">Risoe.BINfileData2RLum.Analysis</span>()
+</span></span><span style="display:flex;"><span>	 protocol<span style="color:#f92672">:</span> unknown
+</span></span><span style="display:flex;"><span>	 additional info elements<span style="color:#f92672">:</span>  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	 number of records<span style="color:#f92672">:</span> <span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 OSL (PMT) | #2 OSL (PMT) | #3 OSL (PMT) | #4 OSL (PMT) | #5 OSL (PMT) | #6 OSL (PMT) | #7 OSL (PMT)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#8 OSL (PMT) | #9 OSL (PMT) | #10 OSL (PMT) | #11 OSL (PMT) | #12 OSL (PMT) | #13 OSL (PMT) | #14 OSL (PMT)</span>
+</span></span></code></pre></div><h2 id="changes-in-recordtype-from-xsyg-files">Changes in <code>recordType</code> from XSYG files</h2>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1276">issue 1276</a> we are slightly changing what the <code>recordType</code> slot
+stores in <code>RLum</code> objects generated from XSYG files. Information in XSYG files
+is divided in several records, of which only the first is of actual interest
+in analyses, as the others contain additional information provided by the
+Lexyg readers but no curve data.</p>
+<p>We have an example object derived from an XSYG file in the package:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;data/ExampleData.XSYG.rda&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> sar <span style="color:#f92672">&lt;-</span> OSL.SARMeasurement<span style="color:#f92672">$</span>Sequence.Object[1<span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> sar
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> [RLum.Analysis<span style="color:#f92672">-</span>class]
+</span></span><span style="display:flex;"><span>	 originator<span style="color:#f92672">:</span> <span style="color:#a6e22e">read_XSYG2R</span>()
+</span></span><span style="display:flex;"><span>	 protocol<span style="color:#f92672">:</span> SAR
+</span></span><span style="display:flex;"><span>	 additional info elements<span style="color:#f92672">:</span>  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	 number of records<span style="color:#f92672">:</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 TL (UVVIS) &lt;&gt; #2 TL (NA) &lt;&gt; #3 TL (NA)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#4 OSL (UVVIS) &lt;&gt; #5 OSL (NA) &lt;&gt; #6 OSL (NA) &lt;&gt; #7 OSL (NA) &lt;&gt; #8 OSL (NA)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#9 irradiation (NA)</span>
+</span></span></code></pre></div><p>With the upcoming change, the output will instead look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span> [RLum.Analysis<span style="color:#f92672">-</span>class]
+</span></span><span style="display:flex;"><span>	 originator<span style="color:#f92672">:</span> <span style="color:#a6e22e">read_XSYG2R</span>()
+</span></span><span style="display:flex;"><span>	 protocol<span style="color:#f92672">:</span> SAR
+</span></span><span style="display:flex;"><span>	 additional info elements<span style="color:#f92672">:</span>  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	 number of records<span style="color:#f92672">:</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 TL (UVVIS) &lt;&gt; #2 _TL (NA) &lt;&gt; #3 _TL (NA)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#4 OSL (UVVIS) &lt;&gt; #5 _OSL (NA) &lt;&gt; #6 _OSL (NA) &lt;&gt; #7 _OSL (NA) &lt;&gt; #8 _OSL (NA)</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#9 irradiation (NA)</span>
+</span></span></code></pre></div><p>You can think the underscore as a marker of an &ldquo;internal&rdquo; field that can be
+in general be ignored. This should make it a bit easier to spot at a glance
+the records that are important for an analysis.</p>
+<p>This should also make it easier to discard the unnecessary curves: if their
+<code>recordType</code> starts with <code>_</code>, then they can be dropped. For example, the
+following will do the trick:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">remove_RLum</span>(sar, recordType <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;_OSL&#34;</span>, <span style="color:#e6db74">&#34;_TL&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> [RLum.Analysis<span style="color:#f92672">-</span>class]
+</span></span><span style="display:flex;"><span>	 originator<span style="color:#f92672">:</span> <span style="color:#a6e22e">read_XSYG2R</span>()
+</span></span><span style="display:flex;"><span>	 protocol<span style="color:#f92672">:</span> SAR
+</span></span><span style="display:flex;"><span>	 additional info elements<span style="color:#f92672">:</span>  <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	 number of records<span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 TL (UVVIS) | #2 OSL (UVVIS) | #3 irradiation (NA)</span>
+</span></span></code></pre></div><p>Note that even just <code>remove_RLum(sar, recordType = &quot;_&quot;)</code> will work, as the
+<code>recordType</code> argument is interpreted as a regular expression pattern.</p>
 
 		</div>
 	</article>

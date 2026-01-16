@@ -14,7 +14,7 @@ the package version will not cause excessive pain.
 
 ## Changes in `recordType` from BIN/BINX files
 
-In [issue 1275][iss1275] we are slightly changing what the `recordType` slot
+In [issue 1275][iss1275] we are changing what the `recordType` slot
 stores in `RLum` objects generated from BIN/BINX files. To be clear what we
 are referring to, consider this bit of code, which uses an example BIN file
 provided with the `Luminescence` package:
@@ -88,8 +88,8 @@ example can be accomplished using the `grepl()` function:
 
 Note that some `Luminescence` functions will take your input literally, and
 therefore may not produce the result you expected if you forget to update your
-input. For example, if you used `get_RLum()` (or `subset()`) to select only
-some curves, this will not produce what you wanted:
+input. For example, if you used `subset()` (or the `subset` argument of
+`get_RLum()) to select only some curves, this will not produce what you wanted:
 
 ```R
 ## same as `subset(object, recordType == "OSL")`
@@ -98,8 +98,86 @@ some curves, this will not produce what you wanted:
 [get_RLum()] Error: 'subset' expression produced an empty selection, NULL returned
 ```
 
-Other potentially affected functions are those that accept a `recordType`
-argument (such as `trim_RLum.Data()`) or that delegate to `get_RLum()` to
-perform a selection (such as `subset()` and `remove_RLum()`).
+The following is instead not affected, as here `recordType` is interpreted as
+a regular expression pattern:
+```R
+> get_RLum(object, recordType = "OSL", drop = FALSE)
+
+ [RLum.Analysis-class]
+	 originator: Risoe.BINfileData2RLum.Analysis()
+	 protocol: unknown
+	 additional info elements:  0
+	 number of records: 14
+	 .. : RLum.Data.Curve : 14
+	 .. .. : #1 OSL (PMT) | #2 OSL (PMT) | #3 OSL (PMT) | #4 OSL (PMT) | #5 OSL (PMT) | #6 OSL (PMT) | #7 OSL (PMT)
+	 .. .. : #8 OSL (PMT) | #9 OSL (PMT) | #10 OSL (PMT) | #11 OSL (PMT) | #12 OSL (PMT) | #13 OSL (PMT) | #14 OSL (PMT)
+```
+
+## Changes in `recordType` from XSYG files
+
+In [issue 1276][iss1276] we are slightly changing what the `recordType` slot
+stores in `RLum` objects generated from XSYG files. Information in XSYG files
+is divided in several records, of which only the first is of actual interest
+in analyses, as the others contain additional information provided by the
+Lexyg readers but no curve data.
+
+We have an example object derived from an XSYG file in the package:
+
+```R
+> load("data/ExampleData.XSYG.rda")
+> sar <- OSL.SARMeasurement$Sequence.Object[1:9
+> sar
+
+ [RLum.Analysis-class]
+	 originator: read_XSYG2R()
+	 protocol: SAR
+	 additional info elements:  0
+	 number of records: 9
+	 .. : RLum.Data.Curve : 9
+	 .. .. : #1 TL (UVVIS) <> #2 TL (NA) <> #3 TL (NA)
+	 .. .. : #4 OSL (UVVIS) <> #5 OSL (NA) <> #6 OSL (NA) <> #7 OSL (NA) <> #8 OSL (NA)
+	 .. .. : #9 irradiation (NA)
+
+```
+
+With the upcoming change, the output will instead look like this:
+
+```R
+ [RLum.Analysis-class]
+	 originator: read_XSYG2R()
+	 protocol: SAR
+	 additional info elements:  0
+	 number of records: 9
+	 .. : RLum.Data.Curve : 9
+	 .. .. : #1 TL (UVVIS) <> #2 _TL (NA) <> #3 _TL (NA)
+	 .. .. : #4 OSL (UVVIS) <> #5 _OSL (NA) <> #6 _OSL (NA) <> #7 _OSL (NA) <> #8 _OSL (NA)
+	 .. .. : #9 irradiation (NA)
+```
+
+You can think the underscore as a marker of an "internal" field that can be
+in general be ignored. This should make it a bit easier to spot at a glance
+the records that are important for an analysis.
+
+This should also make it easier to discard the unnecessary curves: if their
+`recordType` starts with `_`, then they can be dropped. For example, the
+following will do the trick:
+
+```R
+> remove_RLum(sar, recordType = c("_OSL", "_TL"))
+
+ [RLum.Analysis-class]
+	 originator: read_XSYG2R()
+	 protocol: SAR
+	 additional info elements:  0
+	 number of records: 3
+	 .. : RLum.Data.Curve : 3
+	 .. .. : #1 TL (UVVIS) | #2 OSL (UVVIS) | #3 irradiation (NA)
+
+```
+
+Note that even just `remove_RLum(sar, recordType = "_")` will work, as the
+`recordType` argument is interpreted as a regular expression pattern.
+
 
 [iss1275]: https://github.com/R-Lum/Luminescence/issues/1275
+[iss1276]: https://github.com/R-Lum/Luminescence/issues/1276
