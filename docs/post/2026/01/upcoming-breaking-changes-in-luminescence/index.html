@@ -86,8 +86,8 @@ will bring some small but potentially breaking changes to users. This post is
 meant to give some advance warnings and provide solutions so that updating
 the package version will not cause excessive pain.</p>
 <h2 id="changes-in-recordtype-from-binbinx-files">Changes in <code>recordType</code> from BIN/BINX files</h2>
-<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1275">issue 1275</a> we are changing what the <code>recordType</code> slot
-stores in <code>RLum</code> objects generated from BIN/BINX files. To be clear what we
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1275">issue 1275</a> we are changing what the <code>recordType</code> slot stores
+in <code>RLum.Data</code> objects generated from BIN/BINX files. To be clear what we
 are referring to, consider this bit of code, which uses an example BIN file
 provided with the <code>Luminescence</code> package:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(Luminescence)
@@ -162,7 +162,23 @@ a regular expression pattern:</p>
 </span></span><span style="display:flex;"><span>	 .. <span style="color:#f92672">:</span> RLum.Data.Curve <span style="color:#f92672">:</span> <span style="color:#ae81ff">14</span>
 </span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 OSL (PMT) | #2 OSL (PMT) | #3 OSL (PMT) | #4 OSL (PMT) | #5 OSL (PMT) | #6 OSL (PMT) | #7 OSL (PMT)</span>
 </span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#8 OSL (PMT) | #9 OSL (PMT) | #10 OSL (PMT) | #11 OSL (PMT) | #12 OSL (PMT) | #13 OSL (PMT) | #14 OSL (PMT)</span>
-</span></span></code></pre></div><h2 id="changes-in-recordtype-from-xsyg-files">Changes in <code>recordType</code> from XSYG files</h2>
+</span></span></code></pre></div><h2 id="changes-in-recordtype-from-binbinx-files-1">Changes in <code>recordType</code> from BIN/BINX files</h2>
+<p>Similar changes as the one above have occurred in <a href="https://github.com/R-Lum/Luminescence/issues/1286">issue 1286</a> for
+all other remaining file types that <code>Luminescence</code> can import. In short, the
+<code>RLum.Data</code> objects generated from the following functions will also include
+the detector name (usually either &ldquo;PMT&rdquo; or &ldquo;NA&rdquo;) in their <code>recordType</code> slot:</p>
+<ul>
+<li><code>read_Daybreask2R()</code></li>
+<li><code>read_PSL2R()</code></li>
+<li><code>read_RF2R()</code></li>
+<li><code>read_SPE2R()</code></li>
+</ul>
+<p>The following dataset have been updated correspondingly:</p>
+<ul>
+<li><code>ExampleData.RLum.Analysis</code></li>
+<li><code>ExampleData.portableOSL</code></li>
+</ul>
+<h2 id="changes-in-recordtype-from-xsyg-files">Changes in <code>recordType</code> from XSYG files</h2>
 <p>In <a href="https://github.com/R-Lum/Luminescence/issues/1276">issue 1276</a> we are slightly changing what the <code>recordType</code> slot
 stores in <code>RLum</code> objects generated from XSYG files. Information in XSYG files
 is divided in several records, of which only the first is of actual interest
@@ -209,7 +225,6 @@ following will do the trick:</p>
 </span></span><span style="display:flex;"><span>	 .. .. <span style="color:#f92672">:</span> <span style="color:#75715e">#1 TL (UVVIS) | #2 OSL (UVVIS) | #3 irradiation (NA)</span>
 </span></span></code></pre></div><p>Note that even just <code>remove_RLum(sar, recordType = &quot;_&quot;)</code> will work, as the
 <code>recordType</code> argument is interpreted as a regular expression pattern.</p>
-
 		</div>
 	</article>
 </main>

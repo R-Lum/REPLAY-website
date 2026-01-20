@@ -12,10 +12,12 @@ will bring some small but potentially breaking changes to users. This post is
 meant to give some advance warnings and provide solutions so that updating
 the package version will not cause excessive pain.
 
+<!--more-->
+
 ## Changes in `recordType` from BIN/BINX files
 
-In [issue 1275][iss1275] we are changing what the `recordType` slot
-stores in `RLum` objects generated from BIN/BINX files. To be clear what we
+In [issue 1275][iss1275] we are changing what the `recordType` slot stores
+in `RLum.Data` objects generated from BIN/BINX files. To be clear what we
 are referring to, consider this bit of code, which uses an example BIN file
 provided with the `Luminescence` package:
 
@@ -113,6 +115,24 @@ a regular expression pattern:
 	 .. .. : #8 OSL (PMT) | #9 OSL (PMT) | #10 OSL (PMT) | #11 OSL (PMT) | #12 OSL (PMT) | #13 OSL (PMT) | #14 OSL (PMT)
 ```
 
+## Changes in `recordType` from BIN/BINX files
+
+Similar changes as the one above have occurred in [issue 1286][iss1286] for
+all other remaining file types that `Luminescence` can import. In short, the
+`RLum.Data` objects generated from the following functions will also include
+the detector name (usually either "PMT" or "NA") in their `recordType` slot:
+
+- `read_Daybreask2R()`
+- `read_PSL2R()`
+- `read_RF2R()`
+- `read_SPE2R()`
+
+The following dataset have been updated correspondingly:
+
+- `ExampleData.RLum.Analysis`
+- `ExampleData.portableOSL`
+
+
 ## Changes in `recordType` from XSYG files
 
 In [issue 1276][iss1276] we are slightly changing what the `recordType` slot
@@ -137,7 +157,6 @@ We have an example object derived from an XSYG file in the package:
 	 .. .. : #1 TL (UVVIS) <> #2 TL (NA) <> #3 TL (NA)
 	 .. .. : #4 OSL (UVVIS) <> #5 OSL (NA) <> #6 OSL (NA) <> #7 OSL (NA) <> #8 OSL (NA)
 	 .. .. : #9 irradiation (NA)
-
 ```
 
 With the upcoming change, the output will instead look like this:
@@ -172,7 +191,6 @@ following will do the trick:
 	 number of records: 3
 	 .. : RLum.Data.Curve : 3
 	 .. .. : #1 TL (UVVIS) | #2 OSL (UVVIS) | #3 irradiation (NA)
-
 ```
 
 Note that even just `remove_RLum(sar, recordType = "_")` will work, as the
@@ -181,3 +199,4 @@ Note that even just `remove_RLum(sar, recordType = "_")` will work, as the
 
 [iss1275]: https://github.com/R-Lum/Luminescence/issues/1275
 [iss1276]: https://github.com/R-Lum/Luminescence/issues/1276
+[iss1286]: https://github.com/R-Lum/Luminescence/issues/1286
