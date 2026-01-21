@@ -6,8 +6,15 @@
     <description>Recent content in Categories on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RLumShiny</title>
+      <link>/REPLAY-website/categories/rlumshiny/</link>
+      <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/categories/rlumshiny/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Luminescence</title>
       <link>/REPLAY-website/categories/luminescence/</link>
@@ -20,13 +27,6 @@
       <link>/REPLAY-website/categories/website/</link>
       <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
       <guid>/REPLAY-website/categories/website/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>RLumShiny</title>
-      <link>/REPLAY-website/categories/rlumshiny/</link>
-      <pubDate>Mon, 14 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>/REPLAY-website/categories/rlumshiny/</guid>
       <description></description>
     </item>
   </channel>

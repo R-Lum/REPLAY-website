@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RLumShiny Release 0.2.7 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="RLumShiny version 0.2.7">
+		<meta property="og:url" content="/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="RLumShiny Release 0.2.7">
+  <meta property="og:description" content="RLumShiny version 0.2.7">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-01-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-21T00:00:00+00:00">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">RLumShiny Release 0.2.7</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2026-01-21T00:00:00Z">21 January 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/rlumshiny/" rel="category">RLumShiny</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>It has been a while since <a href="/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/">our previous update</a> concerning
+<a href="https://tzerk.github.io/RLumShiny/">RLumShiny</a>. However, work on that front has continued and in the
+last month we had not only one but two releases (more on that below).</p>
+<p>The work leading to the <a href="https://github.com/tzerk/RLumShiny/releases/tag/v0.2.7">RLumShiny 0.2.7 release</a> concentrated on
+adding three new apps and improving the internal infrastructure to import
+more file types.</p>
+<p>The new apps are the following:</p>
+<ul>
+<li>
+<p><code>doseresponsecurve</code> to plot a dose-response curve for luminescence data
+(based on <code>fit_DoseResponseCurve()</code> and <code>plot_DoseResponseCurve()</code>)
+<img src="doseresponsecurve.png" alt="doseresponsecurve" title="Screenshot of the doseresponsecurve app"></p>
+</li>
+<li>
+<p><code>portableOSL</code> to analyse CW-OSL curve data produced by a SUERC portable OSL
+reader and produces a combined plot of OSL/IRSL signal intensities, OSL/IRSL
+depletion ratios  and the IRSL/OSL ratio (based on <code>analyse_portableOSL()</code>)
+<img src="portableOSL.png" alt="portableOSL" title="Screenshot of the portableOSL app"></p>
+</li>
+<li>
+<p><code>sarCWOSL</code> to a standard SAR protocol measurements introduced by Murray and
+Wintle (2000) with CW-OSL curves (based on <code>calc_analyse_SAR.CWOSL()</code>)
+<img src="sarCWOSL.png" alt="sarCWOSL" title="Screenshot of the sarCWOSL app"></p>
+</li>
+</ul>
+<p>These new apps (and a few of the existing ones, namely <code>fastratio</code>,
+<code>finitemixture</code>, <code>huntley2006</code>, <code>lmcurve</code>) now implement a new way of importing
+files, which extends the format supported beyond CSV files. This feature works
+in most cases, but it&rsquo;s still to be considered in beta status, as more testing
+may be necessary to iron out some corner cases. However, this is a first step
+towards making the package be usable for realistic analyses.</p>
+<p>There was also an important improvement concerning error/warning feedback to
+the user: while before they would only appear in the R terminal from which the
+app was started, now they are also shown as notification in the app itself.
+This allows for more direct feedback, and should help users understand better
+why things go wrong.
+<img src="notification.png" alt="notification" title="Screenshot of a warning notification"></p>
+<p>At this stage, however, these notifications are at times a bit flickery and
+other times too sticky. In other words, depending on user actions they may
+be removed too quickly (even though the problem persists) or they stay too
+long after the app settings have been corrected. Improvements in their
+behaviour will be part of future releases.</p>
+<p>Effectively, all of the changes described above happened in <a href="https://github.com/tzerk/RLumShiny/releases/tag/v0.2.6">RLumShiny 0.2.6</a>.
+This major release contained a large number of updates, but unfortunately it
+also contained a fatal bug that prevented any application from actually
+starting. The development work for that release consolidated some code into
+helper functions to guarantee a consistent behaviour across all apps.</p>
+<p>However, it turns out that <code>shiny</code> has a non-conventional way of dealing with
+internal functions. While in traditional R packages internal function can be
+called directly from anywhere else in the package, for packages based on <code>shiny</code>
+they must be called explicitly with the package qualifier (for example,
+<code>RLumShiny:::tryNotify()</code>). This was not noticed until version 0.2.6 was
+already on its way to CRAN. The <a href="https://github.com/tzerk/RLumShiny/releases/tag/v0.2.7">hot-fix release</a>, already ready before
+Christmas, was then delayed by the closure of CRAN during the Christmas holidays.</p>
+<p>Looking forward, our main task on the <code>RLumShiny</code> front is to add functionality
+to subset the data from within the graphical interface. At this stage, we
+believe this to be the only remaining blocker before <code>RLumShiny</code> can be
+effectively used for exploration and analysis of real luminescence dataset.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/">RLumShiny Release 0.2.7</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">Upcoming breaking changes in Luminescence</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">Luminescence Release 1.1.2</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/new-replay-website-url/">New REPLAY website URL</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/luminescence-release-1.1.1/">Luminescence Release 1.1.1</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>

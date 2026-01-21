@@ -3,15 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/REPLAY-website/categories/</loc>
-    <lastmod>2026-01-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/REPLAY-website/categories/luminescence/</loc>
-    <lastmod>2026-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/REPLAY-website/post/</loc>
-    <lastmod>2026-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/REPLAY-website/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/REPLAY-website/categories/rlumshiny/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/REPLAY-website/categories/luminescence/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/</loc>
@@ -31,9 +37,6 @@
   </url><url>
     <loc>/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/REPLAY-website/categories/rlumshiny/</loc>
-    <lastmod>2025-07-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/REPLAY-website/post/2025/07/rlumshiny-release-0.2.5/</loc>
     <lastmod>2025-07-14T00:00:00+00:00</lastmod>
