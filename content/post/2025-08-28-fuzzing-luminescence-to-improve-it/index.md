@@ -1,5 +1,5 @@
 ---
-title: Breaking Luminescence to improve it
+title: Fuzzing Luminescence to improve it
 date: '2025-08-28'
 categories:
   - 'Luminescence'

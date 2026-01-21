@@ -191,7 +191,7 @@ or bug fixes, check out our [guidelines for contributors][contr].
 [iss867]: https://github.com/R-Lum/Luminescence/issues/867
 [iss875]: https://github.com/R-Lum/Luminescence/issues/875
 [iss955]: https://github.com/R-Lum/Luminescence/issues/955
-[fuzz]:   {{< ref "post/2025-08-28-breaking-luminescence-to-improve-it/" >}}
+[fuzz]:   {{< ref "post/2025-08-28-fuzzing-luminescence-to-improve-it/" >}}
 [fuzzis]: https://github.com/R-Lum/Luminescence/issues?q=state%3Aclosed%20label%3Afuzzing%20milestone%3Av1.1.1
 [cbtf]:   https://mcol.github.io/caught-by-the-fuzz/
 [rshiny]: https://tzerk.github.io/RLumShiny/

@@ -140,7 +140,7 @@ or bug fixes, check out our [guidelines for contributors][contr].
 [webin1]: https://r-luminescence.org/news/20241130_replay_webinar_112024/
 [snaps]:  https://testthat.r-lib.org/articles/snapshotting.html
 [cbtf]:   https://github.com/mcol/caught-by-the-fuzz
-[fuzz]:   {{< ref "post/2025-08-28-breaking-luminescence-to-improve-it/" >}}
+[fuzz]:   {{< ref "post/2025-08-28-fuzzing-luminescence-to-improve-it/" >}}
 [iss243]: https://github.com/R-Lum/Luminescence/issues/243
 [iss258]: https://github.com/R-Lum/Luminescence/issues/258
 [iss298]: https://github.com/R-Lum/Luminescence/issues/298

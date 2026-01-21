@@ -44,10 +44,10 @@
       <description>&lt;p&gt;Exactly 3 months from our &lt;a href=&#34;/REPLAY-website/post/2025/06/luminescence-release-1.1.0/&#34;&gt;previous release&lt;/a&gt;, we are excited to&#xA;announce the release of &lt;strong&gt;version 1.1.1&lt;/strong&gt; of the &lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;We were initially wondering whether this should be a minor or a major release,&#xA;as we put a lot of effort in to make the package more solid and refined; we&#xA;decided to call it a minor release just because there are not many new&#xA;features in this version. However, there are some important regression fixes,&#xA;many graphical improvements and also some performance speed-ups. In total we&#xA;addressed 69 issues in 371 commits.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Breaking Luminescence to improve it</title>
-      <link>/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/</link>
+      <title>Fuzzing Luminescence to improve it</title>
+      <link>/REPLAY-website/post/2025/08/fuzzing-luminescence-to-improve-it/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>/REPLAY-website/post/2025/08/breaking-luminescence-to-improve-it/</guid>
+      <guid>/REPLAY-website/post/2025/08/fuzzing-luminescence-to-improve-it/</guid>
       <description>&lt;p&gt;One of the challenges I faced as I started working on the&#xA;&lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt; was how to navigate the very large set of&#xA;functions that the package provides (by the last count, there are 155&#xA;functions that are exposed to the user, plus several internal helpers).&lt;/p&gt;&#xA;&lt;p&gt;As I fumbled my way through it, I started noticing that when a function failed&#xA;on a certain input, similar failures would also occur elsewhere.&#xA;However, finding manually which other functions were affected was frustrating&#xA;and time-consuming. Wouldn&amp;rsquo;t it be great if we could (quickly and with limited&#xA;manual intervention) go through all the functions in the package and being&#xA;told which are the ones that need to be fixed?&lt;/p&gt;&#xA;&lt;p&gt;This got me to think about &lt;strong&gt;fuzz testing&lt;/strong&gt;, and how that approach could be&#xA;adapted for my purposes.&lt;/p&gt;</description>
     </item>
     <item>
