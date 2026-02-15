@@ -133,7 +133,7 @@ contribute new functionalities or bug fixes directly, check out our
 
 [lumi]:   https://r-lum.github.io/Luminescence/
 [rshiny]: https://tzerk.github.io/RLumShiny/
-[v100]:   https://github.com/R-Lum/Luminescence/releases/tag/v1.0.0
+[v100]:   {{< ref "post/2025-02-24-the-road-to-luminescence-1-0/" >}}
 [v101]:   https://github.com/R-Lum/Luminescence/releases/tag/v1.0.1
 [iss589]: https://github.com/R-Lum/Luminescence/issues/589
 [iss593]: https://github.com/R-Lum/Luminescence/issues/593
