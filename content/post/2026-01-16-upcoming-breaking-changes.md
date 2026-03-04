@@ -115,7 +115,7 @@ a regular expression pattern:
 	 .. .. : #8 OSL (PMT) | #9 OSL (PMT) | #10 OSL (PMT) | #11 OSL (PMT) | #12 OSL (PMT) | #13 OSL (PMT) | #14 OSL (PMT)
 ```
 
-## Changes in `recordType` from BIN/BINX files
+## Changes in `recordType` from other file types
 
 Similar changes as the one above have occurred in [issue 1286][iss1286] for
 all other remaining file types that `Luminescence` can import. In short, the
