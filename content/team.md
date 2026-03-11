@@ -14,8 +14,8 @@ REPLAY is run by team of people:
 - [Marco Colombo]() (Research Software Engineer, Heidelberg University)
 - [Michael Dietze]() (RWTH Aachen)
 - [Margret Fuchs]() (Helmholtz Institute Freiberg for Resource Technology)
-- [Loïc Martin]() (Independent Researcher, France)
 - [Dirk Mittelstraß]() (Heidelberg University, Helmholtz Institute Freiberg for Resource Technology)
+- [Marcin Młynarz]() (Silesian University of Technology
 - [Svenja Riedesel]() (University of Cologne)
 - [Christoph Schmidt]() (University of Lausanne)
 - [Konrad Tudyka]() (Silesian University of Technology)
