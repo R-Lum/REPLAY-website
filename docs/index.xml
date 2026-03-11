@@ -6,8 +6,15 @@
     <description>Recent content on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Second REPLAY annual meeeting</title>
+      <link>/REPLAY-website/post/2026/03/second-replay-annual-meeeting/</link>
+      <pubDate>Mon, 09 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2026/03/second-replay-annual-meeeting/</guid>
+      <description>&lt;p&gt;From 4 to 6 March 2026, the &lt;a href=&#34;/REPLAY-website/team/&#34;&gt;REPLAY project team&lt;/a&gt; convened for its&#xA;second annual meeting at &lt;a href=&#34;https://en.wikipedia.org/wiki/Rauischholzhausen_Castle&#34;&gt;Schloss Rauischholzhausen&lt;/a&gt;, a historic&#xA;19th-century hunting lodge near Giessen.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RLumShiny Release 0.2.7</title>
       <link>/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/</link>
@@ -111,7 +118,7 @@
       <link>/REPLAY-website/team/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/REPLAY-website/team/</guid>
-      <description>&lt;p&gt;REPLAY is run by team of people:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.geog.uni-heidelberg.de/en/node/543&#34;&gt;Sebastian Kreutzer&lt;/a&gt;&#xA;(PI, Heidelberg University)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.uni-giessen.de/en/faculties/f07/departments/geography/sections/physical/staff/kolb-en&#34;&gt;Thomas Kolb&lt;/a&gt;&#xA;(PI, Justus-Liebig-University Giessen)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Marco Colombo&lt;/a&gt; (Research Software Engineer, Heidelberg University)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Michael Dietze&lt;/a&gt; (RWTH Aachen)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Margret Fuchs&lt;/a&gt; (Helmholtz Institute Freiberg for Resource Technology)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Loïc Martin&lt;/a&gt; (Independent Researcher, France)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Dirk Mittelstraß&lt;/a&gt; (Heidelberg University, Helmholtz Institute Freiberg for Resource Technology)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Svenja Riedesel&lt;/a&gt; (University of Cologne)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Christoph Schmidt&lt;/a&gt; (University of Lausanne)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Konrad Tudyka&lt;/a&gt; (Silesian University of Technology)&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <description>&lt;p&gt;REPLAY is run by team of people:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.geog.uni-heidelberg.de/en/node/543&#34;&gt;Sebastian Kreutzer&lt;/a&gt;&#xA;(PI, Heidelberg University)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.uni-giessen.de/en/faculties/f07/departments/geography/sections/physical/staff/kolb-en&#34;&gt;Thomas Kolb&lt;/a&gt;&#xA;(PI, Justus-Liebig-University Giessen)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Marco Colombo&lt;/a&gt; (Research Software Engineer, Heidelberg University)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Michael Dietze&lt;/a&gt; (RWTH Aachen)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Margret Fuchs&lt;/a&gt; (Helmholtz Institute Freiberg for Resource Technology)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Dirk Mittelstraß&lt;/a&gt; (Heidelberg University, Helmholtz Institute Freiberg for Resource Technology)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Marcin Młynarz&lt;/a&gt; (Silesian University of Technology&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Svenja Riedesel&lt;/a&gt; (University of Cologne)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Christoph Schmidt&lt;/a&gt; (University of Lausanne)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;Konrad Tudyka&lt;/a&gt; (Silesian University of Technology)&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>

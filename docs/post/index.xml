@@ -6,8 +6,15 @@
     <description>Recent content in Posts on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Second REPLAY annual meeeting</title>
+      <link>/REPLAY-website/post/2026/03/second-replay-annual-meeeting/</link>
+      <pubDate>Mon, 09 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2026/03/second-replay-annual-meeeting/</guid>
+      <description>&lt;p&gt;From 4 to 6 March 2026, the &lt;a href=&#34;/REPLAY-website/team/&#34;&gt;REPLAY project team&lt;/a&gt; convened for its&#xA;second annual meeting at &lt;a href=&#34;https://en.wikipedia.org/wiki/Rauischholzhausen_Castle&#34;&gt;Schloss Rauischholzhausen&lt;/a&gt;, a historic&#xA;19th-century hunting lodge near Giessen.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RLumShiny Release 0.2.7</title>
       <link>/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/</link>
