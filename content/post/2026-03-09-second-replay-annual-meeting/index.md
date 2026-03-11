@@ -13,7 +13,7 @@ second annual meeting at [Schloss Rauischholzhausen][raui], a historic
 
 <!--more-->
 
-![Group photo](1000043449_ed.jpeg "Group photo by Margret Fuchs")
+![Group photo](IMG_6653.jpeg "Group photo")
 
 With eight participants attending in person and one joining online, the
 meeting provided an opportunity to review recent progress and to further
