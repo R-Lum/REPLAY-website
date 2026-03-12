@@ -14,7 +14,7 @@ the package version will not cause excessive pain.
 
 <!--more-->
 
-## Changes in `recordType` from BIN/BINX files
+## Changes in `recordType` for BIN/BINX files
 
 In [issue 1275][iss1275] we are changing what the `recordType` slot stores
 in `RLum.Data` objects generated from BIN/BINX files. To be clear what we
@@ -115,7 +115,7 @@ a regular expression pattern:
 	 .. .. : #8 OSL (PMT) | #9 OSL (PMT) | #10 OSL (PMT) | #11 OSL (PMT) | #12 OSL (PMT) | #13 OSL (PMT) | #14 OSL (PMT)
 ```
 
-## Changes in `recordType` from other file types
+## Changes in `recordType` for other file types
 
 Similar changes as the one above have occurred in [issue 1286][iss1286] for
 all other remaining file types that `Luminescence` can import. In short, the
@@ -132,8 +132,7 @@ The following dataset have been updated correspondingly:
 - `ExampleData.RLum.Analysis`
 - `ExampleData.portableOSL`
 
-
-## Changes in `recordType` from XSYG files
+## Changes in `recordType` for XSYG files
 
 In [issue 1276][iss1276] we are slightly changing what the `recordType` slot
 stores in `RLum` objects generated from XSYG files. Information in XSYG files
@@ -196,7 +195,23 @@ following will do the trick:
 Note that even just `remove_RLum(sar, recordType = "_")` will work, as the
 `recordType` argument is interpreted as a regular expression pattern.
 
+## Changes in `info` for XSYG files
 
+In [issue 1239][iss1239] we are changing what the `@info` slot stores in `RLum`
+objects generated from XSYG files. Until now, only sequence attributes were
+stored in the `@info` slot. However, that would mean that some information
+stored at the record level could not be accessed via the `RLum` object. With
+the changes introduced, all record attributes will now be included in the
+`@info` slot, provided they are not duplicated.
+
+The majority of users will not be impacted by this change. However, since
+the `"name"` attribute is provided both at the sequence level and at the
+record level (and they may differ), in the upcoming version there will be
+no `name` field. Instead of that there will be separate `sequenceName` and
+`recordName` fields.
+
+
+[iss1239]: https://github.com/R-Lum/Luminescence/issues/1239
 [iss1275]: https://github.com/R-Lum/Luminescence/issues/1275
 [iss1276]: https://github.com/R-Lum/Luminescence/issues/1276
 [iss1286]: https://github.com/R-Lum/Luminescence/issues/1286
