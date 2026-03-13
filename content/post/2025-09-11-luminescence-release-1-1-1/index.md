@@ -19,7 +19,7 @@ addressed 69 issues in 371 commits.
 
 <!--more-->
 
-### One new function and some removals
+## One new function and some removals
 
 Only one new small function was added in this release, `correct_PMTLinearity()`,
 which can be used to correct the linearity of photomultiplier tube (PMT) counts
@@ -44,7 +44,7 @@ More removals of deprecated functions will occur in the next release, so if
 you already see some deprecation warnings, you'd better sorting them out in
 advance.
 
-### Regression fixes
+## Regression fixes
 
 A regression that affected `plot_DoseResponseCurve()` (and consequently also
 `analyse_SAR.CWOSL()` and `analyse_pIRIRSequence()`) caused a mismatch between
@@ -115,7 +115,7 @@ a sufficiently large number of objects. For example, when merging a list of
 79 `RLum.Analysis` objects, each containing 118 curves, we saw the time spent
 by `merge_RLum()` go from 3.5s to 1.5s.
 
-### Code size reduction
+## Code size reduction
 
 One small internal change has brought a surprising reduction in number of
 lines in the package.
@@ -159,7 +159,7 @@ sizable decrease from the 27,604 of just three months ago. This
 is the result of the function removals mentioned above, but also of a massive
 consolidation of duplicated code in `plot_AbanicoPlot()`.
 
-### Stability improvements
+## Stability improvements
 
 We've recently discussed of [fuzz testing][fuzz], and in this release we
 spent some time trying to figure out new ways of making `Luminescence` crash,
@@ -175,7 +175,7 @@ increase from our previous release (we had 3,088 in 1.1.0). Many are snapshot
 and graphical snapshot tests, which are the type of test that can give us the
 best protection against unintentional changes.
 
-### Upcoming work
+## Upcoming work
 
 In the short term we'll resume working on `RLumShiny`, to further expand the
 set of applications it provides and perhaps improve its performance.

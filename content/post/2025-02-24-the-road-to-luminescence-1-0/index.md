@@ -26,7 +26,7 @@ outline below.
 
 <!--more-->
 
-### Testing and coverage
+## Testing and coverage
 
 One of the first areas of focus of our work was to enhance testing and
 coverage of the package. Testing allows to record what the expected behaviour
@@ -51,8 +51,7 @@ reference results. At the moment we have snapshots for 33 functions, but
 this work will continue in the future with a stronger focus on the graphical
 tests ([issue 243][iss243]).
 
-
-### Input validation and fuzz testing
+## Input validation and fuzz testing
 
 We also payed attention to input validation and error reporting. Now the
 package is a bit stricter in what it accepts. This brings a number of
@@ -78,8 +77,7 @@ implements [a simple fuzz testing approach][fuzz] which allows to call all funct
 of a package with any sort of inputs and see what failures are produced. This
 is still ongoing work and is being tracked in [issue 439][iss439].
 
-
-### Performance improvements
+## Performance improvements
 
 With greater testing available, we could start making more invasive changes
 to the package functions with no fear of introducing new bugs or regressing
@@ -119,8 +117,7 @@ interval [0, 3] (and added option `rprime` to let the user override it if
 required). Overall we got a 4x speed-up when running a test file for 50,000
 MC iterations (from ~230s to ~62s).
 
-
-### The road ahead
+## The road ahead
 
 Having accomplished the first milestone for the REPLAY project, now the
 focus will move on to other areas, mainly on the design and development of

@@ -102,7 +102,7 @@ September and February (886 commits) in a number of key areas, which we&rsquo;ll
 outline below.</p>
 </li>
 </ul>
-<h3 id="testing-and-coverage">Testing and coverage</h3>
+<h2 id="testing-and-coverage">Testing and coverage</h2>
 <p>One of the first areas of focus of our work was to enhance testing and
 coverage of the package. Testing allows to record what the expected behaviour
 of any function is, so that no unintented changes should go unnoticed.
@@ -122,7 +122,7 @@ which allow to compare numerical and graphical output of a function against
 reference results. At the moment we have snapshots for 33 functions, but
 this work will continue in the future with a stronger focus on the graphical
 tests (<a href="https://github.com/R-Lum/Luminescence/issues/243">issue 243</a>).</p>
-<h3 id="input-validation-and-fuzz-testing">Input validation and fuzz testing</h3>
+<h2 id="input-validation-and-fuzz-testing">Input validation and fuzz testing</h2>
 <p>We also payed attention to input validation and error reporting. Now the
 package is a bit stricter in what it accepts. This brings a number of
 advantages:</p>
@@ -151,7 +151,7 @@ improved, we started developing the experimental <a href="https://github.com/mco
 implements <a href="/REPLAY-website/post/2025/08/fuzzing-luminescence-to-improve-it/">a simple fuzz testing approach</a> which allows to call all functions
 of a package with any sort of inputs and see what failures are produced. This
 is still ongoing work and is being tracked in <a href="https://github.com/R-Lum/Luminescence/issues/439">issue 439</a>.</p>
-<h3 id="performance-improvements">Performance improvements</h3>
+<h2 id="performance-improvements">Performance improvements</h2>
 <p>With greater testing available, we could start making more invasive changes
 to the package functions with no fear of introducing new bugs or regressing
 the expected behaviour. In most cases, these changes produced only minor
@@ -186,7 +186,7 @@ much sense, so we changed the default to 1000 equally-spaced points in the
 interval [0, 3] (and added option <code>rprime</code> to let the user override it if
 required). Overall we got a 4x speed-up when running a test file for 50,000
 MC iterations (from ~230s to ~62s).</p>
-<h3 id="the-road-ahead">The road ahead</h3>
+<h2 id="the-road-ahead">The road ahead</h2>
 <p>Having accomplished the first milestone for the REPLAY project, now the
 focus will move on to other areas, mainly on the design and development of
 an interactive graphical interface to facilitate the use of the Luminescence

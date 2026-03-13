@@ -86,7 +86,7 @@ the release of <strong>version 1.0.1</strong>, the first maintenance release of 
 <a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>. This is a minor release meant to address one
 important regression, but it also brings a few additional robustness and
 correctness improvements. In total we addressed 13 issues in 53 commits.</p>
-<h3 id="the-main-regression">The main regression</h3>
+<h2 id="the-main-regression">The main regression</h2>
 <p>Just days after the release of <code>Luminescence</code> 1.0 we discovered an important
 <a href="https://github.com/R-Lum/Luminescence/issues/589">regression in analyse_FadingMeasurement()</a>, which caused the plot
 of the luminescence curves to be completely garbled. This was caused by an
@@ -116,7 +116,7 @@ action in this snippet of code:</p>
 </span></span><span style="display:flex;"><span>[1] <span style="color:#ae81ff">1</span>
 </span></span></code></pre></div><p>This reinforces our drive to expand the set of graphical snapshot tests, which
 would have caught immediately this regression.</p>
-<h3 id="checking-the-graphical-device-size">Checking the graphical device size</h3>
+<h2 id="checking-the-graphical-device-size">Checking the graphical device size</h2>
 <p>In its default setting, <code>analyse_pIRIRSequence()</code> attempts to display all
 plots on a single page, which can result in &ldquo;figure margins too large&rdquo; errors
 unless the device size is large enough.</p>
@@ -152,7 +152,7 @@ still encourage to use 18x18 as it in our tests it produces better looking
 plots.</p>
 <p>In any case, one can use the <code>plot_singlePanels = TRUE</code> argument so that each
 plot is printed independently of all others, and thus avoid using a PDF file.</p>
-<h3 id="other-changes">Other changes</h3>
+<h2 id="other-changes">Other changes</h2>
 <p>This release brings a number of crash fixes in case of misspecified inputs,
 some of which come from our current focus of bringing the <a href="https://tzerk.github.io/RLumShiny/">RLumShiny package</a>
 up to date with the current versions of <code>Shiny</code> and <code>Luminescence</code>.</p>

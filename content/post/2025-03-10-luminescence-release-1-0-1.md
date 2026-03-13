@@ -15,7 +15,7 @@ correctness improvements. In total we addressed 13 issues in 53 commits.
 
 <!--more-->
 
-### The main regression
+## The main regression
 
 Just days after the release of `Luminescence` 1.0 we discovered an important
 [regression in analyse_FadingMeasurement()][iss589], which caused the plot
@@ -52,7 +52,7 @@ $mfrow
 This reinforces our drive to expand the set of graphical snapshot tests, which
 would have caught immediately this regression.
 
-### Checking the graphical device size
+## Checking the graphical device size
 
 In its default setting, `analyse_pIRIRSequence()` attempts to display all
 plots on a single page, which can result in "figure margins too large" errors
@@ -98,7 +98,7 @@ plots.
 In any case, one can use the `plot_singlePanels = TRUE` argument so that each
 plot is printed independently of all others, and thus avoid using a PDF file.
 
-### Other changes
+## Other changes
 
 This release brings a number of crash fixes in case of misspecified inputs,
 some of which come from our current focus of bringing the [RLumShiny package][rshiny]

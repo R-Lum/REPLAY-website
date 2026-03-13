@@ -89,7 +89,7 @@ decided to call it a minor release just because there are not many new
 features in this version. However, there are some important regression fixes,
 many graphical improvements and also some performance speed-ups. In total we
 addressed 69 issues in 371 commits.</p>
-<h3 id="one-new-function-and-some-removals">One new function and some removals</h3>
+<h2 id="one-new-function-and-some-removals">One new function and some removals</h2>
 <p>Only one new small function was added in this release, <code>correct_PMTLinearity()</code>,
 which can be used to correct the linearity of photomultiplier tube (PMT) counts
 to avoid saturation effects.</p>
@@ -110,7 +110,7 @@ usual process of deprecating a function before its removal.</p>
 <p>More removals of deprecated functions will occur in the next release, so if
 you already see some deprecation warnings, you&rsquo;d better sorting them out in
 advance.</p>
-<h3 id="regression-fixes">Regression fixes</h3>
+<h2 id="regression-fixes">Regression fixes</h2>
 <p>A regression that affected <code>plot_DoseResponseCurve()</code> (and consequently also
 <code>analyse_SAR.CWOSL()</code> and <code>analyse_pIRIRSequence()</code>) caused a mismatch between
 the legend symbols and the plotted regeneration/dose points.</p>
@@ -167,7 +167,7 @@ increased the speed of the function, but this is noticeable only when handling
 a sufficiently large number of objects. For example, when merging a list of
 79 <code>RLum.Analysis</code> objects, each containing 118 curves, we saw the time spent
 by <code>merge_RLum()</code> go from 3.5s to 1.5s.</p>
-<h3 id="code-size-reduction">Code size reduction</h3>
+<h2 id="code-size-reduction">Code size reduction</h2>
 <p>One small internal change has brought a surprising reduction in number of
 lines in the package.</p>
 <p>Since R version 4.4.0 (released in April 2024), the new <code>%||%</code> operator has
@@ -198,7 +198,7 @@ total R code in the package).</p>
 sizable decrease from the 27,604 of just three months ago. This
 is the result of the function removals mentioned above, but also of a massive
 consolidation of duplicated code in <code>plot_AbanicoPlot()</code>.</p>
-<h3 id="stability-improvements">Stability improvements</h3>
+<h2 id="stability-improvements">Stability improvements</h2>
 <p>We&rsquo;ve recently discussed of <a href="/REPLAY-website/post/2025/08/fuzzing-luminescence-to-improve-it/">fuzz testing</a>, and in this release we
 spent some time trying to figure out new ways of making <code>Luminescence</code> crash,
 so that we could get some insight into it and make it more robust.</p>
@@ -210,7 +210,7 @@ could be released on CRAN.</p>
 increase from our previous release (we had 3,088 in 1.1.0). Many are snapshot
 and graphical snapshot tests, which are the type of test that can give us the
 best protection against unintentional changes.</p>
-<h3 id="upcoming-work">Upcoming work</h3>
+<h2 id="upcoming-work">Upcoming work</h2>
 <p>In the short term we&rsquo;ll resume working on <code>RLumShiny</code>, to further expand the
 set of applications it provides and perhaps improve its performance.</p>
 <p>As always, bug reports are very welcome, in particular if you spot regression

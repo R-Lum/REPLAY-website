@@ -89,7 +89,7 @@ cosmetic improvements to the plots, and a massive speed boost in the
 have introduced some improvements to our test infrastructure and continued our
 process of deprecation of redundant functions. In total we addressed 109 issues
 in 523 commits.</p>
-<h3 id="regression-fixes">Regression fixes</h3>
+<h2 id="regression-fixes">Regression fixes</h2>
 <p>During this release cycle we became aware of a couple of small regression.</p>
 <p>The first was provided by the newest member of the <a href="/REPLAY-website/team/">REPLAY team</a> Dirk
 Mittelstraß, author of the <a href="https://cran.r-project.org/web/packages/OSLdecomposition/">OSLdecomposition package</a>. He found that
@@ -123,7 +123,7 @@ already had a fix for a similar issue in the previous release, but at that time
 we didn&rsquo;t notice that <code>mode = &quot;extrapolation&quot;</code> had not been taken care of.
 We have carefully reviewed all cases, and hopefully this problem has now been
 fixed for real.</p>
-<h3 id="graphical-improvements">Graphical improvements</h3>
+<h2 id="graphical-improvements">Graphical improvements</h2>
 <p>A large number of small improvements to plots have occurred, so below we
 present only a selection of the most interesting ones.</p>
 <p>Function <code>analyse_baSAR()</code> <a href="i1058">overplotted the dose response curves</a> when
@@ -223,7 +223,7 @@ The table below reports the object file sizes in bytes for the C++ engine of
       </tr>
   </tbody>
 </table>
-<h3 id="test-parallelization">Test parallelization</h3>
+<h2 id="test-parallelization">Test parallelization</h2>
 <p>Our testsuite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
 largest increase being in the number of graphical snapshots (from 90 to 154)
 and numerical snapshots (from 180 to 225).</p>
@@ -282,7 +282,7 @@ tests can progress on other cores. This speed up is also visible on the
 continuous integration infrastructure where, although only 2 cores can be used,
 test times (including building the package and its dependencies and coverage
 analysis) have gone from about 17m to about 11m.</p>
-<h3 id="function-removals-and-deprecations">Function removals and deprecations</h3>
+<h2 id="function-removals-and-deprecations">Function removals and deprecations</h2>
 <p>One of the ambitious goals of the REPLAY project is to ensure that the package
 will stay alive for the next 10 years. To achieve this we need to ensure that
 we do not carry around functionality that is no longer of use or that has been
@@ -310,7 +310,7 @@ somewhat weaker, but now they are no longer worth keeping and maintaining.</p>
 since 1.0.0) have been removed, but their functionality remains in the
 corresponding <code>convert_CW2pHMi()</code>, <code>convert_CW2pLM()</code>, <code>convert_CW2pLMi()</code> and
 <code>convert_CW2pPMi()</code> functions.</p>
-<h3 id="upcoming-work">Upcoming work</h3>
+<h2 id="upcoming-work">Upcoming work</h2>
 <p>We foresee for the next release to have a few new functions added to the
 package, as well as even more cosmetic and stability improvements.
 If you are affected by bugs or even just small annoyances with the package,

@@ -85,7 +85,7 @@
 <p>The support requests that ripple in tell a different story, though. Time and time again, <code>RLum-class</code> objects seem to be perceived as an obstacle to overcome and work around, without showing any appreciation. This perception likely stems from our failure to highlight their advantages and even prioritise other features, such as allowing <code>subset()</code> to operate <em>Analyst</em>-like directly on <code>RisoeBINfileData</code> objects.</p>
 <p>Although this is not the appropriate place to delve deeply into the intricate details of <code>RLum-class</code> objects, I would like to demonstrate the utilisation of two new functions we have developed as part of the <a href="/REPLAY-website/about/">REPLAY</a> project, which will
 be included in an upcoming version of <code>'Luminescence'</code>. Here we discuss the <code>RLum-class</code> objects and their inherent advantages when used in analysis pipelines.</p>
-<h3 id="background-the-rlum-class-object-structure-concept">Background: the <code>RLum-class</code> object structure concept</h3>
+<h2 id="background-the-rlum-class-object-structure-concept">Background: the <code>RLum-class</code> object structure concept</h2>
 <p><em>Just skip this part, if you are already familiar with <code>RLum-class</code> objects.</em></p>
 <p>While the details are tricky, the concept of the <code>RLum-class</code> objects is simple. They
 aim to provide a unified data structure that works regardless of the function and data used,
@@ -142,7 +142,7 @@ Typical functions you may have already encountered are <code>get_RLum()</code> f
 combining them, or <code>plot_RLum()</code> for a quick visualisation.
 However, <code>'Luminescence'</code> has more to offer and the real miracle happens when you start reshuffling and combing records. To date there are at least 26 functions in <code>'Luminescence'</code> designed to do something with <code>RLum-class</code> objects.
 Let&rsquo;s focus on two newcomers.</p>
-<h3 id="remove_rlum"><code>remove_RLum()</code></h3>
+<h2 id="remove_rlum"><code>remove_RLum()</code></h2>
 <p>A rather typical scenario you may eventually encounter is having a set of records imported
 from a measurement file (e.g., <code>.BINX</code>, <code>.XSYG</code>), but you need to get rid of some
 of the records because they are not required for the analysis or perhaps are
@@ -163,7 +163,7 @@ even more if used in a chained analysis,</p>
 </span></span></code></pre></div><p>which reads cleaner than</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>SAR <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">import_Data</span>(<span style="color:#e6db74">&#34;SAR.xsyg&#34;</span>) <span style="color:#f92672">|&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">get_RLum</span>(recordType <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;TL&#34;</span>, <span style="color:#e6db74">&#34;OSL&#34;</span>), drop <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
-</span></span></code></pre></div><h3 id="sort_rlum"><code>sort_RLum()</code></h3>
+</span></span></code></pre></div><h2 id="sort_rlum"><code>sort_RLum()</code></h2>
 <p>A more intricate scenario emerges when considering the reshuffling of records within a data set.
 If this is not a requirement for you, you may be among the exceptionally rare luminescence dating practitioners who have never encountered a failed measurement, and your meticulous record-keeping practices and absence of errors are noteworthy.</p>
 <p>Imagine we have multiple files to import from a fading measurement. In order
@@ -199,7 +199,7 @@ using the <code>SAR</code> record from above, you can write:</p>
 </code></pre><p>Moreover, the sort function calculates new info elements that are available automatically,
 such as <code>XY_LENGTH</code>, <code>NCOL</code>, <code>X_MIN</code>, <code>X_MAX</code>, <code>Y_MIN</code>, <code>Y_MAX</code>, and this
 while maintaining a consistent object structure independent of the import data format.</p>
-<h3 id="take-home-message">Take home message</h3>
+<h2 id="take-home-message">Take home message</h2>
 <p>With the provided example, I tried to shed some light on the rationale behind our
 efforts to enhance the handling of <code>RLum-class</code> objects within the REPLAY project.
 Indeed, it makes sense to think about it and include them in our luminescence data analysis.</p>

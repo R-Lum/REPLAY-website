@@ -93,7 +93,7 @@ manual intervention) go through all the functions in the package and being
 told which are the ones that need to be fixed?</p>
 <p>This got me to think about <strong>fuzz testing</strong>, and how that approach could be
 adapted for my purposes.</p>
-<h3 id="fuzz-testing">Fuzz testing</h3>
+<h2 id="fuzz-testing">Fuzz testing</h2>
 <p><a href="https://en.wikipedia.org/wiki/Fuzzing">Fuzz testing</a> is a software testing technique that generates random,
 unexpected or malformed data and feeds them into a program. By observing
 how the software behaves under such conditions, this approach may uncover
@@ -112,7 +112,7 @@ positives. Reporting all errors produced is not particularly helpful, as
 some errors are expected or they have already been handled, and therefore
 don&rsquo;t need to be looked at again. How do we know if an error reported is
 something we should be worrying about?</p>
-<h3 id="how-luminescence-reports-errors">How <code>Luminescence</code> reports errors</h3>
+<h2 id="how-luminescence-reports-errors">How <code>Luminescence</code> reports errors</h2>
 <p>The functions in <code>Luminescence</code>are instrumented with a simple but effective
 error report interface. Whenever a user-facing function throws an error that
 the developer had expected (and handled), it also reports the function&rsquo;s name
@@ -142,7 +142,7 @@ that possibility and wrote the code defensively against that type of failure.
 Such errors can be considered <em>handled</em> and can be suppressed from the
 output. This has the big advantage of leaving a minimal number of cases to be
 investigated after fuzzing.</p>
-<h3 id="caught-by-the-fuzz">Caught by the Fuzz!</h3>
+<h2 id="caught-by-the-fuzz">Caught by the Fuzz!</h2>
 <p>The <a href="https://github.com/mcol/caught-by-the-fuzz/blob/v0.1.0/R/fuzz.R">initial implementation</a> of our fuzz-testing approach was really
 straightforward and fit in about 50 lines of R code. Indeed, it is simply a
 matter of calling each function in the package with a given input (one that

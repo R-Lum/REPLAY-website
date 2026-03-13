@@ -24,7 +24,7 @@ adapted for my purposes.
 
 <!--more-->
 
-### Fuzz testing
+## Fuzz testing
 
 [Fuzz testing][fuzz] is a software testing technique that generates random,
 unexpected or malformed data and feeds them into a program. By observing
@@ -48,7 +48,7 @@ some errors are expected or they have already been handled, and therefore
 don't need to be looked at again. How do we know if an error reported is
 something we should be worrying about?
 
-### How `Luminescence` reports errors
+## How `Luminescence` reports errors
 
 The functions in `Luminescence`are instrumented with a simple but effective
 error report interface. Whenever a user-facing function throws an error that
@@ -95,7 +95,7 @@ Such errors can be considered *handled* and can be suppressed from the
 output. This has the big advantage of leaving a minimal number of cases to be
 investigated after fuzzing.
 
-### Caught by the Fuzz!
+## Caught by the Fuzz!
 
 The [initial implementation][v010] of our fuzz-testing approach was really
 straightforward and fit in about 50 lines of R code. Indeed, it is simply a

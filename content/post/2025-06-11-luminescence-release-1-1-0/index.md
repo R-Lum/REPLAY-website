@@ -21,7 +21,7 @@ during this release cycle.
 
 <!--more-->
 
-### New functions
+## New functions
 
 There are two new functions that have entered the already large family
 of `Luminescence` functions to provide some convenient tools to manipulate
@@ -45,7 +45,7 @@ to remove unwanted records from datasets. For more insight on how this and
 its associated methods could help in your analysis pipelines,
 [read the detailed article][rlum].
 
-### Graphical improvements
+## Graphical improvements
 
 The work on `RLumShiny` focused primarily on these functions:
 
@@ -82,7 +82,7 @@ However, the final outcome is much better than before:
 
 ![pIRIR](pIRIR.png "Current output of analyse_pIRIRSequence()")
 
-### Stability and performance improvements
+## Stability and performance improvements
 
 Besides the number of crashes discovered by using `RLumShiny`, there are a
 few cases where we improved stability and performance of the package.
@@ -112,7 +112,7 @@ A small speed-up was obtained for `read_XSYG2R()` for files where the detector
 is not a spectrometer. This came about after noticing that a computation
 occurred twice ([issue 753][iss753]).
 
-### Other changes
+## Other changes
 
 Although package coverage was already very high for the 1.0.1 release (99.3%),
 and it was not something we actively pursued, we managed to make some further
@@ -136,7 +136,7 @@ allows us to see quickly the impact the proposed changes, which is especially
 helpful to make sure that we don't commit changes without noticing unintended
 modifications.
 
-### Upcoming work
+## Upcoming work
 
 As already anticipated above, we'll soon bring about a new RLumShiny release,
 and that's where our focus will move to in the short term.

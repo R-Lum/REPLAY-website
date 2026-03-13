@@ -19,7 +19,7 @@ in 523 commits.
 
 <!--more-->
 
-### Regression fixes
+## Regression fixes
 
 During this release cycle we became aware of a couple of small regression.
 
@@ -61,7 +61,7 @@ we didn't notice that `mode = "extrapolation"` had not been taken care of.
 We have carefully reviewed all cases, and hopefully this problem has now been
 fixed for real.
 
-### Graphical improvements
+## Graphical improvements
 
 A large number of small improvements to plots have occurred, so below we
 present only a selection of the most interesting ones.
@@ -130,7 +130,7 @@ The table below reports the object file sizes in bytes for the C++ engine of
 |  v1.1.1 | 2,106,752 | 2,927,720 |
 |  v1.1.2 | 1,453,320 | 2,527,904 |
 
-### Test parallelization
+## Test parallelization
 
 Our testsuite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
 largest increase being in the number of graphical snapshots (from 90 to 154)
@@ -203,7 +203,7 @@ continuous integration infrastructure where, although only 2 cores can be used,
 test times (including building the package and its dependencies and coverage
 analysis) have gone from about 17m to about 11m.
 
-### Function removals and deprecations
+## Function removals and deprecations
 
 One of the ambitious goals of the REPLAY project is to ensure that the package
 will stay alive for the next 10 years. To achieve this we need to ensure that
@@ -237,7 +237,7 @@ since 1.0.0) have been removed, but their functionality remains in the
 corresponding `convert_CW2pHMi()`, `convert_CW2pLM()`, `convert_CW2pLMi()` and
 `convert_CW2pPMi()` functions.
 
-### Upcoming work
+## Upcoming work
 
 We foresee for the next release to have a few new functions added to the
 package, as well as even more cosmetic and stability improvements.
