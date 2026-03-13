@@ -6,8 +6,15 @@
     <description>Recent content in Luminescence on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/categories/luminescence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Luminescence Release 1.2.0</title>
+      <link>/REPLAY-website/post/2026/03/luminescence-release-1.2.0/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2026/03/luminescence-release-1.2.0/</guid>
+      <description>&lt;p&gt;We are very excited to announce the release of &lt;strong&gt;version 1.2.0&lt;/strong&gt; of the&#xA;&lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt;. This is a major release that, once again,&#xA;comes exactly 3 months after our &lt;a href=&#34;/REPLAY-website/post/2025/12/luminescence-release-1.1.2/&#34;&gt;previous release&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;There are a lot of exciting things to discuss about this release, many of&#xA;which related to consistency in function argument names and behaviour, but&#xA;also new functionalities and some quality of life improvements. In total we&#xA;solved a total of 112 issues in 415 commits.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Second REPLAY annual meeeting</title>
       <link>/REPLAY-website/post/2026/03/second-replay-annual-meeeting/</link>
@@ -20,7 +27,7 @@
       <link>/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/</link>
       <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
       <guid>/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/</guid>
-      <description>&lt;p&gt;The next release of &lt;code&gt;Luminescence&lt;/code&gt; (which we expect towards the end of February)&#xA;will bring some small but potentially breaking changes to users. This post is&#xA;meant to give some advance warnings and provide solutions so that updating&#xA;the package version will not cause excessive pain.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;a href=&#34;/REPLAY-website/post/2026/03/luminescence-release-1.2.0/&#34;&gt;next release of &lt;code&gt;Luminescence&lt;/code&gt;&lt;/a&gt; (which we expect in March)&#xA;will bring some small but potentially breaking changes to users. This post is&#xA;meant to give some advance warnings and provide solutions so that updating&#xA;the package version will not cause excessive pain.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Luminescence Release 1.1.2</title>

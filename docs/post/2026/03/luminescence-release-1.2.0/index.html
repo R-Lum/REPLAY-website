@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luminescence Release 1.2.0 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Luminescence version 1.2.0">
+		<meta property="og:url" content="/REPLAY-website/post/2026/03/luminescence-release-1.2.0/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Luminescence Release 1.2.0">
+  <meta property="og:description" content="Luminescence version 1.2.0">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-03-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-12T00:00:00+00:00">
+    <meta property="og:image" content="/REPLAY-website/post/2026/03/luminescence-release-1.2.0/coverage.png">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Luminescence Release 1.2.0</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2026-03-12T00:00:00Z">12 March 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>We are very excited to announce the release of <strong>version 1.2.0</strong> of the
+<a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>. This is a major release that, once again,
+comes exactly 3 months after our <a href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">previous release</a>.</p>
+<p>There are a lot of exciting things to discuss about this release, many of
+which related to consistency in function argument names and behaviour, but
+also new functionalities and some quality of life improvements. In total we
+solved a total of 112 issues in 415 commits.</p>
+<h2 id="breaking-changes">Breaking changes</h2>
+<p>Decisions to make breaking changes are never taken lightly, as we are aware of
+the potential problems and frustration that may cause to users. However, they
+are at times inevitable, if we want to make the package more consistent and
+future-proof.</p>
+<p>In many cases, it&rsquo;s possible for us to devise some way to keep both old and
+new behaviour alive simultaneously (at least for a while), but as it happens,
+this was not a possibility for the type of changes we had to introduce this
+time.</p>
+<p>Already almost two months ago we have written <a href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">a post about the breaking changes</a>
+that we this release brings. So I invite you to make yourself familiar with
+them, so that you&rsquo;ll be able to recognise if you could be affected by them.</p>
+<h2 id="new-functions">New functions</h2>
+<p>This release adds two new functions to the already vast set of functionality
+provided by the package.</p>
+<h3 id="normalise_rlum"><code>normalise_RLum()</code></h3>
+<p>The new <code>normalise_RLum()</code> enables to normalise <code>RLum.Data.Curve</code>,
+<code>RLum.Data.Spectrum</code>, <code>RLum.Data.Image</code> and <code>RLum.Analysis</code> objects in a
+consistent way. This functionality is not entirely new to the package, as it
+was already used in some of the plotting functions (such as
+<code>plot_RLum.Data.Curve()</code>). However, it was not possible to normalise an object
+for further analyses, but now the new function exposes this functionality.</p>
+<p>A number of different normalisation methods are implemented, and can be
+controlled via the <code>norm</code> argument. The default setting (which corresponds to
+<code>norm = &quot;max&quot;</code> or <code>norm = TRUE</code>) corresponds to normalising to the highest
+value, and this is what is usually meant by normalisation.</p>
+<p>However, there are instances in which it may be helpful to normalise according
+to something different, such as the minimum (<code>&quot;min&quot;</code>), <code>&quot;first&quot;</code>, or <code>&quot;last&quot;</code>
+value; or, perhaps, according to a numerical value set manually (for example,
+<code>norm = 1.2</code>).</p>
+<p>Setting <code>norm = &quot;huot&quot;</code> activates a normalisation approach suggested by
+Sebastien Huot, which defines a background by taking the last 20% of the
+values and normalises according to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>y <span style="color:#f92672">=</span> (y <span style="color:#f92672">-</span> <span style="color:#a6e22e">median</span>(background)) <span style="color:#f92672">/</span> (<span style="color:#a6e22e">max</span>(y) <span style="color:#f92672">-</span> <span style="color:#a6e22e">median</span>(background))
+</span></span></code></pre></div><p>Entirely new for this release is <code>norm = &quot;intensity&quot;</code>, which normalises to
+the channel length. This currently does not support <code>RLum.Data.Image</code> objects.</p>
+<h3 id="read_binxlog2r"><code>read_BINXLOG2R()</code></h3>
+<p>Risø readers generate a log file alongside a BIN/BINX file. The log file
+stores enough information to allow recovery of the BIN/BINX files if they get
+lost or corrupted.</p>
+<p>The new <code>read_BINXLOG2R()</code> function can process these log files and import
+them as standard <code>RLum</code> type objects. Then, it&rsquo;s possible to regenerate the
+BIN/BINX file with <code>write_R2BIN()</code> function.</p>
+<p>The log file format is not well-defined, so there are a number of caveats for
+this function. First of all, only TL, OSL and IRSL formats are recognised and
+implemented, while all other formats will be ignored. For TL curve extraction,
+the function always assumes to be dealing with BIN-files version 3, which
+should be fine in general, but may become problematic for dedicated curve
+analyses. Moreover, the format of the log may change without warning through
+time.</p>
+<p>Theefore the function is provided as a last-attempt resort to recover some
+otherwise lost data, but with no guarantees that it will work in all cases.</p>
+<h2 id="new-ways-of-specifying-integrals">New ways of specifying integrals</h2>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1290">issue 1290</a> we recognised that the way of setting integrals was
+highly inconsistent in the package. Over the 12 functions that could deal with
+integrals, we spotted in total 8 different combinations of argument names and
+behaviour. Moreover, integral arguments were always validated in ad-hoc ways,
+and with inconsistent level of carefulness.</p>
+<p>For example, <code>analyse_SAR.CWOSL()</code> used to require four arguments
+(<code>signal.integral.min</code>, <code>signal.integral.max</code>, <code>background.integral.min</code> and
+<code>background.integral.max</code>), which could be either one or two values, with the
+second value being used for the Tx curves. On the other hand, <code>analyse_baSAR()</code>
+used <code>signal.integral</code> and <code>background.integral</code> (and, separately,
+<code>signal.integral.Tx</code> and <code>background.integral.Tx</code>) which could be vectors.
+This called for some consolidation.</p>
+<p>In v1.2.0 the new argument names will be <code>signal_integral</code> and <code>background_integral</code>
+(with <code>signal_integral_Tx</code> and <code>background_integral_Tx</code> where supported). In
+all cases, they accept vector inputs. So, for example, to consider the first
+5 channels for the signal and channels 900 to 1000 for the background, the
+input should be specified as</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>signal_integral <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>, background_integral <span style="color:#f92672">=</span> <span style="color:#ae81ff">900</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1000</span>
+</span></span></code></pre></div><p>This uniformity allows us to validate integrals more consistently throughout
+the package, having moved all the validation steps into a single internal
+helper function.</p>
+<p>This change has been quite invasive, especially as we tried to maintain
+backward compatibility. This means that using the old argument names will still
+work, although it will generate a deprecation warning. However, we do not
+support a mix of old and new names: we don&rsquo;t see why anyone would want to do
+that, so in that case we stop with a clear error message.</p>
+<p>Converting from the old to the new style of arguments is in general
+straightforward, and consists of two simple steps:</p>
+<ol>
+<li>Rename the arguments: often this means replacing <code>.</code> with <code>_</code> and removing
+<code>.min</code> or <code>.max</code> from the argument name, if present.</li>
+<li>Set the argument values: this requires a little more attention, as in some
+cases the old arguments used to specify the extremes, but now we need the
+whole range.</li>
+</ol>
+<p>Note that now specifying <code>signal_integral = c(1, 5)</code> will trigger a warning,
+as it&rsquo;s likely that this was meant to be <code>1:5</code>. No warning is produced if
+the two values are consecutive, such as in <code>c(1, 2)</code>.</p>
+<p>An unexpected, but very welcome, outcome of the work of converting functions
+to the new style was discovering that <code>analyse_Al2O3C_ITC()</code> and
+<code>analyse_Al2O3C_CrossTalk()</code> didn&rsquo;t actually use the integrals in the
+computations. This has now been fixed, so that future computations with these
+functions will be correct.</p>
+<h3 id="choosing-channels-according-to-timetemperature">Choosing channels according to time/temperature</h3>
+<p>Until now, with the exception of <code>analyse_SAR.TL()</code>, there was no way to
+specify integrals other than by channel. However, it may be more convenient
+to users to be able to specify integrals in terms of seconds or degree Celsius.</p>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1396">issue 1396</a>, we have added the new <code>integral_input</code> option to all
+functions that use integrals. This defaults to <code>&quot;channels&quot;</code>, but can also be
+set to <code>&quot;measurement&quot;</code>, in which case the values given to <code>signal_integral</code>
+and <code>background_integral</code> are interpreted as temperature (for TL curves) or
+time (for OSL/IRSL curves). In this latter case, the values provided are
+matched automatically to the measurement range of the object being analysed,
+and from that we can work out the corresponding channels.</p>
+<p>This should make life a bit easier and less error-prone in case curves were
+analysed with differing channel resolutions.</p>
+<h2 id="improvements-in-analyse_sarcwosl">Improvements in <code>analyse_SAR.CWOSL()</code></h2>
+<p>These are a number of noteworthy changes affecting <code>analyse_SAR.CWOSL()</code> for
+the better.</p>
+<p>The most directly user-visible is that the function  will now automatically
+remove the technical curves generated when reading XSYG files. These are marked
+by an <code>_</code> at the start of their <code>recordType</code> (as described in the
+<a href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">breaking changes post</a>). This means that users have one fewer step to
+do before being able to run the function.</p>
+<p>The new <code>dose_rate_source</code> argument allows to specify the source dose rate
+(typically Gy/s). When that is specified, doses will be converted to grays,
+and plots will display values in Gy rather than seconds. This should avoid
+some annoying work on the part of the user, which was previously inconvenient.</p>
+<p>Given to enhancements in <code>calc_OSLLxTxRatio</code>, we could add a new signal-to-noise
+ratio rejection criterion. The default threshold (currently at 50) can be
+controlled by setting <code>rejection.criteria = list(sn.ratio = 75)</code>. It is also
+possible to change the reference curve from the natural to any other curve,
+for example <code>rejection.criteria = list(rn_reference = &quot;R0&quot;)</code>.</p>
+<p>Speaking still of rejection criteria, it is now possible to consider value
+uncertainties in the computation of some rejection criteria (currently
+<code>recycling.ratio</code>, <code>recuperation.rate</code> and <code>exceed.max.point</code>) by setting
+<code>rejection.criteria = list(consider_uncertainties = TRUE)</code>. By default,
+uncertainties are not considered to preserve the current behaviour. However,
+this can be of help to distinguish cases in which an aliquot should be
+rightfully rejected from cases in which the computed value has an error margin
+that includes the threshold, and perhaps should not have been rejected.</p>
+<h2 id="validation-of-input-file-names">Validation of input file names</h2>
+<p>Another behind-the-scenes consolidation work concerned the validation of file
+names. The <code>read_*()</code> functions behaved slightly differently with regards what
+they accepted as file argument: in some cases they accepted a filename or a
+list of filenames, other times multiple filenames and lists but also directory
+paths, and in a few cases the input could also be a URL.</p>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1393">issue 1393</a> we introduced a new internal helper to validate file
+names. This allowed us to uniform the checks performed and the error messages
+produced. More importantly, this allowed us to make the behaviour of all import
+functions more consistent.</p>
+<p>This brought us to discover that <code>read_XSYG2R()</code> and <code>read_BIN2R()</code> had a
+different approach with regard to directory traversal: when the <code>file</code> argument
+listed a directory path, the first one traversed it recursively, but the
+second didn&rsquo;t. After the consolidation work, they both work recursively.</p>
+<h2 id="test-coverage-at-100">Test coverage at 100%</h2>
+<p>This release sees the completion of an important milestone for the project:
+our test coverage has reached 100%! The chart below summarizes the progress
+of the last 18 months of work, as presented during our
+<a href="/REPLAY-website/post/2026/03/second-replay-annual-meeeting/">second REPLAY meeting</a>.</p>
+<p><img src="coverage.png" alt="coverage" title="Growth of test coverage during the REPLAY project"></p>
+<p>At the start of the REPLAY project, coverage was already at 75%, which is
+already very good, compared to project of similar size. With version 0.9.25,
+released just over a month after the start of the project, brought coverage to
+95%. By the time we released <a href="/REPLAY-website/post/2025/02/the-road-to-luminescence-1.0/">Luminescence 1.0.0</a>, coverage was at 99.2%.</p>
+<p>Slowly but surely, the number of lines still to reach would go down. In our
+<a href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">previous release (v1.1.2)</a>, coverage was at 99.9%, which meant that
+there were only 5 lines that could not be reached by our tests. With a little
+code refactoring and some additional tests, we reached the long-awaited goal
+of 100%.</p>
+<p>At that point we could tighten up the test-coverage continuous integration
+workflow so that it would fail whenever any line of code does not get any
+coverage. We certainly didn&rsquo;t expect to see our first run under this new
+regime to fail, but that&rsquo;s exactly what happened.</p>
+<p>It turns out that our online coverage-tracking tool counted lines differently
+from the <code>covr</code> package, and in reality there were still 6 lines with no
+coverage, all of the form:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (condition) a <span style="color:#66d9ef">else</span> b
+</span></span></code></pre></div><p>These were easily addressed, and since then we have always stayed at 100%! And
+thanks to the workflow changes mentioned before, regressions of this metric
+will not go unnoticed in the future.</p>
+<p>This milestone is purely symbolic: having complete coverage doesn&rsquo;t mean that
+our code is perfect, nor that our tests are good enough. It&rsquo;s just a way of
+guiding the developer to pay attention to code paths that are not tested yet
+or that, perhaps, at some point become redundant.</p>
+<p>In this release there has been also a massive increase (over 13%) in number of
+tests, with the numerical snapshots having grown the most (by 20%):</p>
+<p><img src="test_size.png" alt="test_size" title="Growth in number of tests during the REPLAY project"></p>
+<h2 id="other-changes">Other changes</h2>
+<ul>
+<li>
+<p>With a number of [code][i263] [contributions][1266] by Andrzej Bluszcz,
+<code>read_Daybreak2R()</code> has been made way more correct and reliable. Before, our
+implementation was based on a very small number of example and some form of
+reverse engineering. Andrzej&rsquo;s insight and skill have brought new life into
+this function.</p>
+</li>
+<li>
+<p>A number of improvements have been made to <code>calc_MinDose()</code>, in particular
+with respect to its bootstrap mode. Some of the quantities computed during
+bootstrap were not correctly stored in the resulting object, and also the
+output was somewhat misleading. This led also to a number of internal fixes
+that revealed potential errors in its sister function, <code>calc_MaxDose()</code>. We
+still have some work to do to fully implement the original approach by
+Cunningham and Wallinga (2012), but this was a big already a noticeable
+improvement.</p>
+</li>
+<li>
+<p>The package no longer depends on <code>RcppArmadillo</code>. This was previously used
+because some of the most computationally expensive code in <code>analyse_IRSAR.RF()</code>
+is written in C++, and <code>RcppArmadillo</code> provided a C++ implementation of the
+<code>sample()</code> function. Due to work in <a href="https://github.com/R-Lum/Luminescence/issues/1254">issue 1254</a> we&rsquo;ve been able to
+remove this dependency, as well as halving the size of C++ object file and
+cutting the size of the <code>Luminescence.so</code> shared library by 20%.</p>
+</li>
+</ul>
+<h2 id="get-in-touch">Get in touch!</h2>
+<p>Some of the changes discussed above (and a few more that we do not have enough
+time to recount), come directly from user contributions or bug reports. So
+it&rsquo;s important to get in touch with us whenever something doesn&rsquo;t quite work
+according your expectations, or you believe (or just dream) that they could be
+better.</p>
+<p>Whenever flaws (however small) are pointed out to us, we not only try to fix
+the issue at hand, but in doing so we often end up discovering other possible
+improvements. So, don&rsquo;t be shy and get in touch (via <a href="https://github.com/R-Lum/Luminescence/issues/">GitHub</a> or via
+email): the gains will be experienced not only by you, but by the entire
+community.</p>
+<h2 id="upcoming-work">Upcoming work</h2>
+<p>We have some new functionality planned for the next release, along with the
+usual robustness and correctness fixes that we may discover as we continue
+scrutinizing the package codebase. If we get to replicate what happened for
+the 1.1.0 series of releases, then we have a period of relative stability (no
+breaking changes!) ahead of us. Of course, plans may change and we may not be
+able to keep our promise, but right now that&rsquo;s what the next few months look
+like.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/03/luminescence-release-1.2.0/">Luminescence Release 1.2.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/03/second-replay-annual-meeeting/">Second REPLAY annual meeeting</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/">RLumShiny Release 0.2.7</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">Upcoming breaking changes in Luminescence</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">Luminescence Release 1.1.2</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/new-replay-website-url/">New REPLAY website URL</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/luminescence-release-1.1.1/">Luminescence Release 1.1.1</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>

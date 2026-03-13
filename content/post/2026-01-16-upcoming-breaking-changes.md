@@ -7,7 +7,7 @@ author: Marco Colombo
 description: 'Breaking changes in Luminescence with high impact to users'
 ---
 
-The next release of `Luminescence` (which we expect towards the end of February)
+The [next release of `Luminescence`][v120] (which we expect in March)
 will bring some small but potentially breaking changes to users. This post is
 meant to give some advance warnings and provide solutions so that updating
 the package version will not cause excessive pain.
@@ -211,6 +211,7 @@ no `name` field. Instead of that there will be separate `sequenceName` and
 `recordName` fields.
 
 
+[v120]:    {{< ref "post/2026-03-12-luminescence-release-1-2-0/" >}}
 [iss1239]: https://github.com/R-Lum/Luminescence/issues/1239
 [iss1275]: https://github.com/R-Lum/Luminescence/issues/1275
 [iss1276]: https://github.com/R-Lum/Luminescence/issues/1276
