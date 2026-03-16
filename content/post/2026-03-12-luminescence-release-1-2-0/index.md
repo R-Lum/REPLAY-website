@@ -257,7 +257,7 @@ tests, with the numerical snapshots having grown the most (by 20%):
 
 ## Other changes
 
-- With a number of [code][i263] [contributions][1266] by Andrzej Bluszcz,
+- With a number of [code][i1263] [contributions][i1266] by Andrzej Bluszcz,
   `read_Daybreak2R()` has been made way more correct and reliable. Before, our
   implementation was based on a very small number of example and some form of
   reverse engineering. Andrzej's insight and skill have brought new life into
