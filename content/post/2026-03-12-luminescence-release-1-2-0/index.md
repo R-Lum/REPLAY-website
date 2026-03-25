@@ -14,7 +14,7 @@ comes exactly 3 months after our [previous release][v112].
 There are a lot of exciting things to discuss about this release, many of
 which related to consistency in function argument names and behaviour, but
 also new functionalities and some quality of life improvements. In total we
-solved a total of 112 issues in 415 commits.
+solved 112 issues in 415 commits.
 
 <!--more-->
 
