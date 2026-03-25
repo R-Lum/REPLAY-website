@@ -6,8 +6,15 @@
     <description>Recent content in Posts on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/REPLAY-website/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Luminescence Release 1.2.1</title>
+      <link>/REPLAY-website/post/2026/03/luminescence-release-1.2.1/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/REPLAY-website/post/2026/03/luminescence-release-1.2.1/</guid>
+      <description>&lt;p&gt;Only two weeks after our &lt;a href=&#34;/REPLAY-website/post/2026/03/luminescence-release-1.2.0/&#34;&gt;previous release&lt;/a&gt;, are proud to announce the&#xA;release of &lt;strong&gt;version 1.2.1&lt;/strong&gt; of the &lt;a href=&#34;https://r-lum.github.io/Luminescence/&#34;&gt;Luminescence R package&lt;/a&gt;. This is a&#xA;minor release made upon request by CRAN, as we&amp;rsquo;ll explain further down.&#xA;Nonetheless, there are a few interesting changes and some regression fixes&#xA;(mainly cosmetic) that make it worthwhile to update. In total we solved 25&#xA;issues in 60 commits.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Luminescence Release 1.2.0</title>
       <link>/REPLAY-website/post/2026/03/luminescence-release-1.2.0/</link>

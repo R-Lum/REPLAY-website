@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luminescence Release 1.2.1 - REPLAY</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Luminescence version 1.2.1">
+		<meta property="og:url" content="/REPLAY-website/post/2026/03/luminescence-release-1.2.1/">
+  <meta property="og:site_name" content="REPLAY">
+  <meta property="og:title" content="Luminescence Release 1.2.1">
+  <meta property="og:description" content="Luminescence version 1.2.1">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-03-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-25T00:00:00+00:00">
+    <meta property="og:image" content="/REPLAY-website/post/2026/03/luminescence-release-1.2.1/coverage.png">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/REPLAY-website/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/REPLAY-website/img/favicon.ico">
+		
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/REPLAY-website/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/REPLAY-website/img/REPLAY_claim_colour.png">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/REPLAY-website/team/">
+				
+				<span class="menu__text">REPLAY Team</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Luminescence Release 1.2.1</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0a14 14 0 1 1 0 28 1 1 0 0 1 0-28m0 3a3 3 0 1 0 0 22 3 3 0 0 0 0-22m1 4h-2v8.4l6.8 4.4L22 18l-6-3.8z"/></svg><time class="meta__text" datetime="2026-03-25T00:00:00Z">25 March 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class="meta__text"><a class="meta__link" href="/REPLAY-website/categories/luminescence/" rel="category">Luminescence</a>
+	</span>
+</div><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 16 16"><path d="M8 1c2 0 3.5 2 3.5 4.5S10 9 10 9c3 1 4 2 4 6H2c0-4 1-5 4-6 0 0-1.5-1-1.5-3.5S6 1 8 1"/></svg><span class="meta__text">Marco Colombo</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Only two weeks after our <a href="/REPLAY-website/post/2026/03/luminescence-release-1.2.0/">previous release</a>, are proud to announce the
+release of <strong>version 1.2.1</strong> of the <a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>. This is a
+minor release made upon request by CRAN, as we&rsquo;ll explain further down.
+Nonetheless, there are a few interesting changes and some regression fixes
+(mainly cosmetic) that make it worthwhile to update. In total we solved 25
+issues in 60 commits.</p>
+<h2 id="updates-to-drac">Updates to DRAC</h2>
+<p>As some point during the last couple of weeks, the<a href="https://www.aber.ac.uk/alrl/drac">Dose Rate and Age Calculator (DRAC)</a>
+hosted by the University of Aberystwyth was upgraded from version 1.2 to
+version 1.3 (read here to see <a href="https://www.aber.ac.uk/en/dges/research/quaternary/luminescence-research-laboratory/dose-rate-calculator/?show=news">what has changed in this revision</a>)</p>
+<p>From our side, we only needed to update our code so that we can now accept
+a template file with header pointing to version 1.3. In this sense, the timing
+of our v1.2.1 release was perfect to keep our <code>use_DRAC()</code> function fully
+working with the updated calculator.</p>
+<h2 id="corrections-in-lxtx-calculation">Corrections in Lx/Tx calculation</h2>
+<p>The computation of the Lx/Tx ratios in <code>Luminescence</code> occurs inside the
+<code>calc_OSLLxTxRatios()</code>. Although this is not a function that a user needs to
+call directly very often, it&rsquo;s one that is central to a number of other widely
+employed functions, such as <code>analyse_SAR.CWOSL()</code> and <code>analyse_FadingMeasurement()</code>.</p>
+<h3 id="computation-of-overdispersion">Computation of overdispersion</h3>
+<p>The calculation of the Lx/Tx values had a couple of long-standing bugs that
+affected the results. These were spotted and fixed by Andrzej Bluszcz, who has
+been dissecting the implementation of Galbraith&rsquo;s overdispersion (<code>sigmab</code>)
+calculation in our <code>calc_OSLLxTxRatios()</code> function.</p>
+<p>In that computation, a number of intervals (of length corresponding to the
+signal integral) are generated, and the contribution of the background integral
+in each interval is summed up. However, we used to generate intervals that
+overlapped by one element (the last value in an interval was the same as the
+first value of the next interval), so that some points contributed twice.
+This was fixed in <a href="https://github.com/R-Lum/Luminescence/issues/1495">issue 1495</a>.</p>
+<p>Moreover, the function was also mistakenly reporting <code>sigmab</code> as
+<code>abs(var(Y.i) - mean(Y.i))</code> when instead it should have truncated negative
+values to zero, as in <code>max(var(Y.i) - mean(Y.i), 0)</code>. This means that if the
+mean counts in the intervals are larger than their variance (which is the case,
+for example, when the counts follow a Poisson distribution), <code>sigmab</code> will now
+be computed to be 0 (as it would be expected by the theory), instead of a
+possibly large positive value. This was fixed in <a href="https://github.com/R-Lum/Luminescence/issues/1491">issue 1491</a>.</p>
+<p>These changes affect results generated by <code>analyse_baSAR()</code>,
+<code>analyse_FadingMeasurement()</code>, <code>analyse_SAR.CWOSL()</code>, <code>analyse_pIRIRSequence()</code>
+and <code>plot_DetPlot()</code> as they use <code>calc_OSLLxTxRatios()</code>. Therefore, results
+will no longer correspond exactly to those produced with previous versions,
+although we don&rsquo;t expect differences to be too large.</p>
+<h3 id="computation-of-errors-when-background_integral--na">Computation of errors when <code>background_integral = NA</code></h3>
+<p>In v1.2.0 we added support for setting <code>background_integral = NA</code>, which can
+be used to disable the background integral subtraction. However, when we first
+introduced this feature, the Lx/Tx errors were set to <code>NA</code>, which in turn led
+to miscomputing the <code>De.error</code> as 0 when the dose-response curve were fitted.</p>
+<p>With the changes introduced in <a href="https://github.com/R-Lum/Luminescence/issues/1504">issue 1504</a>, the error calculation is
+instead carried out in a simplified form only considering the error component
+coming from the signal integral. This means that functions such as
+<code>analyse_SAR.CWOSL()</code> can produce a correct <code>De.error</code> also in this setting.</p>
+<h2 id="regression-fixes">Regression fixes</h2>
+<p>In this release we discovered a few graphical bugs that occurred under some
+very specific circumstances. Some of these were due to recent code changes
+that regressed the behaviour of the function in these cases.</p>
+<h3 id="plot_kde"><code>plot_KDE()</code></h3>
+<p>In v1.2.0 we fixed a <a href="https://github.com/R-Lum/Luminescence/issues/1470">bug</a> in <code>plot_KDE()</code> that caused the rug lines to
+be oversized if a dataset was particularly long. While the fix worked well in
+the normal case when only one dataset is provided, it caused the rug to have
+uneven tick lengths if a list of datasets of different size was provided.</p>
+<p><img src="issue-1508.png" alt="issue 1508" title="plot_KDE() showing issue 1508"></p>
+<p>In this case, fixed in <a href="https://github.com/R-Lum/Luminescence/issues/1508">issue 1508</a>, if the size difference in the
+datasets was pronounced, the smaller one would produce very long rug lines.</p>
+<h3 id="plot_drt"><code>plot_DRT()</code></h3>
+<p>While playing with this function via <a href="https://tzerk.github.io/RLumShiny/">RLumShiny</a>, we discovered a
+regression, also introduced in v1.2.0, that caused the summary text to appear
+in black when it should have been using the same colour as the data points.
+This happened only in the very specific case of a dataset that contained a
+number of points equal to the total number of datasets in the input list.</p>
+<p><img src="issue-1516.png" alt="issue 1516" title="plot_DRT() showing issue 1516"></p>
+<p>For example, as show the plot above, if the user submitted a list of two
+datasets and the second contained only two points, then the summary text
+would not respect the colour choice. This was fixed in <a href="https://github.com/R-Lum/Luminescence/issues/1516">issue 1516</a>.</p>
+<p>A different regression, introduced in <a href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">v1.1.2</a>, caused the <code>na.rm</code>
+argument to behave in the opposite way as expected. This has been corrected in
+<a href="https://github.com/R-Lum/Luminescence/issues/1520">issue 1520</a> so that the default setting of <code>na.rm = FALSE</code> will not
+remove the <code>NA</code> values. Moreover, the function no longer crashes if all errors
+are <code>NA</code> and <code>na.rm = FALSE</code>.</p>
+<p>Lastly, although not technically regressions, there are two more fixes worth
+mentioning, which address some long-standing bugs that were uncovered while
+looking carefully at this function&rsquo;s code:</p>
+<ul>
+<li><a href="https://github.com/R-Lum/Luminescence/issues/1518">issue 1518</a>: When a list of datasets was provided, the x-axis ticks
+were drawn only up to the size of the first dataset:</li>
+</ul>
+<p><img src="issue-1518.png" alt="issue 1518" title="plot_DRT() showing issue 1518"></p>
+<ul>
+<li><a href="https://github.com/R-Lum/Luminescence/issues/1522">issue 1522</a>: The function crashed if the data frames in the input
+list didn&rsquo;t have names or if they contained a different number of columns.</li>
+</ul>
+<h2 id="why-a-new-release-so-soon">Why a new release so soon</h2>
+<p>When a package is uploaded to CRAN, a number of automated tests are carried
+out. These range from checking for syntax errors in the code, to verifying that
+the documentation is complete and up to date, to running the examples. These
+checks are quite thorough but also quite simple to get right in most cases.
+What makes them easy, is that they can be run from the command line via <code>R CMD check</code> or directly from R with <code>devtools::check()</code>.</p>
+<p>For a package that, like <code>Luminescence</code>, is used by other packages, CRAN
+performs the so called &ldquo;reverse dependency check&rdquo;, to verify that an update to
+a package doesn&rsquo;t cause failures in the packages that use it. This step is
+slightly more involved, as the dependencies must be downloaded and built
+against the new package version.</p>
+<p>In some cases, getting the reverse dependency check to pass requires
+coordination with other package maintainers, as it happened for us in the
+previous release. As that release introduced <a href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">some breaking changes</a>
+that affected the <a href="https://cran.r-project.org/web/packages/OSLdecomposition/">OSLdecomposition</a> package, we had to wait for a
+new version of that to reach CRAN before we could submit our package. All in
+all, that process worked out smoothly.</p>
+<p>However, a couple of days after the v1.2.0 release, we received a message
+from CRAN asking us to fix some C++ code and to resubmit within two weeks. That
+was the result of yet another automated check: this one, however, is performed
+after a package has already been published on CRAN, and it generally happens
+quite silently, so that it was not even obvious that it happened at all.</p>
+<p>It turns out that packages that include C++ code are verified with the
+<a href="https://www.valgrind.org/">valgrind</a> memory debugger. This is a tool that instruments the C++
+code so that each memory allocation and deallocation can be inspected in
+detail. This allows, for example, to discover cases when a variable is used
+before being initialised.</p>
+<p>That&rsquo;s exactly what our problem was:</p>
+<pre tabindex="0"><code>Conditional jump or move depends on uninitialised value(s)
+   at 0x17CC245E: analyse_IRSARRF_SRS (packages/tests-vg/Luminescence/src/src_analyse_IRSARRF_SRS.cpp:84)
+   by 0x17CB49EC: _Luminescence_analyse_IRSARRF_SRS (packages/tests-vg/Luminescence/src/RcppExports.cpp:67)
+   by 0x4A7FCD: R_doDotCall (svn/R-devel/src/main/dotcode.c:766)
+   by 0x4E2083: bcEval_loop (svn/R-devel/src/main/eval.c:8682)
+   by 0x4F21D7: bcEval (svn/R-devel/src/main/eval.c:7515)
+   by 0x4F21D7: bcEval (svn/R-devel/src/main/eval.c:7500)
+   by 0x4F250A: Rf_eval (svn/R-devel/src/main/eval.c:1167)
+   by 0x4F428D: R_execClosure (svn/R-devel/src/main/eval.c:2389)
+   by 0x4F4F46: applyClosure_core (svn/R-devel/src/main/eval.c:2302)
+   by 0x4F781E: Rf_applyClosure (svn/R-devel/src/main/eval.c:2324)
+   by 0x4F781E: R_forceAndCall (svn/R-devel/src/main/eval.c:2456)
+   by 0x42C17E: do_lapply (svn/R-devel/src/main/apply.c:75)
+   by 0x53AF14: do_internal (svn/R-devel/src/main/names.c:1411)
+   by 0x4E3EB1: bcEval_loop (svn/R-devel/src/main/eval.c:8152)
+ Uninitialised value was created by a stack allocation
+   at 0x17CC226A: analyse_IRSARRF_SRS (packages/tests-vg/Luminescence/src/src_analyse_IRSARRF_SRS.cpp:34)
+</code></pre><p>Now, that output is quite scary, as it traces how a certain piece of memory
+is passed from function to function within R itself. Luckily, it points out
+the precise line number of the first occurrence in which an uninitialised
+block of memory is read. In the specific, this happened in the <code>Luminescence</code>
+C++ function that powers <code>analyse_IRSAR.RF()</code>:</p>
+<pre tabindex="0"><code>at 0x17CC245E: analyse_IRSARRF_SRS (packages/tests-vg/Luminescence/src/src_analyse_IRSARRF_SRS.cpp:84)
+</code></pre><p>Indeed, parts of that function were rewritten in <a href="https://github.com/R-Lum/Luminescence/issues/1254">issue 1254</a> to remove
+our dependency on the <code>RcppArmadillo</code> package. In particular, the allocation
+from some work arrays was changed from</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>arma<span style="color:#f92672">::</span>vec<span style="color:#f92672">::</span>fixed<span style="color:#f92672">&lt;</span>two_size<span style="color:#f92672">&gt;</span> t_leftright;
+</span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> t_leftright[two_size];
+</span></span></code></pre></div><p>This change seems quite harmless, however it hides a potential bug that
+<code>valgrind</code> was able to spot. The issue is that the allocation with <code>arma::vec</code>
+initialises the vector elements to zero, while the manual allocation doesn&rsquo;t.
+In general, this would not be a problem, as the initialisation was done a few
+lines below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span> <span style="color:#66d9ef">if</span> (v_length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>   t_leftright[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> v_length<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>   t_leftright[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v_length<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>However, the values would still be uninitialized in the extremely unlikely case
+when <code>v_length = 1</code>, which happens only if <code>analyse_IRSAR.RF()</code> is called with
+<code>n.MC = 1</code> (that is, only one Monte Carlo iteration).</p>
+<p>The fix, documented in <a href="https://github.com/R-Lum/Luminescence/issues/1479">issue 1479</a>, was actually very simple, as it
+only required intialising the work array upon allocation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> t_leftright[two_size] <span style="color:#f92672">=</span> {};
+</span></span></code></pre></div><p>The last step was to try running <code>valgrind</code> locally on the same example and
+see if the previously reported problem was correctly fixed. This required
+installing <code>valgrind</code> itself, then open an R session with this command:</p>
+<pre tabindex="0"><code>R --debugger=valgrind
+</code></pre><p>When all memory allocations are tracked, the execution becomes much slower, so
+that even loading the <code>Luminescence</code> package takes several seconds. However,
+with a bit of patience, we could verify that the correction above was
+sufficient to fix the problem reported by CRAN.</p>
+<h2 id="upcoming-work">Upcoming work</h2>
+<p>This release came as a suprise. We expect to be back on the usual release
+schedule, during which we are planning to add some new functionality as well
+as continuing to ensure stability and correctness of the package.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/REPLAY-website/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/03/luminescence-release-1.2.1/">Luminescence Release 1.2.1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/03/luminescence-release-1.2.0/">Luminescence Release 1.2.0</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/03/second-replay-annual-meeeting/">Second REPLAY annual meeeting</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/rlumshiny-release-0.2.7/">RLumShiny Release 0.2.7</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2026/01/upcoming-breaking-changes-in-luminescence/">Upcoming breaking changes in Luminescence</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/12/luminescence-release-1.1.2/">Luminescence Release 1.1.2</a></li>
+			<li class="widget__item"><a class="widget__link" href="/REPLAY-website/post/2025/09/new-replay-website-url/">New REPLAY website URL</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/luminescence/">Luminescence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/rlumshiny/">RLumShiny</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/REPLAY-website/categories/website/">Website</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 REPLAY.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/REPLAY-website/js/menu.js"></script>
+</body>
+</html>
