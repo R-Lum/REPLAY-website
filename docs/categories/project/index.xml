@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Website on REPLAY</title>
-    <link>/REPLAY-website/categories/website/</link>
-    <description>Recent content in Website on REPLAY</description>
+    <title>Project on REPLAY</title>
+    <link>/REPLAY-website/categories/project/</link>
+    <description>Recent content in Project on REPLAY</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/REPLAY-website/categories/website/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/REPLAY-website/categories/project/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>New REPLAY website URL</title>
       <link>/REPLAY-website/post/2025/09/new-replay-website-url/</link>

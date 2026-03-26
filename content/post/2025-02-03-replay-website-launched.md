@@ -2,7 +2,7 @@
 title: REPLAY website launched
 date: '2025-02-03'
 categories:
-  - 'website'
+  - ' project' # keep the space at the start to sort the category first
 author: Marco Colombo
 description: 'Launch of the REPLAY website'
 ---

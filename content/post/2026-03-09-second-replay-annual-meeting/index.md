@@ -2,7 +2,7 @@
 title: Second REPLAY annual meeeting
 date: '2026-03-09'
 categories:
-  - 'Luminescence'
+  - ' project' # keep the space at the start to sort the category first
 author: Thomas Kolb
 description: 'Second annual meeting at Schloss Rauischholzhausen'
 ---
