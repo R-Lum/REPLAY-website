@@ -7,7 +7,7 @@ author: Marco Colombo
 description: 'Luminescence version 1.2.1'
 ---
 
-Only two weeks after our [previous release][v120], are proud to announce the
+Only two weeks after our [previous release][v120], we are proud to announce the
 release of **version 1.2.1** of the [Luminescence R package][lumi]. This is a
 minor release made upon request by CRAN, as we'll explain further down.
 Nonetheless, there are a few interesting changes and some regression fixes
