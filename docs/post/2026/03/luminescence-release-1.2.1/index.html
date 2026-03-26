@@ -89,9 +89,9 @@ Nonetheless, there are a few interesting changes and some regression fixes
 (mainly cosmetic) that make it worthwhile to update. In total we solved 25
 issues in 60 commits.</p>
 <h2 id="updates-to-drac">Updates to DRAC</h2>
-<p>As some point during the last couple of weeks, the<a href="https://www.aber.ac.uk/alrl/drac">Dose Rate and Age Calculator (DRAC)</a>
+<p>As some point during the last couple of weeks, the <a href="https://www.aber.ac.uk/alrl/drac">Dose Rate and Age Calculator (DRAC)</a>
 hosted by the University of Aberystwyth was upgraded from version 1.2 to
-version 1.3 (read here to see <a href="https://www.aber.ac.uk/en/dges/research/quaternary/luminescence-research-laboratory/dose-rate-calculator/?show=news">what has changed in this revision</a>)</p>
+version 1.3 (<a href="https://www.aber.ac.uk/en/dges/research/quaternary/luminescence-research-laboratory/dose-rate-calculator/?show=news">see what has changed in this revision</a>)</p>
 <p>From our side, we only needed to update our code so that we can now accept
 a template file with header pointing to version 1.3. In this sense, the timing
 of our v1.2.1 release was perfect to keep our <code>use_DRAC()</code> function fully
@@ -145,13 +145,13 @@ uneven tick lengths if a list of datasets of different size was provided.</p>
 <p><img src="issue-1508.png" alt="issue 1508" title="plot_KDE() showing issue 1508"></p>
 <p>In this case, fixed in <a href="https://github.com/R-Lum/Luminescence/issues/1508">issue 1508</a>, if the size difference in the
 datasets was pronounced, the smaller one would produce very long rug lines.</p>
-<h3 id="plot_drt"><code>plot_DRT()</code></h3>
+<h3 id="plot_drtresults"><code>plot_DRTResults()</code></h3>
 <p>While playing with this function via <a href="https://tzerk.github.io/RLumShiny/">RLumShiny</a>, we discovered a
 regression, also introduced in v1.2.0, that caused the summary text to appear
 in black when it should have been using the same colour as the data points.
 This happened only in the very specific case of a dataset that contained a
 number of points equal to the total number of datasets in the input list.</p>
-<p><img src="issue-1516.png" alt="issue 1516" title="plot_DRT() showing issue 1516"></p>
+<p><img src="issue-1516.png" alt="issue 1516" title="plot_DRTResults() showing issue 1516"></p>
 <p>For example, as show the plot above, if the user submitted a list of two
 datasets and the second contained only two points, then the summary text
 would not respect the colour choice. This was fixed in <a href="https://github.com/R-Lum/Luminescence/issues/1516">issue 1516</a>.</p>
@@ -167,7 +167,7 @@ looking carefully at this function&rsquo;s code:</p>
 <li><a href="https://github.com/R-Lum/Luminescence/issues/1518">issue 1518</a>: When a list of datasets was provided, the x-axis ticks
 were drawn only up to the size of the first dataset:</li>
 </ul>
-<p><img src="issue-1518.png" alt="issue 1518" title="plot_DRT() showing issue 1518"></p>
+<p><img src="issue-1518.png" alt="issue 1518" title="plot_DRTResults() showing issue 1518"></p>
 <ul>
 <li><a href="https://github.com/R-Lum/Luminescence/issues/1522">issue 1522</a>: The function crashed if the data frames in the input
 list didn&rsquo;t have names or if they contained a different number of columns.</li>

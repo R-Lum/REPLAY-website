@@ -18,9 +18,9 @@ issues in 60 commits.
 
 ## Updates to DRAC
 
-As some point during the last couple of weeks, the[Dose Rate and Age Calculator (DRAC)][drac]
+As some point during the last couple of weeks, the [Dose Rate and Age Calculator (DRAC)][drac]
 hosted by the University of Aberystwyth was upgraded from version 1.2 to
-version 1.3 (read here to see [what has changed in this revision][dracup])
+version 1.3 ([see what has changed in this revision][dracup])
 
 From our side, we only needed to update our code so that we can now accept
 a template file with header pointing to version 1.3. In this sense, the timing
@@ -93,7 +93,7 @@ In this case, fixed in [issue 1508][i1508], if the size difference in the
 datasets was pronounced, the smaller one would produce very long rug lines.
 
 
-### `plot_DRT()`
+### `plot_DRTResults()`
 
 While playing with this function via [RLumShiny][rshiny], we discovered a
 regression, also introduced in v1.2.0, that caused the summary text to appear
@@ -101,7 +101,7 @@ in black when it should have been using the same colour as the data points.
 This happened only in the very specific case of a dataset that contained a
 number of points equal to the total number of datasets in the input list.
 
-![issue 1516](issue-1516.png "plot_DRT() showing issue 1516")
+![issue 1516](issue-1516.png "plot_DRTResults() showing issue 1516")
 
 For example, as show the plot above, if the user submitted a list of two
 datasets and the second contained only two points, then the summary text
@@ -120,7 +120,7 @@ looking carefully at this function's code:
 - [issue 1518][i1518]: When a list of datasets was provided, the x-axis ticks
 were drawn only up to the size of the first dataset:
 
-![issue 1518](issue-1518.png "plot_DRT() showing issue 1518")
+![issue 1518](issue-1518.png "plot_DRTResults() showing issue 1518")
 
 - [issue 1522][i1522]: The function crashed if the data frames in the input
 list didn't have names or if they contained a different number of columns.
