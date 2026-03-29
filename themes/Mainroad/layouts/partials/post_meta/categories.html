@@ -4,7 +4,7 @@
 	{{- partial "svg/category.svg" (dict "class" "meta__icon") -}}
 	<span class="meta__text">
 		{{- range $index, $category := . }}
-			{{- $url := urls.Parse ($category | urlize) -}}
+			{{- $url := urls.Parse $category -}}
 			{{- $path := $url.Path -}}
 			{{- with $.Site.GetPage (printf "/%s/%s" $taxo $path) }}
 				{{- if gt $index 0 }}, {{ end -}}
