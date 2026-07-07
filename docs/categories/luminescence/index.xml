@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Tue, 07 Jul 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="/REPLAY-website/categories/luminescence/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Presentation about &#39;CBTF&#39; at useR! 2026</title>
+				<link>/REPLAY-website/post/2026/07/presentation-about-cbtf-at-user-2026/</link>
+				<pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+				<guid>/REPLAY-website/post/2026/07/presentation-about-cbtf-at-user-2026/</guid>
+				<description>&lt;p&gt;Today I am presenting the &lt;a href=&#34;https://mcol.github.io/caught-by-the-fuzz/&#34;&gt;CBTF (Caught by the Fuzz!)&lt;/a&gt; package at the&#xA;&lt;a href=&#34;https://user2026.r-project.org/&#34;&gt;useR! 2026 conference&lt;/a&gt; in Warsaw.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>Luminescence Release 1.2.1</title>
 				<link>/REPLAY-website/post/2026/03/luminescence-release-1.2.1/</link>
