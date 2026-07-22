@@ -1,7 +1,7 @@
 baseurl = "/REPLAY-website/"
 title = "REPLAY"
 publishdir = "docs/"
-languageCode = "en-us"
+locale = "en-gb"
 theme = "Mainroad"
 
 [Params]
