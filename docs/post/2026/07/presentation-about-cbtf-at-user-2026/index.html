@@ -83,13 +83,115 @@
 		<div class="content post__content clearfix">
 			<p>Today I am presenting the <a href="https://mcol.github.io/caught-by-the-fuzz/">CBTF (Caught by the Fuzz!)</a> package at the
 <a href="https://user2026.r-project.org/">useR! 2026 conference</a> in Warsaw.</p>
-<p><a href="https://www.youtube.com/watch?v=uJ-mpul94eo"><img src="cbtf-logo.png#center" alt="CBTF-logo" title="Thanks to Supergrass for the inspiration for the package name!"></a></p>
 <p>I have already <a href="/REPLAY-website/post/2025/08/fuzzing-luminescence-to-improve-it/">written about CBTF in the past</a>. The package has grown
-a lot in the meantime, adding new functionality, better user experience and lighting-fast performance.</p>
-<p>The slides are available <a href="useR-slides.pdf">here</a>. Unfortunately, given time
-constraints, a number of interesting and fascinating issues needed to be cut
-from the presentation. I will update this post highlighting the major changes
-and improvements that I&rsquo;ve made to the package in the next few days.</p>
+a lot in the meantime, adding new functionality, better user experience and
+lighting-fast performance.</p>
+<p><a href="https://www.youtube.com/watch?v=uJ-mpul94eo"><img src="cbtf-logo.png#center" alt="CBTF-logo" title="Thanks to Supergrass for the inspiration for the package name!"></a></p>
+<p>The slides for the talk are available <a href="useR-slides.pdf">here</a>. Unfortunately,
+given time constraints, a number of interesting and fascinating issues needed
+to be cut from the presentation. Here I&rsquo;ll summarise the changes that have
+occurred in the <code>CBTF</code> package over the last year.</p>
+<h2 id="support-for-argument-lists">Support for argument lists</h2>
+<p>The original version of <code>CBTF</code> was only able to fuzz the first function
+argument. This was already enough to identify a huge number of cases in
+which <code>Luminescence</code> would crash upon a misspecified input.</p>
+<p>However, for the package to be fully functional, it was a must to support
+fuzzing any argument list. This meant adding support for the <code>args</code> argument,
+so that each of its element could be modified in turn by each of the input
+values (specified in the <code>what</code> argument). It became immediately obvious that
+support for named arguments was essential. This would allow us to fuzz
+arguments out of order and also to reach arguments that are passed via <code>...</code>.
+So, for example, if we set <code>args = list(x = 11, y = 22, 33)</code> and
+<code>what = list(NA, &quot;&quot;)</code>, the following inputs would be generated and tested:</p>
+<ul>
+<li><code>list(x = NA, y = 22, 33)</code></li>
+<li><code>list(x = &quot;&quot;, y = 22, 33)</code></li>
+<li><code>list(x = 11, y = NA, 33)</code></li>
+<li><code>list(x = 11, y = &quot;&quot;, 33)</code></li>
+<li><code>list(x = 11, y = 22, NA)</code></li>
+<li><code>list(x = 11, y = 22, &quot;&quot;)</code></li>
+</ul>
+<p>I then realised that in a number of cases it may be convenient to fix some
+arguments to a given value, so that they are never fuzzed. This is helpful
+when we are already satisfied that a specific argument is fully validated,
+or in any other cases when we want to reduce the computation time, or simply
+to reduce the number of failures reported. Fixed arguments can be specified
+by prepending a <code>..</code> to the argument name. Continuing the previous example,
+if we set <code>args = list(..x = 11, y = 22, 33)</code>, the following inputs would be
+tested:</p>
+<ul>
+<li><code>list(x = 11, y = NA, 33)</code></li>
+<li><code>list(x = 11, y = &quot;&quot;, 33)</code></li>
+<li><code>list(x = 11, y = 22, NA)</code></li>
+<li><code>list(x = 11, y = 22, &quot;&quot;)</code></li>
+</ul>
+<h2 id="parallelisation-and-timeouts">Parallelisation and timeouts</h2>
+<p>When several function arguments are being fuzzed with a large number of inputs,
+the number of tests to be performed can grow very quickly, especially if the
+number of functions to fuzz is sizeable. For example, in <code>Luminescence</code> we
+have about 140 fuzzable functions: fuzzing 5 arguments with 50 inputs brings
+already 35,000 function calls.</p>
+<p>Given that each function call is independent of all the others, the code is
+trivially parallelisable. However, being able to parallelise effectively the
+execution of functions may not be enough. If a given input passes validation
+without triggering an error, the function may run to completion, which in some
+cases can take several seconds or longer. Another example of problematic
+behaviour occurs when the fuzzed function calls <code>readline()</code>: in this case,
+the function waits for user input, which may interrupt the fuzzing process
+indefinitely. Therefore, there must be a way to set a maximum time after which
+execution is interrupted.</p>
+<p>An initial attempt to solve the timeout issue was performed with <code>callr</code>. This
+allows to run execution in a background process, which can be killed after a
+certain amount of time if execution is taking too long. However, after a
+process was killed, a new background process had to be started before the
+rest of the fuzzing could occur. This was not particularly performant: running
+the <code>CBTF</code> test suite (without self-fuzzing) would take 20 seconds with <code>callr</code>
+instead of the usual 2s; fuzzing <code>Luminescence</code> took 346s instead of the usual
+215s (but this latter figure could be reached only if functions that called
+<code>readline()</code> were skipped). Overall this was perhaps acceptable given the
+importance of supporting timeouts.</p>
+<p>It turns out that the naive <code>callr</code> implementation was never committed, as in
+the meantime I discovered the <code>[mirai][mirai]</code> package, which seemed able to
+address both the parallelisation and the timeout issue. <code>mirai</code> provides a way
+to run code asynchronously on persistent background processes (called <code>daemons</code>
+in its terminology). <code>mirai</code> is very efficient in spawning processes and
+dealing with the communication between host process and daemons, and also
+supports interrupting a task without killing (and having to restart) the
+background process.</p>
+<p>An initial parallelisation was relatively straightforward. <code>mirai</code> could
+very quickly set up thousands of futures (that is, asynchronous tasks, each
+corresponding to a function call) and take care of starting a new task
+whenever a daemon became free. Unfortunately, <code>mirai</code> starts evaluating the
+timeout when a future  is launched, and not when the task is effectively
+started by the daemon. This meant that the default timeout approach offered
+by <code>mirai</code> could not be used, as it ended up timing out all but the first few
+function calls.</p>
+<p>I ended up writing a queuing system so that a future would be launched only
+when a background process became available. Having taken care of when each
+task was launched meant that I could let <code>mirai</code> handle the timeouts. With
+that, the <code>CBTF</code> test suite could be completed in 5s and <code>Luminescence</code> could
+be fuzzed in 30s when using 2 daemons.</p>
+<p>The initial implementation was further refined, and now it&rsquo;s possible to
+run over 90,000 tests in less than 20s when using 6 daemons.</p>
+<h2 id="future-changes">Future changes</h2>
+<p>It is my hope that future <code>mirai</code> versions will be able to handle timeouts in
+a better way, so that I could vastly simplify the <code>CBTF</code> implementation by
+removing the queuing system. If that were to happen, it&rsquo;s very likely that the
+performance would further improve, as process handling is far better done in
+<code>C</code> than in R.</p>
+<p>Something that I&rsquo;m still wondering about is how to structure the object
+returned by the <code>fuzz()</code> function. The current version is functional, but
+feels rigid and at times quite messy. It was designed to work well when
+fuzzing multiple functions, but handling the object feels harder than
+necessary if only one function is fuzzed.</p>
+<p>It would also be nice to provide faster ways to specify the whitelist
+patterns. Currently, these must be specified by hand either when calling
+<code>fuzz()</code> or later when calling `whitelist(). Allowing to have a file with
+whitelist patterns may speed up users working on a specific package; an
+other option is to add patterns from a result object, perhaps by specifying
+the input index that produced a given error to be whitelisted.</p>
+<p>The way the results are reported could also be improved, for example by
+allowing to group results according to the error message received.</p>
 		</div>
 	</article>
 </main>

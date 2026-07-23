@@ -25,7 +25,7 @@
 				<link>/REPLAY-website/post/2026/07/presentation-about-cbtf-at-user-2026/</link>
 				<pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
 				<guid>/REPLAY-website/post/2026/07/presentation-about-cbtf-at-user-2026/</guid>
-				<description>&lt;p&gt;Today I am presenting the &lt;a href=&#34;https://mcol.github.io/caught-by-the-fuzz/&#34;&gt;CBTF (Caught by the Fuzz!)&lt;/a&gt; package at the&#xA;&lt;a href=&#34;https://user2026.r-project.org/&#34;&gt;useR! 2026 conference&lt;/a&gt; in Warsaw.&lt;/p&gt;</description>
+				<description>&lt;p&gt;Today I am presenting the &lt;a href=&#34;https://mcol.github.io/caught-by-the-fuzz/&#34;&gt;CBTF (Caught by the Fuzz!)&lt;/a&gt; package at the&#xA;&lt;a href=&#34;https://user2026.r-project.org/&#34;&gt;useR! 2026 conference&lt;/a&gt; in Warsaw.&lt;/p&gt;&#xA;&lt;p&gt;I have already &lt;a href=&#34;/REPLAY-website/post/2025/08/fuzzing-luminescence-to-improve-it/&#34;&gt;written about CBTF in the past&lt;/a&gt;. The package has grown&#xA;a lot in the meantime, adding new functionality, better user experience and&#xA;lighting-fast performance.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Luminescence Release 1.2.1</title>
