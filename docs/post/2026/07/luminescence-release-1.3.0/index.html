@@ -86,10 +86,202 @@
 <a href="https://r-lum.github.io/Luminescence/">Luminescence R package</a>. This is a major release that comes after
 4 months since our <a href="/REPLAY-website/post/2026/03/luminescence-release-1.2.1/">previous release</a>.</p>
 <p>This release brings a number of changes and improvements under the hood, which
-unfortunately may cause deprecation warnings appearing from your scripts.
+may unfortunately cause deprecation warnings to appear in your scripts.
 There are also a number of small fixes to the plotting functions and an
 exciting new function. In total we addressed 47 issues in 261 commits.</p>
-
+<h2 id="breaking-changes-in-fit_doseresponsecurve">Breaking changes in <code>fit_DoseResponseCurve()</code></h2>
+<p>The function that has received most attention during this release cycle has
+been <code>fit_DoseResponseCurve()</code>. A number of changes have been introduce to
+improve the correctness of the results produced, reduce the number of cases
+that a fit cannot be found, and use a more rigorous nomenclature.</p>
+<p>Unfortunately, such changes will cause the results to be different from those
+produced by earlier versions of the package. In general, we don&rsquo;t expect
+large deviations, but exact numerical reproducibility of earlier results will
+not be possible.</p>
+<p>This function plays a central role in the package. As it&rsquo;s called by
+<code>analyse_SAR.CWOSL()</code>, <code>analyse_SAR.TL()</code>, <code>analyse_baSAR()</code>,
+<code>analyse_pIRIRSequence()</code>, <code>calc_Lamothe2003()</code>, <code>calc_Huntley2006()</code>,
+<code>plot_DRCSummary()</code> and <code>plot_DetPlot()</code>, they are also similarly affected.</p>
+<h3 id="implementation-of-weights">Implementation of weights</h3>
+<p>Up to v1.2.1, each observation in the data set contributed to the fit according
+to a normalised inverse standard error weighting. This approach was not
+conventional, as it effectively assumed a dependency between errors and dose.
+In reality, individual relative uncertainties do not typically scale with the
+dose, although this may happen in exceptional cases.</p>
+<p>From now on, the new default is to use inverse variance weighting. However,
+the current implementation allows to specify an inverse standard error
+weighting (by setting <code>fit_weights = &quot;inverse_std&quot;</code>) or even a numerical
+vector for custom weights. Moreover, it is possible to restore the weighting
+used up to v1.2.1 by setting <code>fit_weights</code> to <code>&quot;norm_inverse_std&quot;</code>, or disable
+weights altogether by setting it to <code>NULL</code>.</p>
+<p>Note that up to v1.2.1, the <code>fit.weights</code> option accepted a logical value.
+To accommodate the changes detailed above, this is no longer the case: if a
+logical value is used, it will be automatically corrected and a deprecation
+warning will appear.</p>
+<h3 id="nomenclature-of-fit-methods">Nomenclature of fit methods</h3>
+<p>The keywords accepted by the <code>fit.method</code> argument have changed to be more
+rigorous and to match more closely what is adopted in the literature
+(<a href="https://github.com/R-Lum/Luminescence/issues/1604">issue 1604</a>). In particulary, <code>EXP</code> is now called <code>SSE</code> (for single
+saturating exponential), and <code>EXP+EXP</code> is now called <code>DSE</code> (for double
+saturating exponential). Similarly, <code>EXP+LIN</code> and <code>EXP OR LIN</code> are now called
+<code>SSE+LIN</code> and <code>SSE OR LIN</code>, respectively. From a user perspective, the old
+names are still accepted but will raise a deprecation warning.</p>
+<p>The model parameters have also been renamed to be more consistent when they
+refer to physically meaningful quantities. This is a purely internal change
+and shouldn&rsquo;t affect users, unless they accessed the <code>Formula</code> term from the
+result object directly.</p>
+<h3 id="more-robust-staring-points">More robust staring points</h3>
+<p>The function has also been made more robust by slightly tweaking how the
+starting points for most models are generated. This should allow it to find a
+valid fit for more data sets than before; however, minor numerical differences
+are to be expected for data sets for which a fit could be obtained by earlier
+versions.</p>
+<p>Before the real models are fit, we usually run a short Monte Carlo procedure
+to identify good starting values for the model parameters. In <a href="https://github.com/R-Lum/Luminescence/issues/1570">issue 1570</a>
+we realised that this initial fit didn&rsquo;t use the <code>LxTx</code> errors as weights even
+when the real fit did, and this caused the models to misbehave if the errors
+were very large. Now the initial models use the same weights as the real
+model.</p>
+<p>For method <code>DSE</code>, we found that although the Monte Carlo step for the starting
+point was run, its results were not actually used. We addressed this in
+<a href="https://github.com/R-Lum/Luminescence/issues/1605">issue 1605</a> so that computations are no longer wasted and the model
+should find a fit in more cases.</p>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1552">issue 1152</a> we discovered that for the <code>SSE</code> model there was an
+unexpected dependency between the results produced and the random seed, which
+in some cases caused the fit to be wildly different on two consecutive runs.
+Effectively, the fit of the <code>SSE</code> model is highly sensitive to the starting
+value of its <code>D0</code> parameter, and the previous implementation relied on random
+Monte Carlo points to find a robust starting value: however, this introduced
+the undesired dependency on the random seed. Now the <code>D0</code> parameter is
+initialised deterministically from the input data, and this has allowed to
+stabilise the fit to the correct value in a number of examples we have in the
+package.</p>
+<h3 id="structure-of-the-object-returned">Structure of the object returned</h3>
+<p>The output object data frame was expanded to contain columns for the <code>D63</code> and
+<code>D80</code> parameters used by the <code>OTOR</code> and <code>OTORX</code> models. Moreover, the
+uncertainty calculation for <code>R</code>, <code>Dc</code>, <code>D63</code>, and <code>D80</code> were modified to
+calculate the 25% and the 75% quantiles (returned in the <code>LOWER</code> and <code>UPPER</code>
+columns for each of those parameters) instead of the standard deviation, which
+did not make much sense. Therefore, the <code>R.ERROR</code> column is no longer available.</p>
+<p>This change affects also the output table as returned by <code>analyse_SAR.CWOSL()</code>
+and subsequent functions. As long as columns are accessed using their names
+rather than indices, scripts should be largely unaffected by these changes.</p>
+<h2 id="natural-sensitivity-correction-factor">Natural sensitivity correction factor</h2>
+<p><code>analyse_SAR.NCF()</code> is a new function that implements the computation of the
+natural sensitivity correction factor (NCF) for the assessment of SAR-based
+palaeodoses, proposed originally by Singhvi et al. (2011). This approach
+allows to produce De values that account for sensitivity changes that may
+occur during the preheat and readout of the natural OSL.</p>
+<p>In a nutshell, the NCF protocol modifies the standard SAR protocol by adding a
+small dose before the readout of the natural signal; the corresponding 110 °C
+TL peak in quartz is monitored and compared to the TL peak recorded during the
+typical cutheat measurement. The NCF is measured as the ratio of the 110 °C TL
+peaks before and after the measurement of natural OSL, and that is used to
+correct the <code>Ln/Tn</code> term.</p>
+<p><img src="ncf.png" alt="ncf" title="Output from analyse_SAR.NCF()"></p>
+<p>The implementation is based around <code>analyse_SAR.CWOSL()</code>, so the function
+produces a very similar output. However, notice that the third panel in the
+bottom row shows the TL peaks identified, so that the results of the automatic
+peak-finding procedure can be checked (in any case, it&rsquo;s possible to set the
+temperature of the TL peaks manually).</p>
+<p>This function was added in <a href="https://github.com/R-Lum/Luminescence/issues/1091">issue 1091</a> and is currently in beta,
+pending more testing on real data.</p>
+<h2 id="alternative-overdispersion-estimation-for-lxtx-ratios">Alternative overdispersion estimation for Lx/Tx ratios</h2>
+<p>Function <code>calc_OSLLxTxRatio()</code> now supports a second approach for error
+estimation of Lx/Tx ratios based on Bluszcz, Adamiec and Herr (2015),
+alongside the conventional method of Galbraith (2002, 2014), which is still
+the default. The implementation of this approach was proposed by Andrzej
+Bluszcz, who also contributed some code and helped check the correctness of
+the results (see <a href="https://github.com/R-Lum/Luminescence/issues/1390">issue 1390</a>).</p>
+<p>The motivation for this alternative approach is that the PMTs used in readers
+may exhibit an overdispersion in their dark counts and another overdispersion
+when counting photons. Therefore, modelling these two quantities independently
+should provide a more precise error estimation.</p>
+<p>This newly-added approach can be activated by setting the <code>od_rates</code> argument
+to a 3-element vector containing, in order, the following PMT-specific values:</p>
+<ul>
+<li>the dark count rate as pulses per second (not per channel)</li>
+<li>the dispersion excess factor for dark counts</li>
+<li>the dispersion excess factor for photon counts</li>
+</ul>
+<p>The dark count rate and dispersion excess factor have to be known in advance,
+and can be obtained by direct experiments performed in laboratory conditions
+(essentially the same as the routine measurement conditions). The photon count
+overdispersion needs a photon source with a constant photon emission rate and
+independent photon emissions (so the number of photons emitted in a fixed time
+is a Poisson variable).</p>
+<p>The <code>od_rates</code> argument can also be set via <code>analyse_SAR.CWOSL()</code>,
+<code>analyse_pIRIRSequence()</code> and <code>analyse_FadingMeasurement()</code>.</p>
+<h2 id="improvements-to-calc_mindose">Improvements to <code>calc_MinDose()</code></h2>
+<p>During the first few weeks of this release cycle, <code>calc_MinDose()</code> has received
+a fair amount of attention. Much of its code (which was originally derived
+from Matlab code from Alastair Cunningham) was rewritten to be more performant
+and idiomatic in R.</p>
+<p>A breaking change was introduced by <a href="https://github.com/R-Lum/Luminescence/issues/1548">issue 1548</a> as we changed how the
+<code>sigmab</code> argument should be expressed in the unlogged case. Up to v1.2.1, it
+was required to be specified in the same absolute units used for the De values
+(seconds or Gray). Now it must be expressed in relative units as a ratio (e.g.
+0.2 for 20 %), and an error will be thrown if values outside of the (0, 1]
+range are given. This makes the interpretation of the argument consistent
+between logged and unlogged models.</p>
+<p>Thanks to help from Marijn van der Meij, the <code>sigma</code> parameter is better
+initialised when <code>init.values</code> is provided for a logged model, so that the
+models no longer fail silently (<a href="https://github.com/R-Lum/Luminescence/issues/1527">issue 1527</a>); moreover, the confidence
+intervals stored in the object returned are now always in the natural units,
+independently of the <code>log</code> argument (<a href="https://github.com/R-Lum/Luminescence/issues/1533">issue 1533</a>).</p>
+<p>Further work is needed to make this function more flexible and its
+implementation closer to the published literature.</p>
+<h2 id="plotting-improvements">Plotting improvements</h2>
+<p>Several improvements have been made to plots, as well as a couple of regression
+fixes. The following are the most noticeable highlights.</p>
+<h3 id="consistent-summary-keywords">Consistent summary keywords</h3>
+<p>The summary keywords accepted by the plotting functions have been uniformed
+throughout the package to match those used by <code>calc_Statistics()</code>:</p>
+<ul>
+<li>the names <code>sdrel</code>, <code>sdabs</code>, <code>serel</code> and <code>seabs</code> that were used by
+<code>plot_Histogram()</code> and <code>plot_RadialPlot()</code> <code>sd.rel</code>, <code>sd.abs</code>, <code>se.rel</code> and
+<code>se.abs</code>, respectively.</li>
+<li>the names <code>weighted$mean</code> and <code>weighted$median</code> that were accepted by
+<code>plot_DRTResults()</code> have been replaced by <code>mean.weighted</code> and
+<code>median.weighted</code>.</li>
+</ul>
+<p>The previous names are no longer recognised and will be silently ignored.</p>
+<p>This change allowed us to streamline and consolidate the handling of these
+keywords throughout all plotting functions, resulting in the removal of about
+140 lines of code. Moreover, this meant that the labels produced in the plots
+are also clearer and more consistent (issue<a href="https://github.com/R-Lum/Luminescence/issues/1618">1618</a>).</p>
+<h3 id="regenerating-analyse_sarcwosl-plots">Regenerating <code>analyse_SAR.CWOSL()</code> plots</h3>
+<p><code>analyse_SAR.CWOSL()</code> was enhanced to produce objects that can be reploted
+via <code>plot_RLum()</code>. This means that it&rsquo;s no longer necessary to re-run the
+whole analysis just to regenerate the plots. This is a change in behaviour
+from previous versions, where an abanico plot was generated: the old behaviour
+can be obtained by calling <code>plot_AbanicoPlot()</code> directly.</p>
+<p>Note that for this to work, the object must be generated by v1.3.0 of the
+function, as we need to store additional information that allows us to draw
+all required elements. Therefore, calling <code>plot_RLum()</code> on older objects
+reverts to the previous behaviour of producing an abanico plot.</p>
+<h3 id="improvements-to-plot_doseresponsecurve">Improvements to <code>plot_DoseResponseCurve()</code></h3>
+<p>The function has added support for further customisation of the dose-response
+curve via the <code>lwd_drc</code>, <code>lty_drc</code> and <code>col_drc</code> graphical parameters to
+control, respectively, the line weight, the line type and colour.</p>
+<p>Moreover, Dirk Mittelstraß&rsquo;s request, the function can now be applied directly
+to objects created by <code>analyse_SAR.CWOSL()</code>, allowing the dose-response curves
+to be replotted independently of the rest of the data.</p>
+<h2 id="other-changes">Other changes</h2>
+<p>A number of stability improvements have been introduced throughout the package.
+For example, all uses of the <code>exists()</code> base function have been removed, as
+they could have led to weird crashes depending on the state of the user
+workspace (see <a href="https://github.com/R-Lum/Luminescence/issues/1617">issue 1617</a>). As always, we have strengthened
+validation of more function arguments, so that failures occur quickly and
+cleanly.</p>
+<p>In terms of testing infrastructure, we have added 131 new tests overall, with
+a sizeable addition of snapshot tests (19) and graphical snapshots (25). Such
+detailed tests allows us to perform more invasive code refactoring without
+fear of introducing major regressions. We have already mentioned the code
+reduction achieved in the plotting functions, but these were not the only
+ones: for example, <code>analyse_baSAR()</code> was consolidated so that it&rsquo;s now 100
+lines shorter; overall, the package has over 350 fewer lines than in v1.2.1,
+despite the introduction of a whole new function.</p>
 		</div>
 	</article>
 </main>
