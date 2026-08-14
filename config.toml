@@ -2,7 +2,7 @@ baseurl = "/REPLAY-website/"
 title = "REPLAY"
 publishdir = "docs/"
 locale = "en-gb"
-theme = "Mainroad"
+theme = "roadster"
 
 [Params]
   description = "Website of the DFG-funded REPLAY project"
