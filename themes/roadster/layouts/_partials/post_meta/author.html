@@ -1,6 +1,6 @@
-{{- with .GetTerms "authors" }}
-	{{- range . }}
+{{- if .Params.author }}
+<div class="meta__item-author meta__item">
 		{{ partial "svg/author.svg" (dict "class" "meta__icon") }}
-		<span class="meta__text">{{ .Title }}</span>
-	{{- end }}
+		<span class="meta__text">{{ .Params.author }}</span>
+</div>
 {{- end }}
