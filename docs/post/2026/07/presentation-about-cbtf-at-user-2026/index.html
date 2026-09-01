@@ -187,7 +187,7 @@ run over 90,000 tests in less than 20s when using 6 daemons.</p>
 a better way, so that I could vastly simplify the <code>CBTF</code> implementation by
 removing the queuing system. If that were to happen, it&rsquo;s very likely that the
 performance would further improve, as process handling is far better done in
-<code>C</code> than in R.</p>
+C than in R.</p>
 <p>Something that I&rsquo;m still wondering about is how to structure the object
 returned by the <code>fuzz()</code> function. The current version is functional, but
 feels rigid and at times quite messy. It was designed to work well when
@@ -195,7 +195,7 @@ fuzzing multiple functions, but handling the object feels harder than
 necessary if only one function is fuzzed.</p>
 <p>It would also be nice to provide faster ways to specify the whitelist
 patterns. Currently, these must be specified by hand either when calling
-<code>fuzz()</code> or later when calling `whitelist(). Allowing to have a file with
+<code>fuzz()</code> or later when calling <code>whitelist()</code>. Allowing to have a file with
 whitelist patterns may speed up users working on a specific package; an
 other option is to add patterns from a result object, perhaps by specifying
 the input index that produced a given error to be whitelisted.</p>

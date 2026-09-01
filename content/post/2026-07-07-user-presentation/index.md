@@ -119,7 +119,7 @@ It is my hope that future `mirai` versions will be able to handle timeouts in
 a better way, so that I could vastly simplify the `CBTF` implementation by
 removing the queuing system. If that were to happen, it's very likely that the
 performance would further improve, as process handling is far better done in
-`C` than in R.
+C than in R.
 
 Something that I'm still wondering about is how to structure the object
 returned by the `fuzz()` function. The current version is functional, but
@@ -129,7 +129,7 @@ necessary if only one function is fuzzed.
 
 It would also be nice to provide faster ways to specify the whitelist
 patterns. Currently, these must be specified by hand either when calling
-`fuzz()` or later when calling `whitelist(). Allowing to have a file with
+`fuzz()` or later when calling `whitelist()`. Allowing to have a file with
 whitelist patterns may speed up users working on a specific package; an
 other option is to add patterns from a result object, perhaps by specifying
 the input index that produced a given error to be whitelisted.
