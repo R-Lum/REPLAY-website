@@ -218,7 +218,7 @@ when `v_length = 1`, which happens only if `analyse_IRSAR.RF()` is called with
 `n.MC = 1` (that is, only one Monte Carlo iteration).
 
 The fix, documented in [issue 1479][i1479], was actually very simple, as it
-only required intialising the work array upon allocation:
+only required initialising the work array upon allocation:
 ```cpp
 double t_leftright[two_size] = {};
 ```
@@ -237,7 +237,7 @@ sufficient to fix the problem reported by CRAN.
 
 ## Upcoming work
 
-This release came as a suprise. We expect to be back on the usual release
+This release came as a surprise. We expect to be back on the usual release
 schedule, during which we are planning to add some new functionality as well
 as continuing to ensure stability and correctness of the package.
 

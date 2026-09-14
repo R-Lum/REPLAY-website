@@ -59,7 +59,7 @@ warning will appear.
 
 The keywords accepted by the `fit.method` argument have changed to be more
 rigorous and to match more closely what is adopted in the literature
-([issue 1604][i1604]). In particulary, `EXP` is now called `SSE` (for single
+([issue 1604][i1604]). In particular, `EXP` is now called `SSE` (for single
 saturating exponential), and `EXP+EXP` is now called `DSE` (for double
 saturating exponential). Similarly, `EXP+LIN` and `EXP OR LIN` are now called
 `SSE+LIN` and `SSE OR LIN`, respectively. From a user perspective, the old
@@ -70,7 +70,7 @@ refer to physically meaningful quantities. This is a purely internal change
 and shouldn't affect users, unless they accessed the `Formula` term from the
 result object directly.
 
-### More robust staring points
+### More robust starting points
 
 The function has also been made more robust by slightly tweaking how the
 starting points for most models are generated. This should allow it to find a
@@ -221,7 +221,7 @@ are also clearer and more consistent (issue[1618][i1618]).
 
 ### Regenerating `analyse_SAR.CWOSL()` plots
 
-`analyse_SAR.CWOSL()` was enhanced to produce objects that can be reploted
+`analyse_SAR.CWOSL()` was enhanced to produce objects that can be replotted
 via `plot_RLum()`. This means that it's no longer necessary to re-run the
 whole analysis just to regenerate the plots. This is a change in behaviour
 from previous versions, where an abanico plot was generated: the old behaviour

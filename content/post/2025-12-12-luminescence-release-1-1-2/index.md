@@ -132,7 +132,7 @@ The table below reports the object file sizes in bytes for the C++ engine of
 
 ## Test parallelization
 
-Our testsuite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
+Our test suite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
 largest increase being in the number of graphical snapshots (from 90 to 154)
 and numerical snapshots (from 180 to 225).
 
@@ -160,7 +160,7 @@ discovered and fixed a few of these, but the number of other cases that this
 parallelisation effort uncovered was really quite astonishing. It took us 3
 attempts and various fixes throughout the codebase before the simple change
 above could be left in permanently, as each time new failures were discovered
-by the continous integration servers.
+by the continuous integration servers.
 
 The way out was to use a little-known utility present in the `testthat` package,
 the so called [state inspector](stins). This allows to record and compare the
@@ -218,7 +218,7 @@ release.
 
 Functions `is.RLum()`, `is.RLum.Data()`, `is.RLum.Data.Curve()`,
 `is.RLum.Data.Spectrum()`, `is.RLum.Data.Image()`, `is.RLum.Analysis()` and
-`is.RLum.Results()` were meant to provide a straigthforward way to test the
+`is.RLum.Results()` were meant to provide a straightforward way to test the
 class of objects created by `Luminescence`. In reality, they were almost never
 used internally because they incur a (small) cost due to the S3 method dispatch
 in R. We also believe that outside of the package they do not have much of an

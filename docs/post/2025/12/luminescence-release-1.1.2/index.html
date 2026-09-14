@@ -233,7 +233,7 @@ The table below reports the object file sizes in bytes for the C++ engine of
 	</tbody>
 </table>
 <h2 id="test-parallelization">Test parallelization</h2>
-<p>Our testsuite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
+<p>Our test suite contains now 3,316 tests (we had 3,253 in 1.1.1), with the
 largest increase being in the number of graphical snapshots (from 90 to 154)
 and numerical snapshots (from 180 to 225).</p>
 <p>Our set of testcases has always taken a few minutes to run, which can feel
@@ -255,7 +255,7 @@ discovered and fixed a few of these, but the number of other cases that this
 parallelisation effort uncovered was really quite astonishing. It took us 3
 attempts and various fixes throughout the codebase before the simple change
 above could be left in permanently, as each time new failures were discovered
-by the continous integration servers.</p>
+by the continuous integration servers.</p>
 <p>The way out was to use a little-known utility present in the <code>testthat</code> package,
 the so called <a href="stins">state inspector</a>. This allows to record and compare the
 value of a set of variables of interest before and after each test file is run.
@@ -303,7 +303,7 @@ have marked a few functions as deprecated; they will be removed in the next
 release.</p>
 <p>Functions <code>is.RLum()</code>, <code>is.RLum.Data()</code>, <code>is.RLum.Data.Curve()</code>,
 <code>is.RLum.Data.Spectrum()</code>, <code>is.RLum.Data.Image()</code>, <code>is.RLum.Analysis()</code> and
-<code>is.RLum.Results()</code> were meant to provide a straigthforward way to test the
+<code>is.RLum.Results()</code> were meant to provide a straightforward way to test the
 class of objects created by <code>Luminescence</code>. In reality, they were almost never
 used internally because they incur a (small) cost due to the S3 method dispatch
 in R. We also believe that outside of the package they do not have much of an

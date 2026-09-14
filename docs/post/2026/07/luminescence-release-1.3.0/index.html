@@ -129,7 +129,7 @@ warning will appear.</p>
 <h3 id="nomenclature-of-fit-methods">Nomenclature of fit methods</h3>
 <p>The keywords accepted by the <code>fit.method</code> argument have changed to be more
 rigorous and to match more closely what is adopted in the literature
-(<a href="https://github.com/R-Lum/Luminescence/issues/1604">issue 1604</a>). In particulary, <code>EXP</code> is now called <code>SSE</code> (for single
+(<a href="https://github.com/R-Lum/Luminescence/issues/1604">issue 1604</a>). In particular, <code>EXP</code> is now called <code>SSE</code> (for single
 saturating exponential), and <code>EXP+EXP</code> is now called <code>DSE</code> (for double
 saturating exponential). Similarly, <code>EXP+LIN</code> and <code>EXP OR LIN</code> are now called
 <code>SSE+LIN</code> and <code>SSE OR LIN</code>, respectively. From a user perspective, the old
@@ -138,7 +138,7 @@ names are still accepted but will raise a deprecation warning.</p>
 refer to physically meaningful quantities. This is a purely internal change
 and shouldn&rsquo;t affect users, unless they accessed the <code>Formula</code> term from the
 result object directly.</p>
-<h3 id="more-robust-staring-points">More robust staring points</h3>
+<h3 id="more-robust-starting-points">More robust starting points</h3>
 <p>The function has also been made more robust by slightly tweaking how the
 starting points for most models are generated. This should allow it to find a
 valid fit for more data sets than before; however, minor numerical differences
@@ -259,7 +259,7 @@ keywords throughout all plotting functions, resulting in the removal of about
 140 lines of code. Moreover, this meant that the labels produced in the plots
 are also clearer and more consistent (issue<a href="https://github.com/R-Lum/Luminescence/issues/1618">1618</a>).</p>
 <h3 id="regenerating-analyse_sarcwosl-plots">Regenerating <code>analyse_SAR.CWOSL()</code> plots</h3>
-<p><code>analyse_SAR.CWOSL()</code> was enhanced to produce objects that can be reploted
+<p><code>analyse_SAR.CWOSL()</code> was enhanced to produce objects that can be replotted
 via <code>plot_RLum()</code>. This means that it&rsquo;s no longer necessary to re-run the
 whole analysis just to regenerate the plots. This is a change in behaviour
 from previous versions, where an abanico plot was generated: the old behaviour
