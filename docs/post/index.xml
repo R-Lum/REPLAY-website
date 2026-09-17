@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Tue, 25 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="/REPLAY-website/post/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Luminescence Release 1.3.1</title>
+				<link>/REPLAY-website/post/2026/09/luminescence-release-1.3.1/</link>
+				<pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>/REPLAY-website/post/2026/09/luminescence-release-1.3.1/</guid>
+				<description>&lt;p&gt;Less than two months since our &lt;a href=&#34;/REPLAY-website/post/2026/07/luminescence-release-1.3.0/&#34;&gt;previous release&lt;/a&gt;, we are very proud to&#xA;announce the release of &lt;strong&gt;version 1.3.1&lt;/strong&gt;. This is a minor release that brings&#xA;a few regression fixes and cosmetic improvements.&lt;/p&gt;&#xA;&lt;p&gt;For a change of pace, it&amp;rsquo;s nice, every now and then, to have a release that&#xA;doesn&amp;rsquo;t try to do too much or that brings breaking changes. Given the summer&#xA;time and the slightly delayed release of 1.3.0, this release cycle has been&#xA;short and sweet. Despite all that, in total we addressed 55 issues in 168&#xA;commits.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>RLumShiny Release 0.2.8</title>
 				<link>/REPLAY-website/post/2026/08/rlumshiny-release-0.2.8/</link>
