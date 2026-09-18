@@ -91,28 +91,259 @@
 		</header>
 		<div class="content post__content clearfix">
 			<p>Less than two months since our <a href="/REPLAY-website/post/2026/07/luminescence-release-1.3.0/">previous release</a>, we are very proud to
-announce the release of <strong>version 1.3.1</strong>. This is a minor release that brings
-a few regression fixes and cosmetic improvements.</p>
+announce the release of <strong>version 1.3.1</strong> of <a href="https://r-lum.github.io/Luminescence/">Luminescence</a>. This is a
+minor release that brings a few regression fixes and a number of cosmetic
+improvements, alongside increased robustness and correctness.</p>
 <p>For a change of pace, it&rsquo;s nice, every now and then, to have a release that
 doesn&rsquo;t try to do too much or that brings breaking changes. Given the summer
 time and the slightly delayed release of 1.3.0, this release cycle has been
-short and sweet. Despite all that, in total we addressed 55 issues in 168
+short and sweet. Despite all that, in total we addressed 55 issues in 174
 commits.</p>
+<h2 id="more-correct-error-estimation-from-fit_doseresponsecurve">More correct error estimation from <code>fit_DoseResponseCurve()</code></h2>
+<p>Following up on the work carried out during the previous release,
+<code>fit_DoseResponseCurve()</code> has seen further correctness work thay may impact
+some analyses. In particular, in <a href="https://github.com/R-Lum/Luminescence/issues/1730">issue 1730</a> we discovered that the
+Monte Carlo error was slightly overestimated when any MC model failed to fit.
+Effectively, the error was computed including a spurious <code>De</code> of 0 if an
+iteration didn&rsquo;t find a fit for the data.</p>
+<p>This happened because the vectors storing the Monte Carlo results were
+preallocated like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>var.D0 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">vector</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;numeric&#34;</span>, length <span style="color:#f92672">=</span> n.MC)
+</span></span></code></pre></div><p>In R, such a construct initialises the vector to 0 (instead of <code>NA</code>). Therefore,
+whenever an iteration failed, and its result was skipped, a 0 was left in its
+place. While this behaviour went unnoticed for years, the fix was actually
+straigthforward, as it was just enough to initialise explicitly the vector
+to <code>NA</code> by preallocating it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>var.D0 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rep_len</span>(<span style="color:#66d9ef">NA</span>, n.MC)
+</span></span></code></pre></div><p>As a way to establish whether an analysis run with Luminescence &lt;= 1.3.0 is
+affected by this issue, you can count the number of failed MC runs in the
+results object by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(results<span style="color:#f92672">$</span>De.MC))
+</span></span></code></pre></div><p>where <code>results</code> is the name of the object returned by <code>fit_DoseResponseCurve()</code>.</p>
+<p>A value greater than 0 means that the error estimation is affected. However,
+it&rsquo;s not possible to quantify by how much without rerunning the analysis with
+v1.3.1, as the vector used for the computation is not stored in the result
+object. It&rsquo;s worth noticing that the size of the effect grows with the
+proportion of failed runs, which can be computed with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(results<span style="color:#f92672">$</span>De.MC)) <span style="color:#f92672">/</span> <span style="color:#a6e22e">length</span>(results<span style="color:#f92672">$</span>De.MC)
+</span></span></code></pre></div><p>In our assessment, in non-pathological cases the impact of this bug should be
+very small.</p>
+<h2 id="graphical-improvements">Graphical improvements</h2>
+<h3 id="refinements-to-analyse_irsarrf">Refinements to <code>analyse_IRSAR.RF()</code></h3>
+<p><code>analyse_IRSAR.RF()</code> has seen a number of graphical fixes, in particular
+thanks to observations made by Dirk Mittelstraß in <a href="https://github.com/R-Lum/Luminescence/issues/1654">issue 1654</a>.</p>
+<p>The image below compares the plot generated by v1.3.0 (left) to the one
+produced by v1.3.1 (right). The most noticeable change is the use of black
+(instead of green) for the regenerated curve. This guarantees greater contrast
+against the natural points, which should improve legibility both for people
+with red-green colour blindness and for black-and-white printing.</p>
+<p><img src="irsar-rf.png" alt="irsar-rf" title="Comparison of plots from analyse_IRSAR.RF()"></p>
+<p>In any case, point colours for the natural and regenerated curves can now be
+fully customised by using the new <code>col_nat</code> and <code>col_reg</code> parameters,
+respectively. For example, the original colours can be restored by setting
+<code>col_reg = &quot;#9ACD32&quot;</code>.</p>
+<p>Moreover, the image is no longer constrained to a fixed ratio, and it&rsquo;s now
+allowed to occupy all available space without unnecessarily leaving blank
+areas. The x-axis label now is more precise, reporting &ldquo;Irradiation time&rdquo;,
+instead of the more generic &ldquo;Time&rdquo; used before.</p>
+<p>Yet another difference is the positioning of the axis labels for the residuals
+subplot. We use <code>E</code> instead of a longer and clearer name to reduce chances of
+overplotting. At least, with the new positioning, it will no longer look like
+a stray letter being printed by mistake.</p>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1665">issue 1665</a> we changed the appearance of the y-axis so that the
+tick labels are no longer forced to be in scientific format. The previous
+behaviour can be restored by setting <code>yaxis_scientific = TRUE</code>.</p>
+<h3 id="improvements-to-plot_abanicoplot">Improvements to <code>plot_AbanicoPlot()</code></h3>
+<p>In <a href="https://github.com/R-Lum/Luminescence/issues/1707">issue 1707</a> Annette Kadereit noticed that datasets containing
+only one non-missing observation were removed from the input data and not
+plotted at all. The removal was intentional and originated several years ago
+as a safeguard against failing to compute the kernel density estimate, which
+requires at least two points.</p>
+<p>This behaviour had the additional drawback that, when the input was a list of
+data frames, the colours associated to the objects would change depending on
+whether any of the data frames was removed or not. The following image shows
+the incorrect behaviour of the function: on the left, the small dataset (in
+yellow) contains two points and is plotted; however, if one of the points were
+to be missing, the entire small dataset would be removed, and the colour of
+the large dataset would change from blue to yellow:</p>
+<p><img src="abanico.png" alt="abanico" title="Incorrect behaviour of plot_AbanicoPlot()"></p>
+<p>Removing the data set altogether felt too restrictive. The solution we found
+was to keep the single-observation datasets so that its point could be plotted,
+but not attempt to compute and plot its density. This made it much easier to
+preserve the colours (as well as other graphical parameters, such as the
+point style or the line width) assigned to each input data frame.</p>
+<p>Another issue discovered by Annette Kadereit related to the positioning of
+the boxplot, which was at times misplaced if not completely missing
+(<a href="https://github.com/R-Lum/Luminescence/issues/1713">issue 1713</a>). The image below compares a case of misplaced boxplot
+with the corrected positioning:</p>
+<p><img src="abanico-boxplot.png#center" alt="abanico-boxplot" title="Comparison of boxplots produced by plot_AbanicoPlot()"></p>
+<p>Users of the interactive mode will be please to see the improvements made to
+it by Sebastian Kreutzer, who has added a lot of functionality and polish to
+it. While they were developed for a future release of <code>RLumShiny</code>, they can
+already be enjoyed by <code>Luminescence</code> user.</p>
+<h3 id="more-stable-analyse_pirirsequence">More stable <code>analyse_pIRIRSequence()</code></h3>
+<p>Annette Kadereit noticed in <a href="https://github.com/R-Lum/Luminescence/issues/1734">issue 1734</a> that <code>analyse_pIRIRSequence()</code>
+would silently fail when both <code>plot_singlePanels</code> and <code>plot_onePage</code> were set
+to <code>TRUE</code> and the window size (or the page size, if plotting to a file) was
+too small.</p>
+<p>What was unsettling was that on Windows there was a complete lack of feedback:
+this meant that if the function was called on multiple aliquots, it would only
+process the first before silently stopping. Surprisingly, on Linux the same
+argument combination caused instead a hard failure.</p>
+<p>The problem was that the check for the window size occurred only when
+<code>plot_singlePanels = FALSE</code>, under the assumption that if plots are drawn on
+separate panels there would not be a space problem. However, that didn&rsquo;t
+account for the presence of <code>plot_onePage</code>, which could force several panels
+on the same page. The presence of two different options that try to modify the
+same properties is unfortunate, but too involved a change to do in a minor
+release.</p>
+<p>The issue at hand was fixed by checking the window size independently of the
+<code>plot_singlePanels</code> setting.</p>
+<h3 id="controlling-the-size-of-points">Controlling the size of points</h3>
+<p>Thanks again to a request by Annette Kadereit in <a href="https://github.com/R-Lum/Luminescence/issues/1720">issue 1720</a>, we have
+added a way to control the size of points. While this can already be done with
+the <code>cex</code> parameter, this has the disadvantage of increasing the size of all
+plot elements, including the font size. Therefore, having a separate parameter
+(<code>pt.cex</code>) adds some extra flexibility while preparating a plot.</p>
+<p>For example, here is the plot generated by <code>plot_DoseResponseCurve()</code> with
+<code>pt.cex = 2</code>:</p>
+<p><img src="drc.png" alt="drc" title="Plot from plot_DoseResponseCurve()"></p>
+<p>The new <code>pt.cex</code> parameter is now available in the following functions:</p>
+<ul>
+<li><code>analyse_Al2O3C_CrossTalk()</code></li>
+<li><code>analyse_Al2O3C_ITC()</code></li>
+<li><code>analyse_FadingMeasurement()</code></li>
+<li><code>analyse_IRSAR.RF()</code></li>
+<li><code>plot_AbanicoPlot()</code></li>
+<li><code>plot_DoseResponseCurve()</code></li>
+<li><code>plot_DRCSummary()</code></li>
+<li><code>plot_DRTResults()</code></li>
+<li><code>plot_Histogram()</code></li>
+<li><code>plot_KDE()</code></li>
+<li><code>plot_RadialPlot()</code></li>
+</ul>
+<h2 id="argument-consolidation">Argument consolidation</h2>
+<p>Often arguments in <code>Luminescence</code> have slightly different names or behaviour
+across functions. In this release we made two small changes in the direction
+of increased consistence:</p>
+<ul>
+<li>
+<p>multicore support is now controlled by the <code>cores</code> argument, which is
+validated consistently across functions (<a href="https://github.com/R-Lum/Luminescence/issues/1668">issue 1668</a>). This in general
+defaults to 1 (corresponding to serial computation), but can be set to an
+arbitrary value (capped by the number of cores actually available);
+alternatively, it can be set to <code>NULL</code> to use all but two of the available
+logical cores. This change affects <code>analyse_IRSAR.RF()</code>, <code>calc_Huntley2006()</code>,
+<code>calc_MinDose()</code> and <code>plot_DetPlot()</code>.</p>
+</li>
+<li>
+<p>the <code>objects</code> argument was renamed to <code>object</code> in <code>merge_RLum()</code>,
+<code>merge_RLum.Analysis()</code>, <code>merge_RLum.Results()</code> and <code>merge_Risoe.BINfileData()</code>,
+(<a href="https://github.com/R-Lum/Luminescence/issues/1697">issue 1697</a>).</p>
+</li>
+</ul>
+<p>Moreover, support for the <code>na.rm</code> argument was removed from the following
+functions because effectively it was not working at all, and would
+actually lead to crashes:</p>
+<ul>
+<li><code>plot_AbanicoPlot()</code></li>
+<li><code>plot_Histogram()</code></li>
+<li><code>plot_KDE()</code></li>
+<li><code>plot_RadialPlot()</code></li>
+<li><code>plot_ViolinPlot()</code></li>
+</ul>
+<p>For these functions, the <code>na.rm</code> argument will be silently ignored, and <code>NA</code>
+values will be removed before attempting to plot the data.</p>
 <h2 id="other-changes">Other changes</h2>
-<p>The work on the testing infrastructure has progressed quite nicely. This time,
-we have concentrated on adding output snapshot tests, that is specific tests
-that check that the results tables that we display on the terminal do not
-change in unexpected ways.</p>
+<p>Upon request of Annette Kadereit, <code>analyse_SAR.CWOSL()</code> now supports setting
+<code>recuperation_reference = &quot;Rmax&quot;</code> in the <code>rejection_criteria</code> list
+(<a href="https://github.com/R-Lum/Luminescence/issues/1740">issue 1740</a>). This allows to select automatically the point with
+highest dose as reference in the calculation of the recuperation rate. This
+brings to <code>Luminescence</code> an option that is also offered by the <code>Analyst</code>.</p>
+<p>Marijn van der Meij suggested in <a href="https://github.com/R-Lum/Luminescence/issues/1525">issue 1525</a> to add support for
+classic bootstrap in <code>calc_MinDose()</code>. By default this function implements a
+recycled bootstrap following Cunningham and Wallinga (2012). However, this can
+be computationally demanding and in many applications not necessary. Now it is
+possible to disable the second-level bootstrap entirely by setting <code>bs.N = 0</code>,
+in which case the function uses a classic single-level bootstrap, with number
+of iterations controlled by the <code>bs.M</code> argument.</p>
+<h3 id="expansion-of-the-test-infrastructure">Expansion of the test infrastructure</h3>
+<p>The work on the testing infrastructure has progressed quite nicely also during
+this release cycle. This time, we have concentrated on adding output snapshot
+tests, that is specific tests that check that the results tables or any other
+output that we display on the terminal do not change in unexpected ways.</p>
 <p>The addition of this new family of tests has been quite painless, as we
-piggy-backed on the existing snapshot test setup. Specifically, whenever we
-store a numerical snapshot, we can now ask to store an output snapshot as
-well. This means that, for the most part, we simply needed to add
+piggy-backed on the existing setup for snapshot tests. Specifically, whenever
+we store a numerical snapshot, we can now request to store an output snapshot
+as well. This means that, for the most part, we simply needed to add
 <code>expect_snapshot_output = TRUE</code> to the desired tests, and the rest would be
-taken care by our internal helper function. Overall, this brought the number
-of output tests from 12 to 85. This work is documented in <a href="https://github.com/R-Lum/Luminescence/issues/1638">issue 1638</a>.</p>
+taken care by our internal helper function. This brought the number of output
+snapshot tests from 12 to 85. This work is documented in <a href="https://github.com/R-Lum/Luminescence/issues/1638">issue 1638</a>.</p>
 <p>Overall, the number of tests has increased from 4130 to 4293, despite the
 replacement of a bunch of handwritten tests with fewer (and more thorough)
 numerical snapshot tests.</p>
+<h2 id="upcoming-work">Upcoming work</h2>
+<p>The next couple of months will concentrate on streamlining the set of S3 and
+S4 methods that we export, as discussed in <a href="https://github.com/R-Lum/Luminescence/issues/1694">issue 1694</a>. As part of
+this process we are deprecating a number of S3 methods that are unlikely to
+be of interest to end users, as usually there is a more convenient (and
+shorter) way to achieve the same result. The following table shows the
+deprecated methods and their replacement.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Deprecated</th>
+					<th>Replacement</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>as.data.frame.RLum.Data.*</code></td>
+					<td><code>as.data.frame()</code></td>
+			</tr>
+			<tr>
+					<td><code>as.list.RLum.*</code></td>
+					<td><code>as.list()</code></td>
+			</tr>
+			<tr>
+					<td><code>as.matrix.RLum.Data.*</code></td>
+					<td><code>as.matrix()</code></td>
+			</tr>
+			<tr>
+					<td><code>dim.RLum.Data.*</code></td>
+					<td><code>dim()</code></td>
+			</tr>
+			<tr>
+					<td><code>hist.RLum.*</code></td>
+					<td><code>hist()</code></td>
+			</tr>
+			<tr>
+					<td><code>length_RLum</code>, <code>length.RLum.*</code></td>
+					<td><code>length()</code></td>
+			</tr>
+			<tr>
+					<td><code>merge_RLum.*</code>, <code>merge.RLum.*</code></td>
+					<td><code>merge_RLum()</code></td>
+			</tr>
+			<tr>
+					<td><code>names_RLum</code>, <code>names.RLum.*</code></td>
+					<td><code>names()</code></td>
+			</tr>
+			<tr>
+					<td><code>plot.RLum.*</code></td>
+					<td><code>plot()</code></td>
+			</tr>
+			<tr>
+					<td><code>summary.RLum.Data.*</code></td>
+					<td><code>summary()</code></td>
+			</tr>
+	</tbody>
+</table>
+<p>Their actual removal will occur with v1.4.0. This should not bring any loss
+of functionality, but will reduce some redundancy in the internal code. Most
+importantly, it should open the door for other packages to hook into (and
+overload) existing <code>Luminescence</code> functions, which is something that now it&rsquo;s
+generally not possible.</p>
 		</div>
 	</article>
 </main>
