@@ -5,9 +5,10 @@ sidebar: false
 title: About
 ---
 
-REPLAY is a DFG-funded programme ([No 528704761](https://gepris.dfg.de/gepris/projekt/528704761?language=en))
-led by [Dr Sebastian Kreutzer](https://www.geog.uni-heidelberg.de/en/node/543)
-(PI at [Heidelberg University, DE](https://www.uni-heidelberg.de/en)) and
+REPLAY is a DFG-funded programme ([No 528704761](https://gepris.dfg.de/project/528704761))
+led by Dr Sebastian Kreutzer (PI at [Heidelberg University,
+DE](https://www.geog.uni-heidelberg.de/en) until 2025, [LIAG - Institute for
+Applied Geophysics, Hannover, DE](https://www.liag-institut.de/en/) from 2026) and
 [Dr Thomas Kolb](https://www.uni-giessen.de/en/faculties/f07/departments/geography/sections/physical/staff/kolb-en)
 (PI at [Justus-Liebig-University Giessen, DE](https://www.uni-giessen.de/en/)).
 
@@ -55,7 +56,7 @@ the REPLAY system.
 
 The REPLAY website is built using [Hugo](https://gohugo.io/), a
 static HTML and CSS website generator written in Go, and the
-[Mainroad](https://github.com/Vimux/Mainroad/) theme. Support for R code is
+[Roadster](https://github.com/mansoorbarri/roadster/) theme. Support for R code is
 handled via the [blogdown](https://pkgs.rstudio.com/blogdown/) R package.
 
 ### Information according § 5 TMG (Germany)
